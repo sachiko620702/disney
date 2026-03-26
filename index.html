@@ -381,11 +381,68 @@
     font-style: italic;
   }
 
+  /* Sticky tabs for mobile */
+  .tabs-nav-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy) 85%, transparent 100%);
+    padding: 10px 0 14px;
+    margin: 0 -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   /* Responsive */
   @media (max-width: 600px) {
-    .menu-card { padding: 24px 18px; }
-    .menu-grid { grid-template-columns: 1fr; }
-    .tab-btn { font-size: 0.75rem; padding: 8px 13px; }
+    html { font-size: 16px; -webkit-text-size-adjust: 100%; }
+
+    .page-wrapper { padding: 0 12px 40px; }
+
+    .site-header { padding: 30px 10px 18px; }
+    .site-header h1 { font-size: 1.4rem; }
+
+    .tabs-nav-wrapper {
+      margin: 0 -12px;
+      padding: 8px 0 12px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .tabs-nav-wrapper::-webkit-scrollbar { display: none; }
+
+    .tabs-nav {
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      gap: 8px;
+      padding: 0 12px;
+      min-width: max-content;
+    }
+
+    .tab-btn {
+      font-size: 0.82rem;
+      padding: 10px 16px;
+      white-space: nowrap;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-card { padding: 20px 14px; border-radius: 14px; }
+    .menu-grid { grid-template-columns: 1fr; gap: 10px; }
+
+    .menu-item { padding: 14px; min-height: 44px; }
+    .item-name-zh { font-size: 1rem; }
+    .item-name-en { font-size: 0.78rem; }
+    .item-desc { font-size: 0.8rem; line-height: 1.7; }
+
+    .restaurant-title { font-size: 1.1rem; }
+    .section-header h2 { font-size: 0.85rem; }
+
+    .bread-row { padding: 12px 14px; }
+    .kids-section { padding: 16px 12px; }
+
+    .menu-footer p { font-size: 0.78rem; }
   }
 
   /* Sparkle animation on hover for items */
@@ -423,6 +480,7 @@
   </header>
 
   <!-- TABS NAV -->
+  <div class="tabs-nav-wrapper">
   <nav class="tabs-nav">
     <button class="tab-btn active" onclick="switchTab('nav')" data-tab="nav">
       <span class="tab-icon">⚓</span>航海家 &amp; 好萊塢
@@ -437,6 +495,7 @@
       <span class="tab-icon">🎇</span>第四晚限定晚宴
     </button>
   </nav>
+  </div>
 
   <!-- ===== TAB 1: Navigator + Hollywood ===== -->
   <div class="tab-panel active" id="tab-nav">
