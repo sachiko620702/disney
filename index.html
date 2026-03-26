@@ -694,6 +694,9 @@
     <button class="tab-btn" onclick="switchTab('palo')" data-tab="palo">
       <span class="tab-icon">🍷</span>Palo 義式
     </button>
+    <button class="tab-btn" onclick="switchTab('bev')" data-tab="bev">
+      <span class="tab-icon">🍸</span>酒吧 &amp; 飲品
+    </button>
   </nav>
   </div>
 
@@ -2767,6 +2770,3283 @@
         Premium dining experience · 18% gratuity added to all orders</p>
       </div>
     </div>
+  </div>
+  <!-- 🍸 Beverage Tab Panel -->
+  <div class="tab-panel" id="tab-bev">
+        <!-- Sub-tabs Navigation -->
+        <div style="display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap">
+          <button class="sub-tab-btn active" onclick="switchSub('bev','alleycatcafe')">🍸 Alley Cat Café</button>
+          <button class="sub-tab-btn" onclick="switchSub('bev','bachacoffee')">☕ Bacha Coffee</button>
+          <button class="sub-tab-btn" onclick="switchSub('bev','bewitchingbobabrews')">🍹 Bewitching Boba & Brews</button>
+          <button class="sub-tab-btn" onclick="switchSub('bev','buccaneerbar')">🍸 Buccaneer Bar</button>
+          <button class="sub-tab-btn" onclick="switchSub('bev','conciergeloungemenu')">☕ Concierge Lounge Menu</button>
+          <button class="sub-tab-btn" onclick="switchSub('bev','dloungemocktails')">🍹 D-Lounge Mocktails</button>
+          <button class="sub-tab-btn" onclick="switchSub('bev','gardenbar')">🍸 Garden Bar</button>
+          <button class="sub-tab-btn" onclick="switchSub('bev','infinitybar')">☕ Infinity Bar</button>
+          <button class="sub-tab-btn" onclick="switchSub('bev','spellbound')">🍹 Spellbound</button>
+          <button class="sub-tab-btn" onclick="switchSub('bev','tavernaportorosso')">🍸 Taverna Portorosso</button>
+          <button class="sub-tab-btn" onclick="switchSub('bev','tianasbayoulounge')">☕ Tiana's Bayou Lounge</button>
+          <button class="sub-tab-btn" onclick="switchSub('bev','wayfinderbar')">🍹 Wayfinder Bar</button>
+          <button class="sub-tab-btn" onclick="switchSub('bev','wheezysfreezies')">🍸 Wheezy's Freezies</button>
+        </div>
+        <!-- Sub-panels Content -->
+      <div class="sub-panel active" id="sub-bev-alleycatcafe">
+        <div class="menu-card">
+          <div class="restaurant-title">巷弄貓咪咖啡館</div>
+          <div class="restaurant-en">Alley Cat Café</div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍸</span>
+            <h2>大人的微醺時刻</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">「我有個小顧慮」特調</div>
+              <div class="item-name-en">I Have Some Concerns</div>
+              <div class="item-desc">Bayab棕櫚鳳梨琴酒｜法勒南糖漿｜清酒｜萊姆｜鳳梨｜葡萄柚</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">阿庫馬島冰茶</div>
+              <div class="item-name-en">Akuma Island Iced Tea</div>
+              <div class="item-desc">絕對伏特加｜必富達琴酒｜百加得蘭姆酒｜歐巴燒酒｜柚子｜龍舌蘭糖漿｜原萃烏龍茶</div>
+              <div class="item-price">$14.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🚫</span>
+            <h2>零酒精魔法</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">消失的荊棘 美國無酒精紅白氣泡飲</div>
+              <div class="item-name-en">Missing Thorn USA Sparkling White Red</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">NON1 鹽味覆盆子與洋甘菊</div>
+              <div class="item-name-en">NON1 Salted Raspberry & Chamomile</div>
+              <div class="item-price">$15.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">NON2 焦糖洋梨與昆布</div>
+              <div class="item-name-en">NON2 Caramelized Pear & Kombu</div>
+              <div class="item-price">$15.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">萊亞無酒精莫西多</div>
+              <div class="item-name-en">Lyre's Mojito</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">海尼根 0.0% 零酒精啤酒</div>
+              <div class="item-name-en">Heineken 0.0%</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">華士坦 0.0% 檸檬零酒精啤酒</div>
+              <div class="item-name-en">Warsteiner Radler 0.0%</div>
+              <div class="item-price">$7.75</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍹</span>
+            <h2>奇妙無酒精特調</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">櫻花元氣飲</div>
+              <div class="item-name-en">Sakura Refresher</div>
+              <div class="item-desc">櫻花｜白葡萄｜原萃綾鷹綠茶</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">吧啦吧啦吧啦奶昔</div>
+              <div class="item-name-en">Ba-La-La-La-La Shake</div>
+              <div class="item-desc">烤棉花糖｜香草冰淇淋｜焦糖 升級搭配「微型機器人」造型特製杯 (Add specialty Megabot Sipper)</div>
+              <div class="item-price">$6.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">霓虹海灣微風</div>
+              <div class="item-name-en">Neon Bay Breeze</div>
+              <div class="item-desc">洋梨｜萊姆｜葡萄｜發燒樹墨西哥萊姆汽水｜蝶豆花 升級搭配「杯麵」造型特製杯 (Add specialty Baymax Sipper)</div>
+              <div class="item-price">$7.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍺</span>
+            <h2>英雄們的精釀啤酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">虎牌冰釀啤酒</div>
+              <div class="item-name-en">Tiger Lager</div>
+              <div class="item-desc">酒精濃度 5% ABV</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">京A 工人淡色艾爾啤酒</div>
+              <div class="item-name-en">Jing-A Worker's Pale Ale</div>
+              <div class="item-desc">酒精濃度 5% ABV</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">京A 柑橘小麥啤酒</div>
+              <div class="item-name-en">Jing-A Mandarin Wheat</div>
+              <div class="item-desc">酒精濃度 4.2% ABV</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">布魯克林捍衛者 IPA</div>
+              <div class="item-name-en">Brooklyn Defender IPA</div>
+              <div class="item-desc">酒精濃度 5.5% ABV</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">豪格登小麥白啤酒</div>
+              <div class="item-name-en">Hoegaarden Witbier</div>
+              <div class="item-desc">酒精濃度 4.9% ABV</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">時代啤酒</div>
+              <div class="item-name-en">Stella Artois Lager</div>
+              <div class="item-desc">酒精濃度 5.2% ABV</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">健力士黑生啤酒</div>
+              <div class="item-name-en">Guinness Stout Lager</div>
+              <div class="item-desc">酒精濃度 7.5% ABV</div>
+              <div class="item-price">$7.75</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍷</span>
+            <h2>舊京山精選酒莊</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">義大利 皇家波哥普羅賽克氣泡酒</div>
+              <div class="item-name-en">Borgo Imperiale Prosecco Italy</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">紐西蘭 間諜谷白蘇維翁白酒</div>
+              <div class="item-name-en">Spy Valley Sauvignon Blanc New Zealand</div>
+              <div class="item-price">$13.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">法國波爾多 瑪萊伯爵夫人紅酒</div>
+              <div class="item-name-en">Comtesse de Malet Bordeaux France</div>
+              <div class="item-price">$13.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sub-panel" id="sub-bev-bachacoffee">
+        <div class="menu-card">
+          <div class="restaurant-title">☕ 阿格拉巴皇家咖啡館 ｜ 巴查咖啡奇妙菜單</div>
+          <div class="restaurant-en"></div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🥐</span>
+            <h2>仙女教母的魔法烘焙坊</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">甜蜜夢境可頌</div>
+              <div class="item-name-en">Gourmet Sweet Croissants</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">經典奶油可頌</div>
+              <div class="item-name-en">Butter Croissant</div>
+              <div class="item-price">$3.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">奇妙開心果可頌</div>
+              <div class="item-name-en">Pistachio Croissant</div>
+              <div class="item-price">$3.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">1910 咖啡巧克力可頌</div>
+              <div class="item-name-en">1910 Coffee & Chocolate Crossant</div>
+              <div class="item-price">$3.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">睡美人藍莓薰衣草可頌</div>
+              <div class="item-name-en">Blueberry & Lavender Crossant</div>
+              <div class="item-price">$3.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">愛麗絲覆盆子肉桂可頌</div>
+              <div class="item-name-en">Raspberry & Cinnamon Crossant</div>
+              <div class="item-price">$3.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">皇家騎士鹹味可頌</div>
+              <div class="item-name-en">Gourmet Savoury Croissants</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">康堤乾酪可頌</div>
+              <div class="item-name-en">Comté Cheese Croissant</div>
+              <div class="item-price">$3.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">黑森林蘑菇松露可頌</div>
+              <div class="item-name-en">Mushroom & Truffle Croissant</div>
+              <div class="item-price">$3.50</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🌍</span>
+            <h2>奇幻產區與無咖啡因魔法</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">獅子王故鄉：西達摩高山咖啡，衣索比亞</div>
+              <div class="item-name-en">Sidamo Mountain Coffee, Ethiopia</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">肯亞山咖啡，肯亞</div>
+              <div class="item-name-en">Mount Kenya Coffee, Kenya</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">拉戈亞咖啡，巴西</div>
+              <div class="item-name-en">Lagoa Coffee, Brazil</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">魔法滿屋：馬格達萊納咖啡，哥倫比亞</div>
+              <div class="item-name-en">Magdalena Coffee, Colombia</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">馬德雷山脈咖啡，瓜地馬拉</div>
+              <div class="item-name-en">Sierra Madre Coffee, Guatemala</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">納蘭霍高山咖啡，哥斯大黎加</div>
+              <div class="item-name-en">Naranjo Mountain Coffee, Costa Rica</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">圖爾基諾咖啡，古巴</div>
+              <div class="item-name-en">Turquino Coffee, Cuba</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">森林王子：季風的秘密咖啡，印度</div>
+              <div class="item-name-en">Monsoon Secret Coffee, India</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">西格里寶石咖啡，巴布亞紐幾內亞</div>
+              <div class="item-name-en">Sigri Jewel Coffee, Papua New Guinea</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">耶加雪菲低咖啡因咖啡，衣索比亞</div>
+              <div class="item-name-en">Yirgacheffe Decaffeinated Coffee, Ethiopia</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">馬格達萊納低咖啡因咖啡，哥倫比亞</div>
+              <div class="item-name-en">Magdalena Decaffeinated Coffee, Colombia</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">巴拉卡低咖啡因咖啡</div>
+              <div class="item-name-en">Baraka Decaffeinated Coffee</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">阿迪斯阿貝巴低咖啡因咖啡</div>
+              <div class="item-name-en">Addis Ababa Decaffeinated Coffee</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">✨ 精靈的調味魔法咖啡</div>
+              <div class="item-name-en">Fine Flavoured</div>
+              <div class="item-desc">托爾特克巧克力咖啡 (Tolteca Chocolate Coffee)</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">焦糖晨光咖啡</div>
+              <div class="item-name-en">Caramelo Morning Coffee</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">歡樂吉安杜佳（榛果巧克力）咖啡</div>
+              <div class="item-name-en">Happy Gianduja Coffee</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">塞維利亞柑橘咖啡</div>
+              <div class="item-name-en">Seville Orange Coffee</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">飛毯奇遇：魔幻伊斯坦堡咖啡</div>
+              <div class="item-name-en">Magic Istanbul Coffee</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">甜蜜墨西哥咖啡</div>
+              <div class="item-name-en">Sweet Mexico Coffee</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">經典 1910 咖啡</div>
+              <div class="item-name-en">1910 Coffee</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">幻想曲：藍色多瑙河咖啡</div>
+              <div class="item-name-en">Blue Danube Coffee</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">皮諾丘的米蘭之晨咖啡</div>
+              <div class="item-name-en">Milano Morning Coffee</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">神仙教母的生日願望咖啡</div>
+              <div class="item-name-en">Birthday Wish Coffee</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">料理鼠王：我愛巴黎咖啡</div>
+              <div class="item-name-en">I Love Paris Coffee</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">瑪魯奇斯莫咖啡</div>
+              <div class="item-name-en">Maroochissimol Coffee</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">新加坡之晨咖啡</div>
+              <div class="item-name-en">Singapore Morning Coffee</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">馬拉喀什之晨咖啡</div>
+              <div class="item-name-en">Marrakech Morning Coffee</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">摩洛哥撒哈拉咖啡</div>
+              <div class="item-name-en">Moroccan Sahara Coffee</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">非洲之王咖啡</div>
+              <div class="item-name-en">King of Africa Coffee</div>
+              <div class="item-price">$7.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🥪</span>
+            <h2>美女與野獸的豐盛法式餐盤</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">冰雪奇緣：挪威煙燻鮭魚法式吐司三明治</div>
+              <div class="item-name-en">Norwegian Smoked Salmon French Toast Sandwich</div>
+              <div class="item-desc">搭配康堤乾酪與甜黃瓜 (Comté Cheese, Sweet Gherkins)</div>
+              <div class="item-price">$23.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">慢燉鮮雞法式吐司三明治</div>
+              <div class="item-name-en">Slow-Cooked Chicken French Toast Sandwich</div>
+              <div class="item-desc">搭配墨西哥辣椒與切達乾酪 (Jalapeno Pepper, Cheddar Cheese)</div>
+              <div class="item-price">$25.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">巴查皇家總匯三明治</div>
+              <div class="item-name-en">Bacha Club Sandwich</div>
+              <div class="item-desc">豐富內餡包含慢燉雞肉、牛肉培根、切達乾酪、煎蛋、洋蔥葡萄乾果醬與酸黃瓜</div>
+              <div class="item-price">$25.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍹</span>
+            <h2>神奇甘泉與特調</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">礦泉水</div>
+              <div class="item-name-en">Mineral Water</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">普娜天然礦泉水</div>
+              <div class="item-name-en">500ml</div>
+              <div class="item-desc">(Acqua Panna Still Water, 50Cl)</div>
+              <div class="item-price">$8.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">聖沛黎洛氣泡水</div>
+              <div class="item-name-en">500ml</div>
+              <div class="item-desc">(San Pellegrino Sparkling Water, 50Cl)</div>
+              <div class="item-price">$8.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">新鮮果汁</div>
+              <div class="item-name-en">Fresh Fruit Juices</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">陽光柳橙汁</div>
+              <div class="item-name-en">Orange</div>
+              <div class="item-price">$8.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">清涼西瓜汁</div>
+              <div class="item-name-en">Watermelon</div>
+              <div class="item-price">$8.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">熱巧克力</div>
+              <div class="item-name-en">Hot Chocolate</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">傳統「撒哈拉」熱巧克力</div>
+              <div class="item-name-en">Traditional "Sahara" Hot Chocolate</div>
+              <div class="item-price">$9.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">奇幻無酒精特調</div>
+              <div class="item-name-en">Mocktails</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">瑪卡拉卓越咖啡冰塊佐熱蒸氣牛奶</div>
+              <div class="item-name-en">Steamed Milk, Marcala Excellence Coffee Ice Cubes</div>
+              <div class="item-price">$12.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">冰鎮馬格達萊納咖啡佐新鮮柳橙汁</div>
+              <div class="item-name-en">Iced Magdalena Coffee, Fresh Orange Juice</div>
+              <div class="item-price">$12.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">🍽️ 皇家內用甜點與酥餅饗宴 甜蜜夢境可頌雙重奏</div>
+              <div class="item-name-en">Gourmet Sweet Croissants</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">主廚小提醒： 隨餐附上香緹鮮奶油、巴查手工咖啡蜂蜜、咖啡果凍或本週特製焦糖！</div>
+              <div class="item-name-en">Accompanied By Chantilly Cream, Artisanal Bacha Coffee Honey, Coffee Jelly Or Caramel Of The Week</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">經典奶油可頌</div>
+              <div class="item-name-en">2入</div>
+              <div class="item-desc">(Butter Croissant)</div>
+              <div class="item-price">$8.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">1910 咖啡巧克力可頌</div>
+              <div class="item-name-en">2入</div>
+              <div class="item-desc">(1910 Coffee & Chocolate Croissant)</div>
+              <div class="item-price">$8.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">草莓與大黃可頌</div>
+              <div class="item-name-en">2入</div>
+              <div class="item-desc">(Strawberry & Rhubarb Croissant)</div>
+              <div class="item-price">$8.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">奇妙開心果可頌</div>
+              <div class="item-name-en">2入</div>
+              <div class="item-desc">(Pistachio Croissant)</div>
+              <div class="item-price">$8.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">黑醋栗與椰香可頌</div>
+              <div class="item-name-en">2入</div>
+              <div class="item-desc">(Blackcurrant & Coconut Croissant)</div>
+              <div class="item-price">$8.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">魔法咖啡磅蛋糕</div>
+              <div class="item-name-en">Coffee Cakes</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">檸檬與糖漬檸檬蛋糕</div>
+              <div class="item-name-en">2入</div>
+              <div class="item-desc">(Lemon & Candied Lemon Cake)</div>
+              <div class="item-price">$8.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">巧克力、鹽之花與西西里開心果蛋糕</div>
+              <div class="item-name-en">2入</div>
+              <div class="item-desc">(Chocolate, Fleur De Sel & Sicilian Pistachio)</div>
+              <div class="item-price">$8.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">皇家騎士鹹味可頌雙重奏</div>
+              <div class="item-name-en">Gourmet Savoury Croissants</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">主廚小提醒： 隨餐附上芝麻葉沙拉、櫻桃番茄與油醋醬。</div>
+              <div class="item-name-en">Served With Roquette Salad, Cherry Tomato And Vinaigrette</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">康堤乾酪可頌</div>
+              <div class="item-name-en">2入</div>
+              <div class="item-desc">(Comté Cheese Croissant)</div>
+              <div class="item-price">$17.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">黑森林蘑菇松露可頌</div>
+              <div class="item-name-en">2入</div>
+              <div class="item-desc">(Mushroom And Truffle Croissant)</div>
+              <div class="item-price">$17.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">主廚私房童話甜點</div>
+              <div class="item-name-en">Housemade Pastries</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">奇妙草莓萊姆羅勒小塔</div>
+              <div class="item-name-en">Strawberry, Lime, Basil Tartlet</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">經典提拉米蘇佐維也納之晨咖啡</div>
+              <div class="item-name-en">Tiramisu, Vienna Dawn Coffee</div>
+              <div class="item-price">$14.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sub-panel" id="sub-bev-bewitchingbobabrews">
+        <div class="menu-card">
+          <div class="restaurant-title">🔮 魅惑珍珠與魔法特調吧</div>
+          <div class="restaurant-en"></div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍓</span>
+            <h2>超級魔法果茶</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">深海秘境葡萄特調</div>
+              <div class="item-name-en">Deep-Sea Grape Concoction</div>
+              <div class="item-desc">- 清香茉莉花茶</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">小美人魚的莓果之吻</div>
+              <div class="item-name-en">Mermaid's Berry Kiss</div>
+              <div class="item-desc">- 草莓、藍莓、覆盆子、茉莉花茶</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">海妖賽倫的風暴柑橘飲</div>
+              <div class="item-name-en">Siren Citrus Storm</div>
+              <div class="item-desc">- 柳橙、檸檬、萊姆、茉莉花茶</div>
+              <div class="item-price">$7.75</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🥛</span>
+            <h2>奇幻奶茶</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">秘境洋流抹茶特調</div>
+              <div class="item-name-en">Mystic Tide Matcha</div>
+              <div class="item-desc">- 香醇鮮奶、手熬黑糖珍珠</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">仙女教母的魔法茉莉奶茶</div>
+              <div class="item-name-en">Enchanted Jasmine Milk</div>
+              <div class="item-desc">- 經典茉莉花茶基底</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">✨ 升級魔法配料</div>
+              <div class="item-name-en">Add-Ons</div>
+              <div class="item-desc">主廚小提醒： 為您的魔藥加上一點額外的驚喜口感吧！</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">黑珍珠魔咒黑糖波霸</div>
+              <div class="item-name-en">Black Pearl Brown Sugar Boba</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$1.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">海洋咒語奇亞籽</div>
+              <div class="item-name-en">Sea-Spell Chia Seeds</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$1.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">驚喜燕麥爆爆珠</div>
+              <div class="item-name-en">Bursting Oat Popping Boba</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$1.25</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🥬</span>
+            <h2>每日綠色魔法</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">海之巫婆的綠寶石精華</div>
+              <div class="item-name-en">Sea Witch Emerald Essence</div>
+              <div class="item-desc">- 羽衣甘藍、新鮮蘋果、檸檬、茉莉花茶</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">🌪️ 奇妙優格冰沙</div>
+              <div class="item-name-en">Yogurt Smoothies</div>
+              <div class="item-desc">烏蘇拉的暗黑魔法冰沙 (Ursula Magic Smoothie) - 藍莓、葡萄、優格、燕麥爆爆珠，點綴神秘的藍色螺旋藻</div>
+              <div class="item-price">$8.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">深海八爪魔藥酪梨冰沙</div>
+              <div class="item-name-en">Tentacle Avocado Potion</div>
+              <div class="item-desc">- 羽衣甘藍、優格、燕麥爆爆珠、奇亞籽與藍色螺旋藻</div>
+              <div class="item-price">$8.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">沉船寶藏芒果特調</div>
+              <div class="item-name-en">Sunken Treasure Mango Brew</div>
+              <div class="item-desc">- 酸甜優格、燕麥爆爆珠與藍色螺旋藻</div>
+              <div class="item-price">$7.75</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sub-panel" id="sub-bev-buccaneerbar">
+        <div class="menu-card">
+          <div class="restaurant-title">‍☠️ 海盜酒館 尋寶酒水單</div>
+          <div class="restaurant-en">Buccaneer Bar</div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍺</span>
+            <h2>船長金庫：鮮釀生啤</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">法國 1664 可倫堡拉格啤酒</div>
+              <div class="item-name-en">Kronenbourg 1664 Lager, France</div>
+              <div class="item-desc">5.5% ABV｜</div>
+              <div class="item-price">$8.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">日本 常陸野貓頭鷹白啤酒</div>
+              <div class="item-name-en">Hitachino Nest White Ale, Japan</div>
+              <div class="item-desc">5% ABV｜</div>
+              <div class="item-price">$8.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">新加坡 夕陽律動拉格啤酒</div>
+              <div class="item-name-en">Sunset Groove Lager, Singapore</div>
+              <div class="item-desc">5% ABV｜</div>
+              <div class="item-price">$8.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">新加坡 桂花雪梨奶油艾爾啤酒</div>
+              <div class="item-name-en">Osmanthus Pear Cream Ale, Singapore</div>
+              <div class="item-desc">5% ABV｜</div>
+              <div class="item-price">$10.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">新加坡 Owa-Owa 桑葚酸艾爾啤酒</div>
+              <div class="item-name-en">Owa-Owa Mulberry Sour Ale, Singapore</div>
+              <div class="item-desc">4.5% ABV｜</div>
+              <div class="item-price">$8.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">丹麥 嘉士伯皮爾森啤酒</div>
+              <div class="item-name-en">Carlsberg Pilsner, Denmark</div>
+              <div class="item-desc">4.8% ABV｜</div>
+              <div class="item-price">$8.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美國 布魯克林捍衛者 IPA 啤酒</div>
+              <div class="item-name-en">Brooklyn Defender IPA, USA</div>
+              <div class="item-desc">5.5% ABV｜</div>
+              <div class="item-price">$8.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美國 布魯克林石牆客棧 IPA 啤酒</div>
+              <div class="item-name-en">Brooklyn Stonewall Inn IPA, USA</div>
+              <div class="item-desc">4.6% ABV｜</div>
+              <div class="item-price">$8.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">新加坡 銀河熱帶司陶特黑啤酒</div>
+              <div class="item-name-en">Galactic Tropical Stout, Singapore</div>
+              <div class="item-desc">6.5% ABV｜</div>
+              <div class="item-price">$10.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">中國 工人淡色艾爾啤酒</div>
+              <div class="item-name-en">Worker's Pale Ale, China</div>
+              <div class="item-desc">5% ABV｜</div>
+              <div class="item-price">$8.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">中國 京A 蜜桔小麥啤酒</div>
+              <div class="item-name-en">Jing-A Mandarin Wheat, China</div>
+              <div class="item-desc">4.2% ABV｜</div>
+              <div class="item-price">$8.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">新加坡 星空小荳蔻玫瑰賽松啤酒</div>
+              <div class="item-name-en">Celestial Cardamom Rose Saison, Singapore</div>
+              <div class="item-desc">5% ABV｜</div>
+              <div class="item-price">$10.75</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍾</span>
+            <h2>美人魚的珍珠：氣泡酒與香檳</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">義大利 波戈帝國甜司卡托氣泡酒</div>
+              <div class="item-name-en">Borgo Imperiale Moscato Dolce, Italy</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">義大利 波戈帝國普羅塞克氣泡酒</div>
+              <div class="item-name-en">Borgo Imperiale Prosecco, Italy</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">法國 伯瑞經典布魯特香檳</div>
+              <div class="item-name-en">Pommery Brut, France</div>
+              <div class="item-price">$25.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍹</span>
+            <h2>海盜秘方特調</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">「魂飛魄散」木桶陳釀特調</div>
+              <div class="item-name-en">Shiver Me Timbers</div>
+              <div class="item-desc">桶陳索爾福德蜂蜜蘭姆酒、德麥拉拉蔗糖、黑橘苦精</div>
+              <div class="item-price">$20.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">深海閻王聚寶盆【雙人共享體驗】</div>
+              <div class="item-name-en">Dead Man's Chest - EXPERIENCE FOR 2</div>
+              <div class="item-desc">薩卡帕 XO 頂級蘭姆酒、鳳梨、萊姆、龍舌蘭糖漿、椰香泡沫</div>
+              <div class="item-price">$25.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">深海巨妖克拉肯</div>
+              <div class="item-name-en">The Kraken</div>
+              <div class="item-desc">克拉肯黑金香料蘭姆酒、君度橙酒、萊姆、杏仁糖漿、生薑</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">星國水手雪拉達</div>
+              <div class="item-name-en">S'pore Chelada</div>
+              <div class="item-desc">羅望子、夕陽律動拉格啤酒、萊姆、醬油</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">馮船長秘製潘趣酒</div>
+              <div class="item-name-en">Captain Feng Punch</div>
+              <div class="item-desc">總督蘭姆酒、鳳梨、萊姆、生薑、柚子苦精</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美人魚的祖母綠之海</div>
+              <div class="item-name-en">Emerald Sea</div>
+              <div class="item-desc">馬里布椰子蘭姆酒、抹茶、萊姆、香草</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">「狂野巨砲」蘭姆酒品鑑組</div>
+              <div class="item-name-en">Loose Cannons</div>
+              <div class="item-desc">品味適合船長舉杯的醇厚香料蘭姆酒三重奏：長管砲 5 年調和蘭姆酒、獵鷹砲 8 年黑蘭姆酒、君王 XO 22 年黑蘭姆酒</div>
+              <div class="item-price">$40.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🚫</span>
+            <h2>無憂水手：零酒精飲品</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">海盜骷髏旗</div>
+              <div class="item-name-en">Skull & Crossbones</div>
+              <div class="item-desc">萊雅深色甘蔗無酒精烈酒、黑糖、發燒樹薑汁汽水、萊姆、苦精</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">迷霧幽靈船</div>
+              <div class="item-name-en">Ghost Ship</div>
+              <div class="item-desc">萊雅龍舌蘭無酒精烈酒、荔枝、椰子水</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">海妖礁湖特調</div>
+              <div class="item-name-en">Siren's Lagoon Cooler</div>
+              <div class="item-desc">萊雅白色甘蔗無酒精烈酒、椰子水、鳳梨、藍色珊瑚礁糖漿、蘇打水</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">幻影莊園無酒精替代酒</div>
+              <div class="item-name-en">Zero Proof - Non-alcoholic spirit alternative</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美國 Missing Thorn 無酒精佐餐飲</div>
+              <div class="item-name-en">Missing Thorn, USA - Sparkling, white, red</div>
+              <div class="item-desc">(提供氣泡、白酒、紅酒風味)</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">NON1 海鹽覆盆子與洋甘菊</div>
+              <div class="item-name-en">NON1 Salted Raspberry & Chamomile</div>
+              <div class="item-price">$15.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">NON2 焦糖雪梨與昆布</div>
+              <div class="item-name-en">NON2 Caramelized Pear & Kombu</div>
+              <div class="item-price">$15.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🥂</span>
+            <h2>尋寶家藏酒：紅白酒精選</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">人魚灣白酒</div>
+              <div class="item-name-en">White Wines</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">澳洲 卡拉布里亞家族灰皮諾</div>
+              <div class="item-name-en">Calabria Family Pinot Grigio</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">法國 普羅旺斯晨月粉紅酒</div>
+              <div class="item-name-en">Moon Rosé, Provence</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">紐西蘭 間諜谷白蘇維翁</div>
+              <div class="item-name-en">Spy Valley Sauvignon Blanc</div>
+              <div class="item-price">$13.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美國 極樂葡萄園夏多內</div>
+              <div class="item-name-en">Bliss Vineyard Chardonnay</div>
+              <div class="item-price">$13.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">西班牙 阿爾巴拉爾酒莊 阿爾巴利諾</div>
+              <div class="item-name-en">Bodegas Albarar Albariño, Spain</div>
+              <div class="item-desc">/ (提供不同杯裝/等級選擇)</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">海盜紅寶石紅酒</div>
+              <div class="item-name-en">Red Wines</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">阿根廷 小小世界馬爾貝克</div>
+              <div class="item-name-en">Un Mundo Chiquitito Malbec</div>
+              <div class="item-desc">(主廚彩蛋："Chiquitito Mundo" 即是「小小世界」！)</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">阿根廷 間諜谷皮諾黑/馬爾貝克</div>
+              <div class="item-name-en">Spy Valley Pinot Noir Malbec</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">紐西蘭 女伯爵黑皮諾</div>
+              <div class="item-name-en">Comtesse Pinot Noir</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">澳洲 巴羅莎 索恩克拉克希哈</div>
+              <div class="item-name-en">Thorn-Clark Shiraz, Barossa</div>
+              <div class="item-price">$15.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">義大利 維斯康堤 蒙塔奇諾布魯奈羅</div>
+              <div class="item-name-en">Visconti Brunello di Montalcino</div>
+              <div class="item-price">$25.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">☠️ 海盜的蘭姆人生</div>
+              <div class="item-name-en">A Rum Life For Me</div>
+              <div class="item-desc">"Yo ho, yo ho, a pirate's life for me!"</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">高斯林百慕達黑海豹蘭姆酒</div>
+              <div class="item-name-en">Gosling's Bermuda Black Seal</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">克拉肯黑金香料蘭姆酒</div>
+              <div class="item-name-en">Kraken Black Spiced</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">薩卡帕 23 年蘭姆酒</div>
+              <div class="item-name-en">Zacapa 23</div>
+              <div class="item-price">$14.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">百加得 8 年珍藏陳釀蘭姆酒</div>
+              <div class="item-name-en">Bacardi Gran Reserva Ocho</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">薩卡帕 XO 頂級蘭姆酒</div>
+              <div class="item-name-en">Zacapa XO Rum</div>
+              <div class="item-price">$30.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">龐巴達 長管砲 5 年蘭姆酒</div>
+              <div class="item-name-en">Bombarda Culverin 5 Year</div>
+              <div class="item-price">$7.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">龐巴達 獵鷹砲 8 年蘭姆酒</div>
+              <div class="item-name-en">Bombarda Falconet 8 Year</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">龐巴達 君王 XO 22 年頂級蘭姆酒</div>
+              <div class="item-name-en">Bombarda Sovereign XO 22 Year</div>
+              <div class="item-price">$30.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🦜</span>
+            <h2>太陽鳥精釀啤酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">夕陽律動拉格</div>
+              <div class="item-name-en">Sunset Groove Lager</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">迎光飛翔淡色艾爾</div>
+              <div class="item-name-en">Fly in Light Pale Ale</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">銀河熱帶司陶特黑啤酒</div>
+              <div class="item-name-en">Galactic Tropical Stout</div>
+              <div class="item-price">$14.75</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🪣</span>
+            <h2>歡聚尋寶啤酒桶</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">經典啤酒桶</div>
+              <div class="item-name-en">Classic Beers</div>
+              <div class="item-price">$36.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">招牌啤酒桶</div>
+              <div class="item-name-en">Signature Beers</div>
+              <div class="item-price">$38.75</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍶</span>
+            <h2>東方神祕清酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">月桂冠 梅酒</div>
+              <div class="item-name-en">Gekkeikan Plum Wine</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">月桂冠 完熟梅酒原酒</div>
+              <div class="item-name-en">Gekkeikan Kanjuku Umeshu Genshu</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">菊水 純米吟釀</div>
+              <div class="item-name-en">Kikusui Junmai Ginjo</div>
+              <div class="item-price">$15.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美國 獺祭 Blue 50 純米大吟釀</div>
+              <div class="item-name-en">Dassai Blue 50 Junmai Daiginjo, USA</div>
+              <div class="item-price">$16.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sub-panel" id="sub-bev-conciergeloungemenu">
+        <div class="menu-card">
+          <div class="restaurant-title">✨ 尊貴不凡魔法禮賓酒廊菜單</div>
+          <div class="restaurant-en">Concierge Lounge Menu</div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍷</span>
+            <h2>仙女教母的珍藏酒窖</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">泰亭哲法國原生精釀香檳</div>
+              <div class="item-name-en">Taittinger Brut La Francaise</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">法拉利經典氣泡酒</div>
+              <div class="item-name-en">Ferrari Brut Sparkling</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">范德龐粉紅酒</div>
+              <div class="item-name-en">Vanderpump Rosé</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">迪士尼傳奇影星寇特·羅素特選：GoGi「金髮女孩」夏多內白酒</div>
+              <div class="item-name-en">Kurt Russell's GoGi Goldie Chardonnay</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">雲霧之灣白蘇維濃白酒</div>
+              <div class="item-name-en">Cloudy Bay Sauvignon Blanc</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">巴杜雷特城堡特級園紅酒</div>
+              <div class="item-name-en">Chateau Bardoulet Grand Cru</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">思美酒莊滑坡葡萄園卡本內蘇維濃紅酒</div>
+              <div class="item-name-en">Simi Landslide Cabernet Sauvignon</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">迪士尼傳奇影星寇特·羅素特選：GoGi「小鳥」黑皮諾紅酒</div>
+              <div class="item-name-en">Kurt Russell's GoGi Birdie Pinot Noir</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🌙</span>
+            <h2>午夜星辰睡前小酌</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🥃</span>
+            <h2>經典重現：古典雞尾酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">古典雞尾酒</div>
+              <div class="item-name-en">Old Fashioned</div>
+              <div class="item-desc"><strong>配方：</strong> 老林務官政治家波本威士忌 ｜ 苦精<br><strong>時光故事：</strong> 第一份「古典雞尾酒」的酒譜，印製於 1895 年由喬治·卡佩勒（George Kappeler）所著的《現代美國飲品》一書中。他的配方指導讀者將一塊方糖溶解於水中，加入兩滴苦精、一塊冰塊、些許檸檬皮，最後倒入一量杯的威士忌。這杯充滿魔法的混合物必須在威士忌杯中調製，用小吧匙攪拌均勻，且上桌時吧匙仍須留在杯中。這就是經典的起源！</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🥃</span>
+            <h2>純粹的美好：精選威士忌</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">美格波本威士忌</div>
+              <div class="item-name-en">Maker's Mark</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">格蘭利威 12 年創辦人珍藏單一麥芽威士忌</div>
+              <div class="item-name-en">Glenlivet 12 years Founders Reserve</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">麥卡倫探索單一麥芽威士忌</div>
+              <div class="item-name-en">Macallan Quest</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">貝里特裸麥威士忌</div>
+              <div class="item-name-en">Bulleit Rye</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">普羅珀 12 年愛爾蘭威士忌</div>
+              <div class="item-name-en">Proper 12 Irish Whiskey</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🏍️</span>
+            <h2>冒險啟航：側車</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">側車</div>
+              <div class="item-name-en">Sidecar</div>
+              <div class="item-desc"><strong>配方：</strong> 卡慕 VSOP 干邑白蘭地 ｜ 君度橙酒 ｜ 檸檬<br><strong>時光故事：</strong> 「側車」的確切發明地至今仍是個謎，但人們相信它大約誕生於第一次世界大戰末期的倫敦或巴黎。這杯飲品直接以當時非常普及的摩托車邊車（Sidecar）來命名，充滿了時代的冒險精神。</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🥂</span>
+            <h2>慶典之星：香檳雞尾酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">香檳雞尾酒</div>
+              <div class="item-name-en">Champagne Cocktail</div>
+              <div class="item-desc"><strong>配方：</strong> 泰亭哲珍藏香檳 ｜ 軒尼詩 XO 乾邑白蘭地<br><strong>時光故事：</strong> 有人說，一位名叫約翰·多爾蒂（John Dougherty）的男士，在香檳雞尾酒中加入了白蘭地，並憑藉此配方贏得了 1889 年的紐約雞尾酒大賽，讓這款飲品聲名大噪。儘管調製細節隨著時間微調，它仍是少數能經得起時間考驗的經典之作。</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🎩</span>
+            <h2>貴族風範：內格羅尼</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">內格羅尼</div>
+              <div class="item-name-en">Negroni</div>
+              <div class="item-desc"><strong>配方：</strong> 坦奎瑞 10 號琴酒 ｜ 庫奇苦艾酒 ｜ 金巴利苦酒<br><strong>時光故事：</strong> 這是一杯將辛口、甜味與苦味完美融合在一個美妙平衡中的雞尾酒。據說內格羅尼發明於義大利佛羅倫斯，並以卡米洛·內格羅尼伯爵（Count Camillo Negroni）的名字命名。當時，他要求酒保為他調製一杯「美國人（Americano）」雞尾酒，但指定要把蘇打水換成琴酒，一段傳奇就此誕生。</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">�️</span>
+            <h2>都會精靈：柯夢波丹</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">柯夢波丹</div>
+              <div class="item-name-en">Cosmopolitan</div>
+              <div class="item-desc"><strong>配方：</strong> 雪樹單一莊園伏特加 ｜ 君度橙酒<br><strong>時光故事：</strong> 這是一杯起源備受爭議，卻無比清爽香甜的飲品。酒保尼爾·默里（Neal Murray）聲稱是他在 1975 年，於「神風特攻隊（Kamikaze）」雞尾酒中加入了一抹蔓越莓汁。第一位品嚐到它的客人驚呼：「太有都會感了（How cosmopolitan）！」這杯酒的名字便由此而來。</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🌿</span>
+            <h2>夏日微風：莫西多</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">莫西多</div>
+              <div class="item-name-en">Mojito</div>
+              <div class="item-desc"><strong>配方：</strong> Ten on One 蘭姆酒 ｜ 薄荷 ｜ 萊姆 ｜ Truly 萊姆風味氣泡酒<br><strong>時光故事：</strong> 這是夏日的最愛，也是令人精神一振的清涼之選。這款源自古巴的發明，使用了頂級蘭姆酒，並巧妙地加入了萊姆風味的硬蘇打水（Hard Seltzer）以及少許安格斯圖拉苦精，為傳統風味帶來了一絲驚喜的轉折。</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🗿</span>
+            <h2>提基魔法：邁泰</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">邁泰</div>
+              <div class="item-name-en">Mai Tai</div>
+              <div class="item-desc"><strong>配方：</strong> Dos Madeiras 蘭姆酒 ｜ 杏仁糖漿 ｜ 萊姆<br><strong>時光故事：</strong> 於 1944 年由維克多·J·伯傑龍（Victor J. Bergeron，更廣為人知的名字是 Trader Vic）所創造。傳說中，他將這款混合物與冰塊搖勻，端給幾位來訪的大溪地朋友品嚐。他們實在太喜歡了，其中一位忍不住驚呼：「Maita'i roa a'e！」（大溪地語，意指「這根本不是這個世界的美味！太棒了！」）。於是，伯傑龍便將這款新調酒命名為「Mai Tai」，也就是「最棒的」意思。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sub-panel" id="sub-bev-dloungemocktails">
+        <div class="menu-card">
+          <div class="restaurant-title">D-Lounge 奇妙無酒精特調</div>
+          <div class="restaurant-en">D-Lounge Mocktails</div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🪄</span>
+            <h2>無酒精魔法飲</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">唐老鴨的歡樂特調</div>
+              <div class="item-name-en">Donald's Delight</div>
+              <div class="item-desc">這是一場視覺與味覺的繽紛驚喜！底層是香甜草莓與百香果的熱情交融，頂端覆蓋著滑順的香草冰淇淋，最後插上鳳梨與櫻桃的小旗幟，為您帶來滿滿活力！</div>
+              <div class="item-price">$3.95</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">布雷爾熊大叔的莓果櫻桃狂歡</div>
+              <div class="item-name-en">Brer Bear's Berries N' Cherries</div>
+              <div class="item-desc">莓果愛好者的美夢成真！將覆盆子、草莓與櫻桃的清涼果香完美混合，加入冰涼透心的雪碧（Sprite）搖曳激盪，最後點綴上一串紅寶石般的櫻桃。</div>
+              <div class="item-price">$3.95</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">大衛瓊斯的深海特調</div>
+              <div class="item-name-en">The Davy Jones</div>
+              <div class="item-desc">專為口渴的水手們準備的清涼提神飲品！將紅石榴、新鮮香蕉與香草冰淇淋巧妙攪打，化作迷人的紅白漩渦，最後以一顆嬌豔的櫻桃完美收尾。</div>
+              <div class="item-price">$3.95</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">阿布的猴子把戲果汁</div>
+              <div class="item-name-en">Abu Juice</div>
+              <div class="item-desc">這杯美味特調可沒有在跟您開玩笑！只選用最新鮮的香蕉、綿密的香草冰淇淋，淋上一抹迷人的焦糖，最後再放上香蕉與櫻桃點綴，保證讓您像阿布一樣開心！</div>
+              <div class="item-price">$3.95</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">焦糖海灣的秘寶</div>
+              <div class="item-name-en">The Caramel Cove</div>
+              <div class="item-desc">像巴哈馬群島的雲朵一樣潔白蓬鬆！品嚐絲滑香草冰淇淋與新鮮香蕉交織的絕妙風味，再以焦糖與肉桂提香，最後淋上一抹香甜蜂蜜，讓您彷彿置身度假天堂。</div>
+              <div class="item-price">$3.95</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">米妮的熱情芒果探戈</div>
+              <div class="item-name-en">Minnie's Mango Pango</div>
+              <div class="item-desc">這杯充滿海島風情的沁涼特調，不僅好看更是讓人回味無窮！特調的鳳梨可樂達（Piña Colada）與芒果冰沙漂浮在紅石榴糖漿之上，最後綴上一瓣新鮮柳橙，為您帶來滿滿的熱帶陽光。</div>
+              <div class="item-price">$3.95</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">高飛的黏踢踢巧克力派對</div>
+              <div class="item-name-en">Goofy's Ooey Gooey</div>
+              <div class="item-desc">準備迎接這場甜蜜又黏糊糊的巧克力風暴吧！濃郁的香草冰淇淋拌入豪邁的巧克力糖漿與一整塊巧克力豆餅乾，最後以迷人的巧克力漩渦完美融合。</div>
+              <div class="item-price">$3.95</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sub-panel" id="sub-bev-gardenbar">
+        <div class="menu-card">
+          <div class="restaurant-title">秘密花園酒吧菜單</div>
+          <div class="restaurant-en">Garden Bar</div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍸</span>
+            <h2>魔法特調雞尾酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">閃耀花園</div>
+              <div class="item-name-en">Garden Sparkle</div>
+              <div class="item-desc">灰雁伏特加、香波覆盆子香甜酒、檸檬水、普羅塞克氣泡酒</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">小仙子奶油冰棒</div>
+              <div class="item-name-en">Pixie Creamsicle</div>
+              <div class="item-desc">美格波本威士忌、43明亮之星香甜酒、柳橙汁、香草</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">瘋帽客的午茶馬丁尼</div>
+              <div class="item-name-en">Teatime Tini</div>
+              <div class="item-desc">龐貝藍寶石琴酒、接骨木花香甜酒、萊姆、綠茶、斑蘭葉</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">百果綻放</div>
+              <div class="item-name-en">Fruit Blossom</div>
+              <div class="item-desc">Belle Rive琴酒、杏仁糖漿、水蜜桃、苦精、蘇打水</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">迷霧花叢</div>
+              <div class="item-name-en">Smoky Flowers</div>
+              <div class="item-desc">培恩金樽龍舌蘭、Illegal 梅斯卡爾酒、接骨木花、萊姆</div>
+              <div class="item-price">$15.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">魔髮藤蔓</div>
+              <div class="item-name-en">Tangled Vines</div>
+              <div class="item-desc">坦奎瑞十號琴酒、鳳梨、檸檬、萊姆、青草特調</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">蒂安娜的睡蓮馬丁尼</div>
+              <div class="item-name-en">Lily Pad Tini</div>
+              <div class="item-desc">Illegal 微陳梅斯卡爾酒、Italicus 佛手柑香甜酒、黑山草本利口酒、阿加維（龍舌蘭糖漿）</div>
+              <div class="item-price">$15.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🚫</span>
+            <h2>零酒精奇妙微醺</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">開胃酸酒</div>
+              <div class="item-name-en">Aperitif Sour</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">野草莓之夢</div>
+              <div class="item-name-en">Wild Strawberry</div>
+              <div class="item-desc">Lyre's 無酒精開胃紅酒、Lyre's 義式氣泡酒、Lyre's 鳳梨酒、萊姆、阿加維</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">精靈接骨木氣泡</div>
+              <div class="item-name-en">Elderspritz</div>
+              <div class="item-desc">Lyre's 經典無酒精氣泡酒、接骨木花、蘇打水</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">Lyre's 阿瑪菲無酒精氣泡飲</div>
+              <div class="item-name-en">Lyre's Amalfi Spritz</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">海尼根 0.0 零酒精</div>
+              <div class="item-name-en">Heineken 0.0%</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">華士坦檸檬啤酒 0.0 零酒精</div>
+              <div class="item-name-en">Warsteiner Radler 0.0%</div>
+              <div class="item-price">$7.75</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🥂</span>
+            <h2>晨露白葡萄酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">澳洲 卡拉布里亞家族 灰皮諾</div>
+              <div class="item-name-en">Calabria Family Pinot Grigio, Australia</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">法國普羅旺斯 月亮粉紅酒</div>
+              <div class="item-name-en">Moon Rosé, Provence, France</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">紐西蘭 間諜谷 白蘇維濃</div>
+              <div class="item-name-en">Spy Valley Sauvignon Blanc, New Zealand</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美國 幸福莊園 夏多內</div>
+              <div class="item-name-en">Bliss Vineyard Chardonnay, USA</div>
+              <div class="item-price">$14.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍹</span>
+            <h2>童話無酒精特調</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">魔法樹</div>
+              <div class="item-name-en">Enchanted Tree</div>
+              <div class="item-desc">白葡萄、奇異果、檸檬水、椰奶</div>
+              <div class="item-price">$6.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">魔法師的幻想曲</div>
+              <div class="item-name-en">Fantasia</div>
+              <div class="item-desc">黑莓、茶、檸檬、歡樂爆爆珠 (Popping Pearls)</div>
+              <div class="item-price">$6.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">花園清新泉水</div>
+              <div class="item-name-en">Garden Refresher</div>
+              <div class="item-desc">櫻桃、香蕉、柳橙、雪碧</div>
+              <div class="item-price">$6.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍷</span>
+            <h2>晚霞紅葡萄酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">阿根廷 小小世界 馬爾貝克</div>
+              <div class="item-name-en">Un Mundo Chiquito Malbec, Argentina</div>
+              <div class="item-desc">(主廚彩蛋："Un Mundo Chiquito" 在西班牙語裡正是「小小世界」的意思呢！)</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">紐西蘭 間諜谷 黑皮諾</div>
+              <div class="item-name-en">Spy Valley Pinot Noir, New Zealand</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">法國波爾多 瑪雷女伯爵</div>
+              <div class="item-name-en">Comtesse de Malet, Bordeaux</div>
+              <div class="item-price">$13.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">澳洲巴羅莎 索恩克拉克 希哈</div>
+              <div class="item-name-en">Thorn-Clarke Shiraz, Barossa, Australia</div>
+              <div class="item-price">$15.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍇</span>
+            <h2>魔法無酒精葡萄酒與特調浸泡飲</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">美國 消失的睡美人荊棘</div>
+              <div class="item-name-en">Missing Thorn, USA</div>
+              <div class="item-desc">(可選：氣泡酒、白酒 或 紅酒)</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">NON1 鹽味覆盆子與洋甘菊</div>
+              <div class="item-name-en">NON1 Salted Raspberry & Chamomile</div>
+              <div class="item-price">$15.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">NON2 焦糖洋梨與昆布</div>
+              <div class="item-name-en">NON2 Caramelized Pear & Kombu</div>
+              <div class="item-price">$15.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍾</span>
+            <h2>星光氣泡酒與香檳</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">義大利 皇家波戈 甜微泡葡萄酒</div>
+              <div class="item-name-en">Borgo Imperiale Moscato Dolce, Italy</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">義大利 皇家波戈 普羅塞克氣泡酒</div>
+              <div class="item-name-en">Borgo Imperiale Prosecco, Italy</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">法國 伯瑞 經典香檳</div>
+              <div class="item-name-en">Pommery Brut, France</div>
+              <div class="item-price">$25.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍶</span>
+            <h2>東方秘境清酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">月桂冠 芳醇梅酒</div>
+              <div class="item-name-en">Gekkeikan Plum Wine</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">月桂冠 完熟梅酒原酒</div>
+              <div class="item-name-en">Gekkeikan Kanjuku Umeshu Genshu</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">菊水 純米吟釀</div>
+              <div class="item-name-en">Kikusui Junmai Ginjo</div>
+              <div class="item-price">$15.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美國 獺祭 Blue 50 純米大吟釀</div>
+              <div class="item-name-en">Dassai Blue 50 Junmai Daiginjo, USA</div>
+              <div class="item-price">$16.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sub-panel" id="sub-bev-infinitybar">
+        <div class="menu-card">
+          <div class="restaurant-title">♾️ 無限宇宙酒吧 ｜ 漫威英雄特調酒單</div>
+          <div class="restaurant-en">Infinity Bar</div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">💎</span>
+            <h2>無限寶石特調雞尾酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">時間寶石</div>
+              <div class="item-name-en">Time Stone</div>
+              <div class="item-desc"><strong>宇宙傳說：</strong> 曾鑲嵌於阿迦莫多之眼中，這顆寶石能操縱時間的流逝，改變過去或未來。<br><strong>魔法配方：</strong> 馬里布蘭姆酒、蜜多麗哈密瓜酒、藍柑橘酒、雪碧、鳳梨、柳橙</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">空間寶石</div>
+              <div class="item-name-en">Space Stone</div>
+              <div class="item-desc"><strong>宇宙傳說：</strong> 曾封存於宇宙魔方中，空間寶石能開啟跨維度旅行，或作為神祕奧術能量的來源。<br><strong>魔法配方：</strong> 百加得蘭姆酒、藍柑橘酒、鳳梨、椰子</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">靈魂寶石</div>
+              <div class="item-name-en">Soul Stone</div>
+              <div class="item-desc"><strong>宇宙傳說：</strong> 由紅骷髏（寶石看守者）在佛米爾星上守護，薩諾斯必須犧牲摯愛的靈魂才能換取。它真正的力量至今仍是個謎。<br><strong>魔法配方：</strong> 阿佩羅開胃酒、仙人掌果、波哥帝國普羅塞克氣泡酒</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">現實寶石</div>
+              <div class="item-name-en">Reality Stone</div>
+              <div class="item-desc"><strong>宇宙傳說：</strong> 又被稱為「乙太」，現實寶石能改變現實的結構，並將物質轉化為暗物質。<br><strong>魔法配方：</strong> 馬哈尼麥茲卡爾酒、藍莓、檸檬、龍舌蘭糖漿、安格仕苦精、紅石榴糖漿</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">力量寶石</div>
+              <div class="item-name-en">Power Stone</div>
+              <div class="item-desc"><strong>宇宙傳說：</strong> 曾保存在柴達星的金庫中，力量寶石釋放的能量足以摧毀幾乎任何已知的實體物質。<br><strong>魔法配方：</strong> 艾奇亞諾蘭姆酒、椰子、鳳梨、煉乳</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">心靈寶石</div>
+              <div class="item-name-en">Mind Stone</div>
+              <div class="item-desc"><strong>宇宙傳說：</strong> 這顆寶石曾是生化人「幻視」生命的一部分。它能控制心靈，並賦予生物超能力。<br><strong>魔法配方：</strong> 百加得8年陳釀蘭姆酒、椰子水、龍舌蘭糖漿、薑黃、鳳梨、柚子</div>
+              <div class="item-price">$12.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🛡️</span>
+            <h2>零酒精英雄飲</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">緋紅扭曲</div>
+              <div class="item-name-en">Scarlet Distortion</div>
+              <div class="item-desc">草莓粉紅酒風味飲、草莓、檸檬、萊亞 (Lyre's) 義大利香橙無酒精烈酒</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">靈魂之火花蜜</div>
+              <div class="item-name-en">Soulfire Nectar</div>
+              <div class="item-desc">萊亞黑甘蔗無酒精烈酒、法勒南糖漿、鳳梨、萊姆、葡萄柚</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">心靈綻放</div>
+              <div class="item-name-en">Mind Bloom</div>
+              <div class="item-desc">萊亞龍舌蘭無酒精烈酒、荔枝、薑汁汽水、鳳梨</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">永恆之刻</div>
+              <div class="item-name-en">Eternal Hour</div>
+              <div class="item-desc">萊亞龍舌蘭無酒精烈酒、斑蘭葉、檸檬、龍舌蘭糖漿</div>
+              <div class="item-price">$9.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🥂</span>
+            <h2>復仇者精選白葡萄酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">小漣漪夏多內白酒</div>
+              <div class="item-name-en">Little Ripples Chardonnay</div>
+              <div class="item-desc">澳洲</div>
+              <div class="item-price">$8.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">相遇白蘇維翁白酒</div>
+              <div class="item-name-en">Rendez-Vous Sauvignon Blanc</div>
+              <div class="item-desc">法國</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">卡拉布里亞家族灰皮諾白酒</div>
+              <div class="item-name-en">Calabria Family Pinot Grigio</div>
+              <div class="item-desc">澳洲</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">月亮粉紅酒</div>
+              <div class="item-name-en">Moon Rosé</div>
+              <div class="item-desc">法國普羅旺斯</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">間諜谷白蘇維翁白酒</div>
+              <div class="item-name-en">Spy Valley Sauvignon Blanc</div>
+              <div class="item-desc">紐西蘭</div>
+              <div class="item-price">$13.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">幸福莊園夏多內白酒</div>
+              <div class="item-name-en">Bliss Vineyard Chardonnay</div>
+              <div class="item-desc">美國</div>
+              <div class="item-price">$14.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🥂</span>
+            <h2>復仇者精選紅葡萄酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">小世界馬爾貝克紅酒</div>
+              <div class="item-name-en">Un Mundo Chiquito Malbec</div>
+              <div class="item-desc">阿根廷</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">間諜谷黑皮諾紅酒</div>
+              <div class="item-name-en">Spy Valley Pinot Noir</div>
+              <div class="item-desc">紐西蘭</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">瑪萊伯爵夫人梅洛混釀紅酒</div>
+              <div class="item-name-en">Comtesse de Malet Merlot Blend</div>
+              <div class="item-desc">法國波爾多</div>
+              <div class="item-price">$13.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🚀</span>
+            <h2>帶著走的無酒精魔法</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">萊亞阿瑪菲氣泡飲</div>
+              <div class="item-name-en">Lyre's Amalfi Spritz</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">萊亞莫西多</div>
+              <div class="item-name-en">Lyre's Mojito</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">海尼根 0.0% 無酒精啤酒</div>
+              <div class="item-name-en">Heineken 0.0%</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">華士坦檸檬無酒精啤酒</div>
+              <div class="item-name-en">Warsteiner Radler 0.0%</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">消失的荊棘</div>
+              <div class="item-name-en">Missing Thorn</div>
+              <div class="item-desc">氣泡、白酒、紅酒風味 (美國)</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">NON1 鹽味覆盆子與洋甘菊風味飲</div>
+              <div class="item-name-en">NON1 Salted Raspberry & Chamomile</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">NON2 焦糖洋梨與昆布風味飲</div>
+              <div class="item-name-en">NON2 Caramelized Pear & Kombu</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$15.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">✨</span>
+            <h2>星際氣泡酒與香檳</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">波哥帝國蜜思嘉甜白酒</div>
+              <div class="item-name-en">Borgo Imperiale Moscato Dolce</div>
+              <div class="item-desc">義大利</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">波哥帝國普羅塞克氣泡酒</div>
+              <div class="item-name-en">Borgo Imperiale Prosecco</div>
+              <div class="item-desc">義大利</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">波馬利香檳</div>
+              <div class="item-name-en">Pommery Brut</div>
+              <div class="item-desc">法國</div>
+              <div class="item-price">$25.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍻</span>
+            <h2>英雄精釀啤酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">桂花洋梨奶油愛爾</div>
+              <div class="item-name-en">Osmanthus Pear Cream Ale</div>
+              <div class="item-desc">生啤酒 5%</div>
+              <div class="item-price">$8.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">嘉士伯皮爾森</div>
+              <div class="item-name-en">Carlsberg Pilsner</div>
+              <div class="item-desc">生啤酒 5%</div>
+              <div class="item-price">$8.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">可倫堡 1664 白啤酒</div>
+              <div class="item-name-en">Kronenbourg 1664 Blanc</div>
+              <div class="item-desc">瓶裝 5%</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">可倫堡 1664 拉格啤酒</div>
+              <div class="item-name-en">Kronenbourg 1664 Lager</div>
+              <div class="item-desc">瓶裝 5%</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">夏日蜜蘋果酒</div>
+              <div class="item-name-en">Somersby Apple Cider</div>
+              <div class="item-desc">瓶裝 4.5%</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">京A 柑橘小麥啤酒</div>
+              <div class="item-name-en">Jing-A Mandarin Wheat</div>
+              <div class="item-desc">瓶裝 4.2%</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">百威啤酒</div>
+              <div class="item-name-en">Budweiser</div>
+              <div class="item-desc">瓶裝 5%</div>
+              <div class="item-price">$7.75</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🌸</span>
+            <h2>東洋秘境清酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">Izeko 清酒果凍杯</div>
+              <div class="item-name-en">Izeko Sake Jelly Shot</div>
+              <div class="item-desc">水蜜桃、綜合莓果或柚子風味</div>
+              <div class="item-price">$7.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">月桂冠梅酒</div>
+              <div class="item-name-en">Gekkeikan Plum Wine</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">菊水純米吟釀</div>
+              <div class="item-name-en">Kikusui Junmai Ginjo</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$15.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sub-panel" id="sub-bev-spellbound">
+        <div class="menu-card">
+          <div class="restaurant-title">🔮 魔咒秘境酒廊 ｜ Spellbound Menu</div>
+          <div class="restaurant-en"></div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🚫</span>
+            <h2>零酒精魔法精粹</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">魔鏡魔鏡</div>
+              <div class="item-name-en">Mirror Mirror</div>
+              <div class="item-desc">Lyre's 倫敦乾琴酒風味、經典辛口風味、椰子水、斑蘭葉、烏龍茶</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">許願池氣泡飲</div>
+              <div class="item-name-en">Wishing Well Fizz</div>
+              <div class="item-desc">Lyre's 義大利橘酒風味、鳳梨、Lyre's 黑甘蔗風味、萊姆、龍舌蘭糖漿、Missing Thorn 無酒精氣泡飲</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">皇家冰霜特調</div>
+              <div class="item-name-en">Royal Frostbite Cream</div>
+              <div class="item-desc">Lyre's 美國麥芽風味、煉乳、鮮奶油、濃縮咖啡、香草、巧克力、肉桂</div>
+              <div class="item-price">$10.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍹</span>
+            <h2>童話無酒精特調</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">邪惡皇后</div>
+              <div class="item-name-en">Evil Queen</div>
+              <div class="item-desc">青蘋果、蘇打水、蝶豆花茶、龍舌蘭糖漿、萊姆</div>
+              <div class="item-price">$6.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">女巫特調魔藥</div>
+              <div class="item-name-en">Witch's Brew</div>
+              <div class="item-desc">椰子水、雪碧、飲用水、石榴</div>
+              <div class="item-price">$6.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">永保青春花果茶</div>
+              <div class="item-name-en">Eternal Beauty Tea</div>
+              <div class="item-desc">西瓜、荔枝、柳橙、洋甘菊茶</div>
+              <div class="item-price">$6.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">☕ 魔法師的咖啡工坊</div>
+              <div class="item-name-en">Coffee & Barista's Favorites</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🌟</span>
+            <h2>奇妙咖啡特調</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">禁忌森林</div>
+              <div class="item-name-en">Forbidden Forest</div>
+              <div class="item-desc">覆盆子、蜂蜜、牛奶、抹茶、覆盆子奶泡</div>
+              <div class="item-price">$7.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">魔鏡魔法摩卡</div>
+              <div class="item-name-en">Mirror Magic Mocha</div>
+              <div class="item-desc">可可麥芽、濃縮咖啡、煉乳、牛奶、可可麥芽奶泡</div>
+              <div class="item-price">$7.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">雲朵斑蘭葉</div>
+              <div class="item-name-en">Pandan Cloud</div>
+              <div class="item-desc">椰子水、斑蘭葉、椰漿、煉乳、白巧克力</div>
+              <div class="item-price">$7.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">☕ 經典義式咖啡</div>
+              <div class="item-name-en">Barista's Favorites</div>
+              <div class="item-desc">濃縮咖啡 (Espresso) - 單份｜雙份</div>
+              <div class="item-price">$2.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">瑪奇朵</div>
+              <div class="item-name-en">Macchiato</div>
+              <div class="item-desc">- 單份｜雙份</div>
+              <div class="item-price">$2.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">摩卡</div>
+              <div class="item-name-en">Mocha</div>
+              <div class="item-desc">- 單份｜雙份</div>
+              <div class="item-price">$3.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">拿鐵</div>
+              <div class="item-name-en">Café Latte</div>
+              <div class="item-desc">- 單份｜雙份</div>
+              <div class="item-price">$3.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">卡布奇諾</div>
+              <div class="item-name-en">Cappuccino</div>
+              <div class="item-desc">- 單份｜雙份</div>
+              <div class="item-price">$3.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">抹茶拿鐵</div>
+              <div class="item-name-en">Green Tea Matcha</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$5.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">薑黃拿鐵</div>
+              <div class="item-name-en">Turmeric Latte</div>
+              <div class="item-desc">- (✨ 額外添加風味糖漿 +)</div>
+              <div class="item-price">$5.50</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍷</span>
+            <h2>皇家酒窖精選</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🥂</span>
+            <h2>仙女谷白酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">澳洲卡拉布里亞家族 灰皮諾</div>
+              <div class="item-name-en">Calabria Family Pinot Grigio</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">法國普羅旺斯 月亮粉紅酒</div>
+              <div class="item-name-en">Moon Rosé</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">紐西蘭間諜谷 白蘇維濃</div>
+              <div class="item-name-en">Spy Valley Sauvignon Blanc</div>
+              <div class="item-price">$13.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">西班牙阿爾巴拉酒莊 阿爾巴利諾</div>
+              <div class="item-name-en">Bodegas Albarar Albariño</div>
+              <div class="item-price">$18.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美國河石 夏多內</div>
+              <div class="item-name-en">Riverstone Chardonnay</div>
+              <div class="item-price">$25.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">法國盧西安·克羅切特 桑塞爾白蘇維濃</div>
+              <div class="item-name-en">Lucien Crochet Sauvignon Blanc Sancerre</div>
+              <div class="item-price">$30.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍷</span>
+            <h2>騎士莊園紅酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">阿根廷小世界 馬爾貝克</div>
+              <div class="item-name-en">Un Mundo Chiquito Malbec</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">紐西蘭間諜谷 黑皮諾</div>
+              <div class="item-name-en">Spy Valley Pinot Noir</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">法國波爾多 馬列女伯爵</div>
+              <div class="item-name-en">Comtesse de Malet</div>
+              <div class="item-price">$13.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">澳洲巴羅莎 荊棘克拉克 希哈</div>
+              <div class="item-name-en">Thorn-Clarke Shiraz</div>
+              <div class="item-price">$15.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">義大利維斯康蒂 蒙塔奇諾布魯奈羅</div>
+              <div class="item-name-en">Visconti Brunello di Montalcino</div>
+              <div class="item-price">$25.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美國七橡樹 卡本內蘇維濃</div>
+              <div class="item-name-en">Seven Oaks Cabernet Sauvignon</div>
+              <div class="item-price">$30.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">✨ 星光氣泡酒與香檳</div>
+              <div class="item-name-en">Sparkling & Champagne</div>
+              <div class="item-desc">義大利皇家酒莊 甜酒 (Borgo Imperiale Moscato Dolce)</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">義大利皇家酒莊 普羅賽克</div>
+              <div class="item-name-en">Borgo Imperiale Prosecco</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">法國伯瑞香檳</div>
+              <div class="item-name-en">Pommery Brut</div>
+              <div class="item-price">$25.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">法國伯納德·隆克拉斯 白中白香檳</div>
+              <div class="item-name-en">Bernard Lonclas Blanc de Blancs</div>
+              <div class="item-price">$30.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">法國沙龍貝爾 粉紅香檳</div>
+              <div class="item-name-en">Billecart-Salmon Brut Rosé</div>
+              <div class="item-price">$50.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍶</span>
+            <h2>東方神龍清酒與梅酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">月桂冠梅酒</div>
+              <div class="item-name-en">Gekkeikan Plum Wine</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">月桂冠完熟梅酒原酒</div>
+              <div class="item-name-en">Gekkeikan Kanjuku Umeshu Genshu</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">菊水純米吟釀</div>
+              <div class="item-name-en">Kikusui Junmai Ginjo</div>
+              <div class="item-price">$15.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美國獺祭 Blue 50 純米大吟釀</div>
+              <div class="item-name-en">Dassai Blue 50 Junmai Daiginjo</div>
+              <div class="item-price">$16.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍻</span>
+            <h2>矮人礦坑精選啤酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">生啤酒</div>
+              <div class="item-name-en">Draft Beer</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">嘉士伯皮爾森</div>
+              <div class="item-name-en">Carlsberg Pilsner, 5%</div>
+              <div class="item-price">$8.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">常陸野貓頭鷹白啤酒</div>
+              <div class="item-name-en">Hitachino Nest White Ale, 5%</div>
+              <div class="item-price">$8.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">瓶裝啤酒</div>
+              <div class="item-name-en">Bottled Beers</div>
+              <div class="item-desc">- 均一價</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">可倫堡 1664 白啤酒</div>
+              <div class="item-name-en">Blanc, 5%</div>
+              <div class="item-desc">/ 拉格 (Lager, 5.5%)</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">虎牌拉格</div>
+              <div class="item-name-en">Tiger Lager, 5%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">夏日蜜蘋果酒</div>
+              <div class="item-name-en">Somersby Apple Cider, 4.5%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">京A 工人淺色愛爾</div>
+              <div class="item-name-en">Jing-A Worker's Pale Ale, 5%</div>
+              <div class="item-desc">/ 飛拳小麥 (Mandarin Wheat, 4.2%)</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">布魯克林 拉格</div>
+              <div class="item-name-en">Brooklyn Lager, 5.2%</div>
+              <div class="item-desc">/ 防衛者 IPA (Defender IPA, 5.5%)</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">沛羅尼拉格</div>
+              <div class="item-name-en">Peroni Lager, 5%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">豪格登白啤酒</div>
+              <div class="item-name-en">Hoegaarden Witbier, 4.9%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">時代拉格</div>
+              <div class="item-name-en">Stella Artois Lager, 5.2%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">健力士黑啤酒</div>
+              <div class="item-name-en">Guinness Stout, 7.5%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">百威啤酒</div>
+              <div class="item-name-en">Budweiser, 5%</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🌿</span>
+            <h2>無酒精外帶與特調飲</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">Lyre's 阿瑪菲氣泡特調</div>
+              <div class="item-name-en">Lyres Amalfi Spritz</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">海尼根 0.0% 無酒精啤酒</div>
+              <div class="item-name-en">Heineken 0.0%</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">華士坦 0.0% 檸檬無酒精啤酒</div>
+              <div class="item-name-en">Warsteiner Radler 0.0%</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">Missing Thorn 無酒精紅/白/氣泡酒</div>
+              <div class="item-name-en">USA Sparkling, White, Red</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">NON1 鹽味覆盆子與洋甘菊</div>
+              <div class="item-name-en">Salted Raspberry & Chamomile</div>
+              <div class="item-price">$15.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">NON2 焦糖洋梨與昆布</div>
+              <div class="item-name-en">Caramelized Pear & Kombu</div>
+              <div class="item-price">$15.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">🗝️ 國王金庫珍藏名酒</div>
+              <div class="item-name-en">The Vault</div>
+              <div class="item-desc">調酒師小提醒： 這裡封存著王國中最頂級的整瓶珍釀。</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美國霍尼格 白蘇維濃</div>
+              <div class="item-name-en">Honig Sauvignon Blanc</div>
+              <div class="item-desc">瓶裝</div>
+              <div class="item-price">$120.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美國太陽之海 夏多內</div>
+              <div class="item-name-en">Mer Soleil Chardonnay</div>
+              <div class="item-desc">瓶裝</div>
+              <div class="item-price">$130.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">法國阿爾伯特·博克斯勒 麗絲玲</div>
+              <div class="item-name-en">Domain Albert Boxler Riesling</div>
+              <div class="item-desc">瓶裝</div>
+              <div class="item-price">$150.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美國霍尼格 卡本內蘇維濃</div>
+              <div class="item-name-en">Honig Cabernet Sauvignon</div>
+              <div class="item-desc">瓶裝</div>
+              <div class="item-price">$160.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美國開木斯 卡本內蘇維濃</div>
+              <div class="item-name-en">Caymus Cabernet Sauvignon</div>
+              <div class="item-desc">瓶裝</div>
+              <div class="item-price">$175.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">法國伯蘭爵 特釀香檳</div>
+              <div class="item-name-en">Bollinger Special Cuvee Brut</div>
+              <div class="item-desc">瓶裝</div>
+              <div class="item-price">$180.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美國杜莫 夏多內</div>
+              <div class="item-name-en">Dumol Chardonnay</div>
+              <div class="item-desc">瓶裝</div>
+              <div class="item-price">$180.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美國杜莫 黑皮諾</div>
+              <div class="item-name-en">Dumol Pinot Noir</div>
+              <div class="item-desc">瓶裝</div>
+              <div class="item-price">$210.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美國吉祥物 紅葡萄混釀</div>
+              <div class="item-name-en">The Mascot Red Blend</div>
+              <div class="item-desc">瓶裝</div>
+              <div class="item-price">$390.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sub-panel" id="sub-bev-tavernaportorosso">
+        <div class="menu-card">
+          <div class="restaurant-title">🛵 波托羅索海濱酒館 ｜ 夏日特調與精選酒單</div>
+          <div class="restaurant-en"></div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍹</span>
+            <h2>微醺特調</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">春日微風</div>
+              <div class="item-name-en">Primavera</div>
+              <div class="item-desc">融合 Belle Rive 琴酒、接骨木花、粉紅麗葉酒與新鮮萊姆。</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">偉士牌 150 夢幻特調</div>
+              <div class="item-name-en">150 Special</div>
+              <div class="item-desc">(使用乳製品進行澄清化處理) 迪薩羅諾杏仁酒、金巴利酒。</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">海怪的衝刺</div>
+              <div class="item-name-en">Sprint</div>
+              <div class="item-desc">詩洛珂伏特加、檸檬、羅勒與松子，充滿義式青醬的靈魂風味。</div>
+              <div class="item-price">$13.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">達利的奇想</div>
+              <div class="item-name-en">Dalí</div>
+              <div class="item-desc">薩凱帕 23 年蘭姆酒、Bottega Bacùr 琴酒、卡帕諾安提卡苦艾酒，覆蓋金巴利香橙泡沫。</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">946號星空</div>
+              <div class="item-name-en">946</div>
+              <div class="item-desc">(使用乳製品進行澄清化處理) 天使之翼波本威士忌、金巴利酒、卡帕諾安提卡苦艾酒與酸甜草莓。</div>
+              <div class="item-price">$16.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">海島邊車</div>
+              <div class="item-name-en">Side-Car</div>
+              <div class="item-desc">絕對伏特加西洋梨口味、Bottega 檸檬酒、義大利果渣白蘭地 (Grappa) 與檸檬。</div>
+              <div class="item-price">$12.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🚫</span>
+            <h2>零酒精魔法</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">波托羅索之夏</div>
+              <div class="item-name-en">Portorosso Cup</div>
+              <div class="item-desc">Lyre's 無酒精義大利香橙酒，頂部點綴輕盈香橙泡沫。</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">小不點氣泡飲</div>
+              <div class="item-name-en">Piccolina Spritz</div>
+              <div class="item-desc">Lyre's 無酒精白甘蔗酒、羅勒、檸檬、黑糖，搭配 Fever-Tree 萊姆通寧水與柚子。</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">義式甜心提拉米蘇</div>
+              <div class="item-name-en">Tiramisù</div>
+              <div class="item-desc">Lyre's 無酒精甘蔗酒、提拉米蘇風味與清新萊姆。</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">馬西莫的摩卡奇諾</div>
+              <div class="item-name-en">Mocaccino</div>
+              <div class="item-desc">Lyre's 無酒精咖啡酒、Lyre's 無酒精黑甘蔗酒、濃縮咖啡、巧克力，點綴海鹽焦糖泡沫。</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">🧜‍♂️ 童趣特調</div>
+              <div class="item-name-en">Mocktails</div>
+              <div class="item-desc">適合所有年齡小小探險家的純果汁與氣泡飲。</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">深藍秘境</div>
+              <div class="item-name-en">Mare Blu</div>
+              <div class="item-desc">藍色珊瑚礁風味、檸檬水與清涼椰子水。</div>
+              <div class="item-price">$6.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">靜靜吧！布魯諾氣泡飲</div>
+              <div class="item-name-en">Bruno's Fizz</div>
+              <div class="item-desc">白桃、萊姆與 Fever-Tree 薑汁汽水。</div>
+              <div class="item-price">$6.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">最棒的夏天</div>
+              <div class="item-name-en">Best Summer Ever</div>
+              <div class="item-desc">熱帶芒果、鳳梨、芭樂與萊姆。</div>
+              <div class="item-price">$6.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">🏖️ 外帶零酒精，隨時帶著走</div>
+              <div class="item-name-en">Zero Proof To Go</div>
+              <div class="item-desc">Lyre's 阿瑪菲海岸氣泡飲 (Lyres Amalfi Spritz)</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">海尼根 0.0% 無酒精啤酒</div>
+              <div class="item-name-en">Heineken 0.0%</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">華士坦 0.0% 無酒精檸檬啤酒</div>
+              <div class="item-name-en">Warsteiner Radler 0.0%</div>
+              <div class="item-price">$7.75</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🥃</span>
+            <h2>純飲精選：主廚的魔法酒窖</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">典雅干邑</div>
+              <div class="item-name-en">Cognac</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">卡慕 VSOP</div>
+              <div class="item-name-en">Camus VSOP</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">拿破崙 XO</div>
+              <div class="item-name-en">Courvoisier XO</div>
+              <div class="item-price">$14.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">人頭馬 XO</div>
+              <div class="item-name-en">Remy Martin XO</div>
+              <div class="item-price">$14.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">大衛杜夫 XXO</div>
+              <div class="item-name-en">Davidoff XXO</div>
+              <div class="item-price">$17.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">詹姆士軒尼詩</div>
+              <div class="item-name-en">James Hennessy</div>
+              <div class="item-price">$17.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">軒尼詩百樂廷</div>
+              <div class="item-name-en">Hennessy Paradis</div>
+              <div class="item-price">$50.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">人頭馬路易十三</div>
+              <div class="item-name-en">Remy Louis XIII</div>
+              <div class="item-price">$300.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">純粹穀物（伏特加）</div>
+              <div class="item-name-en">Grain</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">絕對 Elyx</div>
+              <div class="item-name-en">Absolut Elyx</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">詩洛珂</div>
+              <div class="item-name-en">Ciroc</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">蘇托力菁英</div>
+              <div class="item-name-en">Stoli Elit</div>
+              <div class="item-price">$14.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">蒂托</div>
+              <div class="item-name-en">Tito's</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">灰雁</div>
+              <div class="item-name-en">Grey Goose</div>
+              <div class="item-price">$14.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">龍舌蘭之魂</div>
+              <div class="item-name-en">Agave</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">唐胡里奧 1942</div>
+              <div class="item-name-en">Don Julio 1942</div>
+              <div class="item-price">$24.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">培恩陳釀</div>
+              <div class="item-name-en">Patrón Añejo</div>
+              <div class="item-price">$14.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">1800 水晶陳釀</div>
+              <div class="item-name-en">1800 Cristalino Añejo</div>
+              <div class="item-price">$14.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">藍色珍寶頂級款</div>
+              <div class="item-name-en">Clase Azul Ultra</div>
+              <div class="item-price">$260.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">科迪戈手工梅斯卡爾</div>
+              <div class="item-name-en">Código Mezcal Artesanal</div>
+              <div class="item-price">$53.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">培恩天堂</div>
+              <div class="item-name-en">Patrón El Cielo</div>
+              <div class="item-price">$24.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">杜松子精靈（琴酒）</div>
+              <div class="item-name-en">Juniper</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">龐貝頂級特級園</div>
+              <div class="item-name-en">Bombay Premier Cru</div>
+              <div class="item-price">$14.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">Bottega Bacùr</div>
+              <div class="item-name-en">Bottega Bacùr</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">亨利爵士亞馬遜</div>
+              <div class="item-name-en">Hendrick's Amazonia</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">猴子 47</div>
+              <div class="item-name-en">Monkey 47</div>
+              <div class="item-price">$19.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">坦奎瑞 10 號</div>
+              <div class="item-name-en">Tanqueray No. Ten</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">熱帶甘蔗（蘭姆酒）</div>
+              <div class="item-name-en">Sugarcane</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">高斯林百慕達黑海豹</div>
+              <div class="item-name-en">Gosling's Bermuda Black Seal</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">海怪黑香料蘭姆酒</div>
+              <div class="item-name-en">Kraken Black Spiced</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">薩凱帕 23 年</div>
+              <div class="item-name-en">Zacapa 23</div>
+              <div class="item-price">$14.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">百加得 8 年陳釀</div>
+              <div class="item-name-en">Bacardi Gran Reserva Ocho</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">琥珀威士忌</div>
+              <div class="item-name-en">Whisk(e</div>
+              <div class="item-desc">y)</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">天使之翼波本</div>
+              <div class="item-name-en">Angel's Envy Bourbon</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">布雷特波本</div>
+              <div class="item-name-en">Bulleit Bourbon</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">四玫瑰小批次波本</div>
+              <div class="item-name-en">Four Roses Small Batch Bourbon</div>
+              <div class="item-price">$18.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">高西美國草原波本</div>
+              <div class="item-name-en">High West American Prairie Bourbon</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">美格波本</div>
+              <div class="item-name-en">Maker's Mark Bourbon</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">伍福特珍藏波本</div>
+              <div class="item-name-en">Woodford Reserve Bourbon</div>
+              <div class="item-price">$11.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍻</span>
+            <h2>海灣沁涼啤酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">鮮釀生啤酒</div>
+              <div class="item-name-en">On Draft</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$8.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">義大利米娜布雷亞拉格啤酒</div>
+              <div class="item-name-en">Menabrea Lager</div>
+              <div class="item-desc">4.80%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">虎牌拉格啤酒</div>
+              <div class="item-name-en">Tiger Lager</div>
+              <div class="item-desc">5%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">常陸野貓頭鷹白啤酒</div>
+              <div class="item-name-en">Hitachi Nest White Ale</div>
+              <div class="item-desc">5%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">星空小荳蔻玫瑰季節啤酒</div>
+              <div class="item-name-en">Celestial Cardamom Rose Saison</div>
+              <div class="item-desc">5%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">精選瓶裝啤酒</div>
+              <div class="item-name-en">Bottle</div>
+              <div class="item-desc">— 皆為</div>
+              <div class="item-price">$7.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">可倫堡 1664 白啤酒</div>
+              <div class="item-name-en">Kronenbourg 1664 Blanc</div>
+              <div class="item-desc">5%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">虎牌拉格啤酒</div>
+              <div class="item-name-en">Tiger Lager</div>
+              <div class="item-desc">5%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">可倫堡 1664 拉格啤酒</div>
+              <div class="item-name-en">Kronenbourg 1664 Lager</div>
+              <div class="item-desc">5.5%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">夏日蜜蘋果酒</div>
+              <div class="item-name-en">Somersby Apple Cider</div>
+              <div class="item-desc">4.50%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">京A 工人淺色艾爾啤酒</div>
+              <div class="item-name-en">Jing-A Worker's Pale Ale</div>
+              <div class="item-desc">5%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">京A 橘香小麥啤酒</div>
+              <div class="item-name-en">Jing-A Mandarin Wheat</div>
+              <div class="item-desc">4.20%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">銀河熱帶司陶特黑啤酒</div>
+              <div class="item-name-en">Galactic Tropical Stout</div>
+              <div class="item-desc">6.50%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">布魯克林拉格啤酒</div>
+              <div class="item-name-en">Brooklyn Lager</div>
+              <div class="item-desc">5.20%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">布魯克林捍衛者 IPA</div>
+              <div class="item-name-en">Brooklyn Defender IPA</div>
+              <div class="item-desc">5.50%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">沛羅尼拉格啤酒</div>
+              <div class="item-name-en">Peroni Lager</div>
+              <div class="item-desc">5%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">豪格登白啤酒</div>
+              <div class="item-name-en">Hoegaarden Witbier</div>
+              <div class="item-desc">4.90%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">時代拉格啤酒</div>
+              <div class="item-name-en">Stella Artois Lager</div>
+              <div class="item-desc">5%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">健力士黑啤酒</div>
+              <div class="item-name-en">Guinness Stout</div>
+              <div class="item-desc">7.50%</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">百威啤酒</div>
+              <div class="item-name-en">Budweiser</div>
+              <div class="item-desc">5%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sub-panel" id="sub-bev-tianasbayoulounge">
+        <div class="menu-card">
+          <div class="restaurant-title">蒂安娜的河口酒廊</div>
+          <div class="restaurant-en">Tiana's Bayou Lounge</div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🪄</span>
+            <h2>奧迪媽媽的魔法廚房</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">單份蒂安娜招牌法式甜甜圈</div>
+              <div class="item-name-en">One Beignet</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$2.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">雙份蒂安娜招牌法式甜甜圈</div>
+              <div class="item-name-en">Two Beignets</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$3.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">法式歐蕾咖啡佐甜甜圈</div>
+              <div class="item-name-en">Café au Lait with Beignet</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$4.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">奇妙睡蓮葉陶瓷紀念套組</div>
+              <div class="item-name-en">Ceramic Lily Pad Set</div>
+              <div class="item-desc">隨餐附贈法式甜甜圈 (Served with beignets) -</div>
+              <div class="item-price">$25.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍹</span>
+            <h2>微醺河口特調</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">煙燻古典</div>
+              <div class="item-name-en">Smoked Fashioned</div>
+              <div class="item-desc">索爾福德蜂蜜蘭姆酒 (The Salford Honey Rum)、苦精 -</div>
+              <div class="item-price">$25.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">肯瓊風味米切拉達</div>
+              <div class="item-name-en">Cajun Michelada</div>
+              <div class="item-desc">蛤蜊番茄汁、肯瓊香料、日落樹林拉格啤酒 -</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">紐奧良結霜酒</div>
+              <div class="item-name-en">Orleans Crusta</div>
+              <div class="item-desc">大衛杜夫 VS 干邑、柑橘酒 (Grand Marnier)、黑櫻桃酒 (Luxardo Maraschino)、安格斯苦精 -</div>
+              <div class="item-price">$13.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">狂歡颶風</div>
+              <div class="item-name-en">Hurricane</div>
+              <div class="item-desc">百加得 8 年珍藏蘭姆酒、柳橙、百香果、紅石榴糖漿、萊姆 -</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">冰鎮苦艾酒</div>
+              <div class="item-name-en">Absinthe Frappé</div>
+              <div class="item-desc">保樂苦艾酒 (Pernod Absinthe)、茴香酒 (Anisette)、蘇打水 -</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">薩澤拉克</div>
+              <div class="item-name-en">Sazerac</div>
+              <div class="item-desc">保樂苦艾酒、裸麥威士忌、裴喬氏苦精 (Peychaud's Bitters) -</div>
+              <div class="item-price">$13.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍃</span>
+            <h2>花園區無酒精特調</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">花園區之風</div>
+              <div class="item-name-en">Garden District</div>
+              <div class="item-desc">萊雅 (Lyre's) 無酒精美國麥芽風味飲、薄荷 -</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">河口微風</div>
+              <div class="item-name-en">Bayou Breeze</div>
+              <div class="item-desc">萊雅無酒精黑甘蔗風味飲、百香果、柳橙、萊姆、紅石榴糖漿 -</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">波本街碎冰飲</div>
+              <div class="item-name-en">Bourbon Street Smash</div>
+              <div class="item-desc">萊雅無酒精美國麥芽風味飲、黑莓、覆盆子、萊姆、龍舌蘭糖漿 -</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">老城區沁涼特調</div>
+              <div class="item-name-en">Vieux Carré Cooler</div>
+              <div class="item-desc">酸葡萄汁 (Verjus)、萊雅無酒精紅開胃酒、萊雅無酒精美國麥芽風味飲、苦精、蘇打水 -</div>
+              <div class="item-price">$10.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🎉</span>
+            <h2>狂歡節魔法無酒精飲品</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">狂歡節蘋果賓治</div>
+              <div class="item-name-en">Mardi Gras Apple Punch</div>
+              <div class="item-desc">葡萄、鳳梨、蘋果蘇打 -</div>
+              <div class="item-price">$6.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">招牌甜甜圈奶昔</div>
+              <div class="item-name-en">Beignet Shake</div>
+              <div class="item-desc">冰淇淋、肉桂、糖粉 -</div>
+              <div class="item-price">$15.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">沼澤氣泡飲</div>
+              <div class="item-name-en">Swamp Soda</div>
+              <div class="item-desc">雪碧、青蘋果、藍色發光特調 (Blue Glow Lagoon)｜可加購特製配料 -</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">☕ 咖啡師的靈魂推薦</div>
+              <div class="item-name-en">Barista's Favorites</div>
+              <div class="item-desc">單份濃縮咖啡 (Espresso Single) -</div>
+              <div class="item-price">$2.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">雙份濃縮咖啡</div>
+              <div class="item-name-en">Espresso Double</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$3.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">單份瑪奇朵</div>
+              <div class="item-name-en">Macchiato Single</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$2.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">雙份瑪奇朵</div>
+              <div class="item-name-en">Macchiato Double</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$3.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">單份拿鐵咖啡</div>
+              <div class="item-name-en">Café Latte Single</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$3.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">雙份拿鐵咖啡</div>
+              <div class="item-name-en">Café Latte Double</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$4.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">單份摩卡咖啡</div>
+              <div class="item-name-en">Mocha Single</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$3.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">雙份摩卡咖啡</div>
+              <div class="item-name-en">Mocha Double</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$4.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">單份卡布奇諾</div>
+              <div class="item-name-en">Cappuccino Single</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$3.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">雙份卡布奇諾</div>
+              <div class="item-name-en">Cappuccino Double</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$4.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">添加風味糖漿</div>
+              <div class="item-name-en">Add Flavor</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$1.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">綠茶抹茶拿鐵</div>
+              <div class="item-name-en">Green Tea Matcha</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$5.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">薑黃拿鐵</div>
+              <div class="item-name-en">Turmeric Latte</div>
+              <div class="item-desc">-</div>
+              <div class="item-price">$5.75</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍸</span>
+            <h2>咖啡師微醺特調</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">河口賓治</div>
+              <div class="item-name-en">Bayou Punch</div>
+              <div class="item-desc">水牛跡波本威士忌、卡慕 V.S.O.P. 干邑、濃縮咖啡、牛奶、香草 -</div>
+              <div class="item-price">$9.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">法式歐蕾馬丁尼</div>
+              <div class="item-name-en">Café Au Lait Martini</div>
+              <div class="item-desc">絕對香草伏特加、榛果酒 (Frangelico)、濃縮咖啡利口酒 -</div>
+              <div class="item-price">$11.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🧊</span>
+            <h2>冷萃魔法特調</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">冷萃可樂達</div>
+              <div class="item-name-en">Brew Colada</div>
+              <div class="item-desc">馬里布椰子蘭姆酒、椰子水 -</div>
+              <div class="item-price">$13.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">冷萃古典</div>
+              <div class="item-name-en">Brew Fashion</div>
+              <div class="item-desc">老林區政治家波本威士忌 (Old Forester Statesman)、巧克力苦精 -</div>
+              <div class="item-price">$13.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">冷萃通寧</div>
+              <div class="item-name-en">Brew Tonic</div>
+              <div class="item-desc">鼓山波火藥愛爾蘭琴酒 (Drumshanbo Gunpowder Irish Gin)、發燒樹印地安通寧水 -</div>
+              <div class="item-price">$13.50</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">冷萃與沙</div>
+              <div class="item-name-en">Brew & Sand</div>
+              <div class="item-desc">約翰走路黑牌威士忌、櫻桃利口酒 (Cherry Heering)、君度橙酒 -</div>
+              <div class="item-price">$13.50</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sub-panel" id="sub-bev-wayfinderbar">
+        <div class="menu-card">
+          <div class="restaurant-title">⛵ 尋路者航海酒吧</div>
+          <div class="restaurant-en"></div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍹</span>
+            <h2>魔法微醺特調</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">航海家果汁酒</div>
+              <div class="item-name-en">Voyagers Punch</div>
+              <div class="item-desc">鼓山波薩丁尼亞柑橘琴酒、熱帶水果、檸檬、莫圖努伊檸檬水普羅塞克氣泡酒</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">莫圖努伊青檸水</div>
+              <div class="item-name-en">Motonui Limeade</div>
+              <div class="item-desc">百加得蘭姆酒、新鮮萊姆、香甜煉乳</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">尋路者的熱情</div>
+              <div class="item-name-en">Wayfinders Passion</div>
+              <div class="item-desc">絕對香草伏特加、百香果、萊姆、博爾戈帝國普羅塞克氣泡酒</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">跨越礁岩桑格利亞果酒</div>
+              <div class="item-name-en">Beyond The Reef Sangria</div>
+              <div class="item-desc">浪漫相遇白蘇維翁葡萄酒、馬里布椰子蘭姆酒、鳳梨、百香果、萊姆、龍舌蘭糖漿</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">莫圖島邁泰</div>
+              <div class="item-name-en">Motu Mai Tai</div>
+              <div class="item-desc">馬哈尼梅斯卡爾酒、培恩銀樽龍舌蘭、君度橙酒、杏仁糖漿、萊姆、鳳梨、柳橙</div>
+              <div class="item-price">$12.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🚫</span>
+            <h2>零度微醺・無酒精特調</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">島嶼氣泡飲</div>
+              <div class="item-name-en">Islander Fizz</div>
+              <div class="item-desc">萊雅倫敦乾型無酒精琴酒、柑橘、檸檬、鮮萃綠茶、蘇打水</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">莫亞娜之海</div>
+              <div class="item-name-en">Mojana</div>
+              <div class="item-desc">羅勒、萊雅無酒精白龍舌蘭、萊姆、蔓越莓、紅石榴糖漿</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">塔卡熔岩可樂達</div>
+              <div class="item-name-en">Te Ka Colada</div>
+              <div class="item-desc">萊雅無酒精甘蔗酒、荔枝、椰子、鳳梨、夢幻紫薯</div>
+              <div class="item-price">$12.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🥂</span>
+            <h2>純淨白酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">小漣漪夏多內白酒</div>
+              <div class="item-name-en">Little Ripples Chardonnay</div>
+              <div class="item-desc">｜澳洲</div>
+              <div class="item-price">$8.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">浪漫相遇白蘇維翁</div>
+              <div class="item-name-en">Rendez-Vous Sauvignon Blanc</div>
+              <div class="item-desc">｜法國</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">卡拉布里亞家族灰皮諾</div>
+              <div class="item-name-en">Calabria Family Pinot Grigio</div>
+              <div class="item-desc">｜澳洲</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">皎月粉紅酒</div>
+              <div class="item-name-en">Moon Rosé</div>
+              <div class="item-desc">｜法國普羅旺斯</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">間諜谷白蘇維翁</div>
+              <div class="item-name-en">Spy Valley Sauvignon Blanc</div>
+              <div class="item-desc">｜紐西蘭</div>
+              <div class="item-price">$13.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">極樂莊園夏多內</div>
+              <div class="item-name-en">Bliss Vineyard Chardonnay</div>
+              <div class="item-desc">｜美國</div>
+              <div class="item-price">$14.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🥥</span>
+            <h2>童趣特調・無酒精飲品</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">可可怪椰子爆擊</div>
+              <div class="item-name-en">Kakamora Smash</div>
+              <div class="item-desc">清涼椰子水、柳橙汁、雪碧®</div>
+              <div class="item-price">$6.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">塔菲緹之茶</div>
+              <div class="item-name-en">Tea Fiti</div>
+              <div class="item-desc">熱帶水果、鮮萃茶、奇妙爆爆珠</div>
+              <div class="item-price">$6.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">毛伊解渴特調</div>
+              <div class="item-name-en">Maui Quencher</div>
+              <div class="item-desc">檸檬、鳳梨、芒果、萊姆、龍舌蘭糖漿</div>
+              <div class="item-price">$6.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍷</span>
+            <h2>醇厚紅酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">小小世界馬爾貝克紅酒</div>
+              <div class="item-name-en">Un Mundo Chiquito Malbec</div>
+              <div class="item-desc">｜阿根廷</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">間諜谷黑皮諾紅酒</div>
+              <div class="item-name-en">Spy Valley Pinot Noir</div>
+              <div class="item-desc">｜紐西蘭</div>
+              <div class="item-price">$12.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🌿</span>
+            <h2>零度葡萄酒與風味特調</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">消失的荊棘</div>
+              <div class="item-name-en">Missing Thorn</div>
+              <div class="item-desc">｜美國 無酒精氣泡酒、無酒精白酒、無酒精紅酒</div>
+              <div class="item-price">$14.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">NON1 零度風味特調</div>
+              <div class="item-name-en">NON1</div>
+              <div class="item-desc">海鹽覆盆子與洋甘菊</div>
+              <div class="item-price">$15.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">NON2 零度風味特調</div>
+              <div class="item-name-en">NON2</div>
+              <div class="item-desc">焦糖洋梨與昆布</div>
+              <div class="item-price">$15.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍾</span>
+            <h2>歡慶氣泡酒與香檳</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">博爾戈帝國甜麝香氣泡酒</div>
+              <div class="item-name-en">Borgo Imperiale Moscato Dolce</div>
+              <div class="item-desc">｜義大利</div>
+              <div class="item-price">$9.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">博爾戈帝國普羅塞克氣泡酒</div>
+              <div class="item-name-en">Borgo Imperiale Prosecco</div>
+              <div class="item-desc">｜義大利</div>
+              <div class="item-price">$10.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">伯瑞經典香檳</div>
+              <div class="item-name-en">Pommery Brut</div>
+              <div class="item-desc">｜法國</div>
+              <div class="item-price">$25.00</div>
+            </div>
+          </div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">🍶</span>
+            <h2>東方晨曦清酒</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">月桂冠梅酒</div>
+              <div class="item-name-en">Gekkeikan Plum Wine</div>
+              <div class="item-price">$11.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">伊澤科清酒果凍杯</div>
+              <div class="item-name-en">Izeko Sake Jelly Shot</div>
+              <div class="item-desc">蜜桃、柚子、莓果風味</div>
+              <div class="item-price">$12.00</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">菊水純米吟釀</div>
+              <div class="item-name-en">Kikusui Junmai Ginjo</div>
+              <div class="item-price">$15.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sub-panel" id="sub-bev-wheezysfreezies">
+        <div class="menu-card">
+          <div class="restaurant-title">吱吱的酷涼冰沙吧</div>
+          <div class="restaurant-en">Wheezy's Freezies</div>
+
+          <div class="section-header section-toggle">
+            <span class="section-icon">❄️</span>
+            <h2>酷涼冰飲系列</h2>
+            <span class="toggle-arrow">▼</span>
+          </div>
+          <div class="menu-grid section-content">
+            <div class="menu-item">
+              <div class="item-name-zh">造型紀念吸管</div>
+              <div class="item-name-en">Souvenir Sippers</div>
+              <div class="item-price">$0.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">吱吱發聲器</div>
+              <div class="item-name-en">Squeaker</div>
+              <div class="item-desc">芒果、藍莓、杏仁糖漿與香草冰淇淋</div>
+              <div class="item-price">$8.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">胡迪警長的牛仔奶昔</div>
+              <div class="item-name-en">Cowboy Shake</div>
+              <div class="item-desc">香草冰淇淋、新鮮香蕉、海鹽焦糖與白巧克力</div>
+              <div class="item-price">$8.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">飛向宇宙，浩瀚無垠！</div>
+              <div class="item-name-en">To Infinity</div>
+              <div class="item-desc">新鮮芒果、新鮮胡蘿蔔、純淨檸檬水與椰子水</div>
+              <div class="item-price">$8.75</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">抱抱龍的小咆哮</div>
+              <div class="item-name-en">Small Roar</div>
+              <div class="item-desc">青蘋果、生薑與雪碧</div>
+              <div class="item-price">$8.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">熊抱哥的甜美莓果香</div>
+              <div class="item-name-en">Smell Like Berries</div>
+              <div class="item-desc">椰子、鳳梨、草莓與覆盆子</div>
+              <div class="item-price">$8.25</div>
+            </div>
+            <div class="menu-item">
+              <div class="item-name-zh">探險世界經典鳳梨都樂冰</div>
+              <div class="item-name-en">Pineapple Dole Whip</div>
+              <div class="item-price">$6.50</div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+
   </div>
 
   <!-- Page Footer -->
