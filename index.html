@@ -2806,34 +2806,6 @@
     }
   }
 
-  // Swipe to switch tabs
-  (function() {
-    const tabIds = ['nav', 'pixar', 'animator', 'night4', 'sulley', 'palo'];
-    let touchStartX = 0;
-    let touchStartY = 0;
-
-    document.addEventListener('touchstart', function(e) {
-      touchStartX = e.changedTouches[0].screenX;
-      touchStartY = e.changedTouches[0].screenY;
-    }, { passive: true });
-
-    document.addEventListener('touchend', function(e) {
-      const dx = e.changedTouches[0].screenX - touchStartX;
-      const dy = e.changedTouches[0].screenY - touchStartY;
-      // Only trigger if horizontal swipe is dominant and > 80px
-      if (Math.abs(dx) > 80 && Math.abs(dx) > Math.abs(dy) * 1.5) {
-        const currentIdx = tabIds.indexOf(
-          document.querySelector('.tab-btn.active')?.dataset.tab
-        );
-        if (currentIdx === -1) return;
-        const nextIdx = dx < 0
-          ? Math.min(currentIdx + 1, tabIds.length - 1)
-          : Math.max(currentIdx - 1, 0);
-        if (nextIdx !== currentIdx) switchTab(tabIds[nextIdx]);
-      }
-    }, { passive: true });
-  })();
-
   // Back to top button visibility
   (function() {
     const btn = document.querySelector('.back-to-top');
