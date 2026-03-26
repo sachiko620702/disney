@@ -551,6 +551,109 @@
   }
   .section-divider span { flex:1; height:1px; background: rgba(245,200,66,0.3); }
   .section-divider i { font-size: 0.6rem; color: var(--gold); }
+
+  /* ===== PRICE TAG ===== */
+  .item-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--gold);
+    margin-top: 4px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ===== SUB-TABS (within a tab panel) ===== */
+  .sub-tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .sub-tab-btn {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 7px 14px;
+    border: 1px solid rgba(245,200,66,0.3);
+    border-radius: 24px;
+    background: rgba(10,22,40,0.6);
+    color: rgba(253,246,227,0.6);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .sub-tab-btn.active {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(245,200,66,0.1);
+  }
+
+  .sub-panel { display: none; }
+  .sub-panel.active { display: block; }
+
+  /* Price note / set menu banner */
+  .set-price-banner {
+    text-align: center;
+    padding: 12px 16px;
+    background: rgba(245,200,66,0.08);
+    border: 1px solid rgba(245,200,66,0.2);
+    border-radius: 12px;
+    margin-bottom: 20px;
+  }
+
+  .set-price-banner .price-main {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.1rem;
+    color: var(--gold);
+  }
+
+  .set-price-banner .price-note {
+    font-size: 0.75rem;
+    color: rgba(253,246,227,0.5);
+    margin-top: 4px;
+    line-height: 1.5;
+  }
+
+  /* Pairing options */
+  .pairing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .pairing-card {
+    background: rgba(139,69,19,0.08);
+    border: 1px solid rgba(245,200,66,0.15);
+    border-radius: 10px;
+    padding: 12px 14px;
+    text-align: center;
+  }
+
+  .pairing-card .pairing-name { font-size: 0.85rem; font-weight: 600; color: var(--cream); margin-bottom: 2px; }
+  .pairing-card .pairing-en { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.72rem; color: var(--gold-light); opacity: 0.7; margin-bottom: 4px; }
+  .pairing-card .pairing-price { font-family: 'Playfair Display', serif; font-size: 0.82rem; color: var(--gold); font-weight: 600; }
+
+  /* Sauce list inline */
+  .sauce-list {
+    font-size: 0.8rem;
+    color: rgba(253,246,227,0.6);
+    line-height: 1.8;
+    padding: 10px 14px;
+    background: rgba(245,200,66,0.04);
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 600px) {
+    .sub-tabs { gap: 6px; }
+    .sub-tab-btn { font-size: 0.75rem; padding: 8px 12px; min-height: 38px; }
+    .pairing-grid { grid-template-columns: 1fr; }
+    .set-price-banner .price-main { font-size: 1rem; }
+  }
 </style>
 </head>
 <body>
@@ -584,6 +687,12 @@
     </button>
     <button class="tab-btn" onclick="switchTab('night4')" data-tab="night4">
       <span class="tab-icon">🎇</span>第四晚限定晚宴
+    </button>
+    <button class="tab-btn" onclick="switchTab('sulley')" data-tab="sulley">
+      <span class="tab-icon">🚪</span>怪獸餐廳
+    </button>
+    <button class="tab-btn" onclick="switchTab('palo')" data-tab="palo">
+      <span class="tab-icon">🍷</span>Palo 義式
     </button>
   </nav>
   </div>
@@ -1443,6 +1552,1223 @@
     </div>
   </div>
 
+  <!-- ===== TAB 5: Mike & Sulley's ===== -->
+  <div class="tab-panel" id="tab-sulley">
+    <div class="menu-card">
+      <div class="restaurant-title">🚪 大眼仔與毛怪的亞洲風味</div>
+      <div class="restaurant-en">Mike &amp; Sulley's · Flavors of Asia</div>
+
+      <div class="sub-tabs">
+        <button class="sub-tab-btn active" onclick="switchSub('sulley','steak')">🥩 日式牛排館</button>
+        <button class="sub-tab-btn" onclick="switchSub('sulley','omakase')">🍣 無菜單料理</button>
+        <button class="sub-tab-btn" onclick="switchSub('sulley','teppan')">🔥 怪獸鐵板燒</button>
+        <button class="sub-tab-btn" onclick="switchSub('sulley','sushi')">🐟 壽司與生魚片</button>
+      </div>
+
+      <!-- ====== SUB: Japanese Steakhouse ====== -->
+      <div class="sub-panel active" id="sub-sulley-steak">
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🔋</span>
+          <h2>驚喜開胃前菜</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">大眼仔的驚喜車海老</div>
+            <div class="item-name-en">Karuma Ebi</div>
+            <div class="item-desc">酥炸南瓜、頂級老虎蝦佐松露蒜味美乃滋</div>
+            <div class="item-price">$25.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">怪獸大學頂級和牛韃靼</div>
+            <div class="item-name-en">Wagyu Tartare</div>
+            <div class="item-desc">生和牛韃靼搭配日式最中餅、煙燻蛋與青蘋果</div>
+            <div class="item-price">$35.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">深海極品黑鮪魚大腹</div>
+            <div class="item-name-en">O-Toro</div>
+            <div class="item-desc">黑鮪魚大腹肉、新鮮海膽、蔥花與日式烤飯糰</div>
+            <div class="item-price">$39.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">雪怪的極地鱈場蟹塔</div>
+            <div class="item-name-en">Tarabagani</div>
+            <div class="item-desc">帝王蟹風味塔、哈密瓜、柚子寒天與魚子醬</div>
+            <div class="item-price">$30.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">驚嚇專員伊勢龍蝦土瓶蒸</div>
+            <div class="item-name-en">Ise Ebi Dobin Mushi</div>
+            <div class="item-desc">錦繡龍蝦、香菇與濃郁鰹魚高湯，以傳統日式土瓶精心呈現</div>
+            <div class="item-price">$35.00</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🤝</span>
+          <h2>歡樂分享盤</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">毛怪的翠綠羽衣甘藍</div>
+            <div class="item-name-en">Kale</div>
+            <div class="item-desc">羽衣甘藍、豌豆泥、松子佐爆米花柚子奇亞籽油醋</div>
+            <div class="item-price">$15.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">兵工廠碳烤兵庫縣生蠔</div>
+            <div class="item-name-en">Kaki</div>
+            <div class="item-desc">碳烤兵庫縣生蠔佐蒲燒奶油釉燒與香脆蒜片</div>
+            <div class="item-price">$35.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">任意門秘境真鯛刺身</div>
+            <div class="item-name-en">Tai-Kuro-Toryufu</div>
+            <div class="item-desc">新鮮真鯛生魚片、鹽昆布佐香草松露油醋</div>
+            <div class="item-price">$35.00</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🥢</span>
+          <h2>主廚精選主餐</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">歡笑收集瓶秘製銀鱈</div>
+            <div class="item-name-en">Gindara</div>
+            <div class="item-desc">鮮嫩黑鱈魚、香菜醬油長蔥與菠菜豆腐</div>
+            <div class="item-price">$45.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">怪獸城市季節鮮魚</div>
+            <div class="item-name-en">Shun No Sakana</div>
+            <div class="item-desc">季節特選漁獲、西京味噌、芹菜根泥與清酒乳沫</div>
+            <div class="item-price">$65.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">絨毛雪怪綿羊豬頸肉</div>
+            <div class="item-name-en">Mangalica Butaniku</div>
+            <div class="item-desc">壽喜燒醬燒綿羊豬頸肉、蠶豆與焦糖洋蔥泥</div>
+            <div class="item-price">$45.00</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🥩</span>
+          <h2>頂級和牛大賞</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">A5 鹿兒島黑毛和牛紐約客</div>
+            <div class="item-name-en">A5 Kuroge Satsuma Striploin</div>
+            <div class="item-desc">霜降油花評級 12+</div>
+            <div class="item-price">$108.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">A5 鹿兒島黑毛和牛肋眼</div>
+            <div class="item-name-en">A5 Kuroge Satsuma Ribeye</div>
+            <div class="item-desc">霜降油花評級 12+</div>
+            <div class="item-price">$98.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">霜降純種和牛紐約客</div>
+            <div class="item-name-en">Shimo Fullblood Striploin</div>
+            <div class="item-desc">霜降油花評級 7+</div>
+            <div class="item-price">$70.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">霜降純種和牛菲力</div>
+            <div class="item-name-en">Shimo Fullblood Tenderloin</div>
+            <div class="item-desc">霜降油花評級 7+</div>
+            <div class="item-price">$75.00</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🐂</span>
+          <h2>黑安格斯牛排精選</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">澳洲純黑安格斯紐約客</div>
+            <div class="item-name-en">Pure Black Australian Striploin</div>
+            <div class="item-desc">霜降油花評級 5+</div>
+            <div class="item-price">$45.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">澳洲純黑安格斯肋眼</div>
+            <div class="item-name-en">Pure Black Australian Ribeye</div>
+            <div class="item-desc">霜降油花評級 5+</div>
+            <div class="item-price">$57.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">澳洲純黑安格斯菲力</div>
+            <div class="item-name-en">Pure Black Australian Tenderloin</div>
+            <div class="item-desc">霜降油花評級 3+</div>
+            <div class="item-price">$52.00</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🦕</span>
+          <h2>怪獸級大份量 · 30天乾式熟成</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">流浪者戰斧牛排</div>
+            <div class="item-name-en">Wanderer Tomahawk</div>
+            <div class="item-desc">重達 1.2 公斤，霜降油花評級 4+</div>
+            <div class="item-price">$199.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">流浪者頂級紅屋牛排</div>
+            <div class="item-name-en">Wanderer Prime Porterhouse</div>
+            <div class="item-desc">重達 1.2 公斤，霜降油花評級 4+</div>
+            <div class="item-price">$185.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">土鍋和牛炊飯</div>
+            <div class="item-name-en">Donabe Wagyu Beef Rice</div>
+            <div class="item-desc">以傳統日式土鍋烹煮頂級日本蓬鬆米飯，搭配純種和牛紐約客</div>
+            <div class="item-price">$55.00</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🥗</span>
+          <h2>日式精緻配菜</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">大眼綠蘆筍</div>
+            <div class="item-name-en">Asparagus</div>
+            <div class="item-desc">佐紅薑荷蘭醬與柴魚片</div>
+            <div class="item-price">$12.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">綜合野菇</div>
+            <div class="item-name-en">Kinoko</div>
+            <div class="item-desc">佐清酒萊姆奶油</div>
+            <div class="item-price">$12.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">綿密馬鈴薯泥</div>
+            <div class="item-name-en">Potato</div>
+            <div class="item-desc">佐白芝麻與青豆</div>
+            <div class="item-price">$12.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">碳烤甜玉米</div>
+            <div class="item-name-en">Tomorokoshi</div>
+            <div class="item-desc">佐香鬆奶油與青蔥</div>
+            <div class="item-price">$12.00</div>
+          </div>
+        </div>
+
+        <div class="sauce-list">
+          🥣 <b>特調醬汁：</b>七味味噌 · 蘿蔔泥甜醬油 · 蒜味芝麻醬 · 日式燒肉醬 · 波爾多紅酒牛肉汁
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">💎</span>
+          <h2>季節限定珍稀食材</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">義大利白松露</div>
+            <div class="item-name-en">White Truffle – Italy</div>
+            <div class="item-price">時價 Market Price</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">法國佩里戈爾黑松露</div>
+            <div class="item-name-en">Périgord Black Truffle – France</div>
+            <div class="item-price">時價 Market Price</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🍮</span>
+          <h2>歡笑聲甜點</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">電力滿滿抹茶聖代百匯</div>
+            <div class="item-name-en">Matcha Sundae Parfait</div>
+            <div class="item-desc">香草聖代、紅豆、麻糬與寒天果凍</div>
+            <div class="item-price">$12.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">毛怪專屬：巴斯克紫薯起司蛋糕</div>
+            <div class="item-name-en">Basque Ube Cheesecake</div>
+            <div class="item-desc">搭配夢幻藍色蝶豆花奶油與抹茶瓦片</div>
+            <div class="item-price">$12.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">巧克力榛果法式薄餅捲</div>
+            <div class="item-name-en">Chocolate-Hazelnut Roll Crêpe</div>
+            <div class="item-desc">巧克力榛果霜、巧克力薄餅、柑橘鮮奶油甘納許與開心果瓦片</div>
+            <div class="item-price">$12.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">東方麻糬大賞</div>
+            <div class="item-name-en">Study Of Mochi</div>
+            <div class="item-desc">綜合日式麻糬與新鮮火龍果</div>
+            <div class="item-price">$9.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">阿布的最愛：精選冰淇淋</div>
+            <div class="item-name-en">Assorted Ice Cream</div>
+            <div class="item-desc">抹茶 · 薰衣草 · 椰子 · 柚子雪酪</div>
+            <div class="item-price">$9.00</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== SUB: Omakase ====== -->
+      <div class="sub-panel" id="sub-sulley-omakase">
+        <div class="set-price-banner">
+          <div class="price-main">🍣 主廚無菜單料理 · $200.00 / 每套</div>
+          <div class="price-note">多道式主廚精選品嚐菜單 Multi-course Tasting Menu</div>
+        </div>
+
+        <div class="pairing-grid">
+          <div class="pairing-card">
+            <div class="pairing-name">環遊世界品酒之旅</div>
+            <div class="pairing-en">Wines of the World Pairing</div>
+            <div class="pairing-price">$150.00</div>
+          </div>
+          <div class="pairing-card">
+            <div class="pairing-name">東京奇妙之旅品酒</div>
+            <div class="pairing-en">Tour of Japan Pairing</div>
+            <div class="pairing-price">$140.00</div>
+          </div>
+          <div class="pairing-card">
+            <div class="pairing-name">無酒精魔法飲品搭配</div>
+            <div class="pairing-en">Zero-Proof Pairing</div>
+            <div class="pairing-price">$70.00</div>
+          </div>
+        </div>
+
+        <div class="section-header">
+          <span class="section-icon">✨</span>
+          <h2>品嚐菜單全覽</h2>
+          <span class="sec-line"></span>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="item-name-zh">怪獸城市的頂級海味：海膽蔥花鮪魚泥</div>
+            <div class="item-name-en">Uni Negitoro</div>
+            <div class="item-desc">頂級海膽、藍鰭鮪魚腹肉、青蔥與海苔脆餅</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">毛怪的私房點心：西京味噌鴨肝醬</div>
+            <div class="item-name-en">Saikyo Miso Duck Pâté</div>
+            <div class="item-desc">搭配薩摩橘子果凍與日式最中餅</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">迷霧之門煙燻干貝</div>
+            <div class="item-name-en">Smoked Hotategai</div>
+            <div class="item-desc">北海道干貝、花椰菜泥與酥脆米片</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">驚嚇專員的活力泉源：伊勢龍蝦土瓶蒸</div>
+            <div class="item-name-en">Ise Ebi Dobin Mushi</div>
+            <div class="item-desc">伊勢龍蝦、鮮香菇與柴魚高湯</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">能量滿分！山椒起司炸雞排</div>
+            <div class="item-name-en">Sansho Chicken Katsu</div>
+            <div class="item-desc">酥炸山椒雞排、紫薯、牽絲莫札瑞拉起司與日式咖哩</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">雪人首領的溫暖問候：鱈場蟹茶碗蒸</div>
+            <div class="item-name-en">Taraba Kani Chawanmushi</div>
+            <div class="item-desc">天婦羅阿拉斯加鱈場蟹、日式蒸蛋與松茸</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">頂級怪獸之王：A5 薩摩和牛紐約客</div>
+            <div class="item-name-en">A5 Satsuma Striploin</div>
+            <div class="item-desc">炙烤青花筍佐蒜味醬油濃縮醬汁</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">歡笑收集瓶：香甜玉米布丁</div>
+            <div class="item-name-en">Tomorokoshi</div>
+            <div class="item-desc">濃郁玉米布丁搭配香脆焦糖爆米花</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">大眼仔的清涼魔法：巨峰葡萄雪酪</div>
+            <div class="item-name-en">Kyoho Sorbet</div>
+            <div class="item-desc">巨峰葡萄冰沙佐黑芝麻帕林內</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== SUB: Teppanyaki ====== -->
+      <div class="sub-panel" id="sub-sulley-teppan">
+
+        <div class="section-header">
+          <span class="section-icon">🔥</span>
+          <h2>禪意之焰套餐</h2>
+          <span class="sec-line"></span>
+          <small style="color:var(--gold);font-size:0.85rem;font-weight:600">$115.00</small>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-item"><div class="item-name-zh">主廚精緻小缽</div><div class="item-name-en">Kobachi</div></div>
+          <div class="menu-item"><div class="item-name-zh">怪獸海域嚴選三品刺身</div><div class="item-name-en">Trio of Sashimi</div></div>
+          <div class="menu-item"><div class="item-name-zh">鮮甜北海道生食級干貝</div><div class="item-name-en">Hokkaido Scallop</div></div>
+          <div class="menu-item"><div class="item-name-zh">暖心赤味噌湯</div><div class="item-name-en">Aka Miso Soup</div></div>
+          <div class="menu-item"><div class="item-name-zh">深海秘製黑鱈魚</div><div class="item-name-en">Black Cod</div></div>
+          <div class="menu-item"><div class="item-name-zh">櫻花牧場鮮嫩雞腿肉</div><div class="item-name-en">Sakura Chicken Thigh</div></div>
+          <div class="menu-item"><div class="item-name-zh">澳洲全血和牛霜降紐約客 (MBS2+)</div><div class="item-name-en">Australian Fullblood Wagyu Shimo Striploin</div></div>
+          <div class="menu-item"><div class="item-name-zh">季節鮮蔬鐵板綜合盛合</div><div class="item-name-en">Yasai Moriwase</div></div>
+          <div class="menu-item"><div class="item-name-zh">歡笑能量黑胡椒蟹肉鐵板炒飯</div><div class="item-name-en">Black Pepper Crab Fried Rice</div></div>
+          <div class="menu-item"><div class="item-name-zh">鐵板焦糖香蕉</div><div class="item-name-en">Teppan-caramelized Bananas</div></div>
+        </div>
+
+        <div class="section-header">
+          <span class="section-icon">🌋</span>
+          <h2>禪意之燼頂級套餐</h2>
+          <span class="sec-line"></span>
+          <small style="color:var(--gold);font-size:0.85rem;font-weight:600">$175.00</small>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-item"><div class="item-name-zh">主廚精緻小缽</div><div class="item-name-en">Kobachi</div></div>
+          <div class="menu-item"><div class="item-name-zh">黑鮪魚腹肉韃靼佐青蔥、海膽與香脆米餅</div><div class="item-name-en">Toro Tartare, Negi, Uni, Rice Cake</div></div>
+          <div class="menu-item"><div class="item-name-zh">日本兵庫縣特級生蠔</div><div class="item-name-en">Japanese Hyogo Oysters</div></div>
+          <div class="menu-item"><div class="item-name-zh">暖心赤味噌湯</div><div class="item-name-en">Aka Miso Soup</div></div>
+          <div class="menu-item"><div class="item-name-zh">頂級錦繡龍蝦</div><div class="item-name-en">Spiny Lobster</div></div>
+          <div class="menu-item">
+            <span class="note-tag pork">含豬肉</span>
+            <div class="item-name-zh">匈牙利綿羊豬松阪肉</div>
+            <div class="item-name-en">Mangalitsa Pork Jowl</div>
+          </div>
+          <div class="menu-item"><div class="item-name-zh">A5 薩摩極上和牛紐約客 (MBS 12+)</div><div class="item-name-en">A5 Satsuma Striploin</div></div>
+          <div class="menu-item"><div class="item-name-zh">季節鮮蔬鐵板綜合盛合</div><div class="item-name-en">Yasai Moriwase</div></div>
+          <div class="menu-item"><div class="item-name-zh">極致牛油蒜香鐵板炒飯</div><div class="item-name-en">Tallow Garlic Fried Rice</div></div>
+          <div class="menu-item"><div class="item-name-zh">鐵板焦糖香蕉</div><div class="item-name-en">Teppan-caramelized Bananas</div></div>
+        </div>
+      </div>
+
+      <!-- ====== SUB: Sushi & Sashimi ====== -->
+      <div class="sub-panel" id="sub-sulley-sushi">
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🍣</span>
+          <h2>生魚片與握壽司</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">怪獸特選綜合生魚片（8種·16片）</div>
+            <div class="item-name-en">Sashimi Moriwase</div>
+            <div class="item-price">$100.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">毛怪的豪華綜合握壽司（8種·16貫）</div>
+            <div class="item-name-en">Sushi Moriwase</div>
+            <div class="item-price">$85.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">頂級黑鮪魚大腹</div>
+            <div class="item-name-en">O-Toro · Bluefin Tuna Belly</div>
+            <div class="item-desc">刺身5片 $45 ｜ 握壽司2貫 $24</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">黑鮪魚赤身</div>
+            <div class="item-name-en">Maguro Akami · Bluefin Tuna</div>
+            <div class="item-desc">刺身5片 $18 ｜ 握壽司2貫 $8</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">紅魽</div>
+            <div class="item-name-en">Kampachi · Amberjack</div>
+            <div class="item-desc">刺身5片 $16 ｜ 握壽司2貫 $9</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">青魽（鰤魚）</div>
+            <div class="item-name-en">Hamachi · Yellowtail</div>
+            <div class="item-desc">刺身5片 $24 ｜ 握壽司2貫 $12</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">真鯛</div>
+            <div class="item-name-en">Tai · Sea Bream</div>
+            <div class="item-desc">刺身5片 $24 ｜ 握壽司2貫 $12</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">鮭魚</div>
+            <div class="item-name-en">Shake · Salmon</div>
+            <div class="item-desc">刺身5片 $15 ｜ 握壽司2貫 $7</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">帆立貝</div>
+            <div class="item-name-en">Hototegai · Scallop</div>
+            <div class="item-desc">刺身5片 $18 ｜ 握壽司2貫 $8</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">章魚</div>
+            <div class="item-name-en">Tako · Octopus</div>
+            <div class="item-desc">刺身5片 $12 ｜ 握壽司2貫 $6</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">海膽</div>
+            <div class="item-name-en">Uni · Sea Urchin</div>
+            <div class="item-desc">刺身5片 $40 ｜ 握壽司2貫 $24</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">甜蝦</div>
+            <div class="item-name-en">Amaebi · Sweet Shrimp</div>
+            <div class="item-desc">刺身5片 $24 ｜ 握壽司2貫 $9</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">鮭魚卵</div>
+            <div class="item-name-en">Ikura · Salmon Roe</div>
+            <div class="item-desc">刺身5片 $25 ｜ 握壽司2貫 $12</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🥢</span>
+          <h2>招牌特製手卷</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">鮭魚明太子手卷</div>
+            <div class="item-name-en">Salmon Mentai</div>
+            <div class="item-desc">佐天婦羅麵衣碎與日式香鬆</div>
+            <div class="item-price">$15.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">黑鮪魚大腹手卷</div>
+            <div class="item-name-en">O-Toro</div>
+            <div class="item-desc">佐蔥花、辛香韭蔥與魚子醬</div>
+            <div class="item-price">$27.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">蟹肉手卷</div>
+            <div class="item-name-en">Kani</div>
+            <div class="item-desc">佐柚子胡椒與七味粉美乃滋</div>
+            <div class="item-price">$10.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">干貝手卷</div>
+            <div class="item-name-en">Hototegai</div>
+            <div class="item-desc">佐酪梨與香草松露蒜味美乃滋</div>
+            <div class="item-price">$15.00</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🍜</span>
+          <h2>亞洲熱饌</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">和牛韃靼壽喜燒</div>
+            <div class="item-name-en">Wagyu Tartare Sukiyaki</div>
+            <div class="item-desc">搭配頂級海膽與煙燻蛋黃</div>
+            <div class="item-price">$15.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">醬烤香菇</div>
+            <div class="item-name-en">Shoyu Shiitake</div>
+            <div class="item-desc">佐韭蔥與酥脆蒜片</div>
+            <div class="item-price">$6.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">秘製蒲燒鰻魚煲仔飯</div>
+            <div class="item-name-en">Unagi Claypot Rice</div>
+            <div class="item-desc">蒲燒鰻魚、玉子燒、青蔥與XO醬臘腸</div>
+            <div class="item-price">$25.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">南洋風情馬來椰漿飯</div>
+            <div class="item-name-en">Nasi Lemak</div>
+            <div class="item-desc">香料炸雞腿、雞蛋、江魚仔、參巴洋蔥與椰香飯</div>
+            <div class="item-price">$18.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">獅城鮮味新加坡叻沙</div>
+            <div class="item-name-en">Singapore Laksa</div>
+            <div class="item-desc">龍蝦肉、干貝、魚板、豆芽與雞蛋</div>
+            <div class="item-price">$20.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">馬來滷麵佐沙嗲雞</div>
+            <div class="item-name-en">Mee Rebus with Chicken Satay</div>
+            <div class="item-desc">炸豆包、青辣椒、雞蛋與炸紅蔥頭</div>
+            <div class="item-price">$15.00</div>
+          </div>
+          <div class="menu-item">
+            <span class="note-tag pork">含豬肉</span>
+            <div class="item-name-zh">東方經典擔擔麵</div>
+            <div class="item-name-en">Dan Dan Noodles</div>
+            <div class="item-desc">發酵豆醬肉燥、雞蛋、烤花生與紅油</div>
+            <div class="item-price">$12.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">濃郁冬蔭功牛肉船麵</div>
+            <div class="item-name-en">Creamy Tom Yum Beef Boat Noodles</div>
+            <div class="item-desc">牛肉片、牛肉丸、香脆雲吞、九層塔與米線</div>
+            <div class="item-price">$12.00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-footer">
+        <p>💰 本餐廳為額外付費餐廳，另加收 18% 服務費<br>
+        Premium dining experience · 18% gratuity added to all orders</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB 6: Palo Trattoria ===== -->
+  <div class="tab-panel" id="tab-palo">
+    <div class="menu-card">
+      <div class="restaurant-title">🍷 帕洛義式餐廳</div>
+      <div class="restaurant-en">Palo Trattoria</div>
+
+      <div class="sub-tabs">
+        <button class="sub-tab-btn active" onclick="switchSub('palo','brunch')">🥂 浪漫早午餐</button>
+        <button class="sub-tab-btn" onclick="switchSub('palo','dinner')">🛶 星光晚宴</button>
+      </div>
+
+      <!-- ====== SUB: Brunch ====== -->
+      <div class="sub-panel active" id="sub-palo-brunch">
+        <div class="set-price-banner">
+          <div class="price-main">🥂 魔法早午餐通行證 · $55.00</div>
+          <div class="price-note">另加收 18% 服務費 · An 18% gratuity will be added to all orders</div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🌊</span>
+          <h2>義式冷盤盛宴</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">亞特蘭提斯海鮮秘寶</div>
+            <div class="item-name-en">Seafood Selection</div>
+            <div class="item-desc">石蟹鉗、檸檬醃鮮蝦、特調醃製綠唇貽貝、香料黃鰭鮪魚、北歐蒔蘿醃鮭魚</div>
+          </div>
+          <div class="menu-item">
+            <span class="note-tag pork">含豬肉</span>
+            <div class="item-name-zh">義大利工匠精選冷肉與起司拼盤</div>
+            <div class="item-name-en">Artisan Salumi &amp; Cheese</div>
+            <div class="item-desc">義式生火腿片、義式風乾豬頸肉片、風乾牛肉片、經典義大利臘腸、醃製橄欖、爐烤大蒜與各式起司</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🥞</span>
+          <h2>晨間烘焙坊</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">米妮的最愛：草莓魔法鬆餅</div>
+            <div class="item-name-en">Strawberry Waffles</div>
+            <div class="item-desc">搭配楓糖漿、鮮奶油與新鮮莓果</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">白雪公主的蘋果肉桂鬆餅</div>
+            <div class="item-name-en">Apple-Cinnamon Waffles</div>
+            <div class="item-desc">搭配楓糖漿、鮮奶油與新鮮莓果</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">經典白脫牛奶煎餅</div>
+            <div class="item-name-en">Buttermilk Pancakes</div>
+            <div class="item-desc">搭配楓糖漿、鮮奶油與新鮮莓果</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">藍莓奇蹟煎餅</div>
+            <div class="item-name-en">Blueberry Pancakes</div>
+            <div class="item-desc">搭配楓糖漿、鮮奶油與新鮮莓果</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🍳</span>
+          <h2>金雞母的晨間恩賜</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <span class="note-tag pork">含豬肉</span>
+            <div class="item-name-zh">鄉村晨光起司火腿義式烘蛋</div>
+            <div class="item-name-en">Cheese and Ham Frittata</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">田園綠意櫛瓜義式烘蛋</div>
+            <div class="item-name-en">Zucchini Frittata</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">托斯卡尼番茄洋蔥歐姆蛋</div>
+            <div class="item-name-en">Tomato and Onion Omelet</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🍕</span>
+          <h2>義式窯烤披薩</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">經典瑪格麗特</div>
+            <div class="item-name-en">Margherita</div>
+          </div>
+          <div class="menu-item">
+            <span class="note-tag pork">含豬肉</span>
+            <div class="item-name-zh">義式生火腿披薩</div>
+            <div class="item-name-en">Prosciutto</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">魔法森林野菇披薩</div>
+            <div class="item-name-en">Funghi</div>
+          </div>
+          <div class="menu-item">
+            <span class="note-tag pork">含豬肉</span>
+            <div class="item-name-zh">義式半月烤餅</div>
+            <div class="item-name-en">Calzone</div>
+            <div class="item-desc">義式生火腿、新鮮羅勒、甜椒與莫札瑞拉起司</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🌟</span>
+          <h2>星級主廚推薦主餐</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <span class="note-tag pork">含豬肉</span>
+            <div class="item-name-zh">托斯卡尼陽光焗烤茄子捲</div>
+            <div class="item-name-en">Rollatini Melanzane</div>
+            <div class="item-desc">烤茄子包裹義式生火腿、陳年巴薩米克里考塔起司與莫札瑞拉起司</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">羅馬假期生火腿煎小牛肉</div>
+            <div class="item-name-en">Veal Saltimbocca</div>
+            <div class="item-desc">搭配黑蒜炒義大利野芥藍，佐巴羅洛紅酒肉汁</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">帕瑪森魔法酥烤雞胸</div>
+            <div class="item-name-en">Parmesan-crusted Chicken Breast</div>
+            <div class="item-desc">鋪滿莫札瑞拉起司，搭配番茄羅勒醬汁</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">義大利媽媽的經典肉醬千層麵</div>
+            <div class="item-name-en">Lasagna Bolognese</div>
+            <div class="item-desc">搭配濃郁羅馬番茄醬汁</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">奇幻森林野菇義大利餃</div>
+            <div class="item-name-en">Wild Mushroom Ravioli</div>
+            <div class="item-desc">佐梅爾檸檬、焦化榛果奶油與烤松子</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">海洋之心爐烤紅鯛魚菲力</div>
+            <div class="item-name-en">Roasted Red Snapper Filet</div>
+            <div class="item-desc">搭配綠蘆筍、義式西西里燉菜與番紅花馬鈴薯翻糖</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">奧林帕斯爐烤厚切沙朗牛排</div>
+            <div class="item-name-en">Grilled Cut Sirloin Steak</div>
+            <div class="item-desc">搭配百里香香草奶油、四季豆與巴羅洛紅酒馬鈴薯</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🍮</span>
+          <h2>甜蜜夢境甜點</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">溫暖杏仁酒巧克力熔岩蛋糕</div>
+            <div class="item-name-en">Warm Amaretto-Chocolate Fondant</div>
+            <div class="item-desc">雙重巧克力醬、榛果義式冰淇淋與摩卡巧克力脆土</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">經典義式沙巴雍</div>
+            <div class="item-name-en">Italian Zabaglione</div>
+            <div class="item-desc">新鮮莓果、瑪莎拉酒與義大利脆餅</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">南義陽光檸檬酒蛋糕</div>
+            <div class="item-name-en">Limoncello Torte</div>
+            <div class="item-desc">柑橘蛋糕、奶油乳酪、檸檬凝乳與柑橘沙拉</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">白脫牛奶義式奶酪罐</div>
+            <div class="item-name-en">Buttermilk Panna Cotta Pot</div>
+            <div class="item-desc">草莓爆爆珠與開心果碎餅</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">黑魔女的巧克力覆盆子塔</div>
+            <div class="item-name-en">Chocolate-Raspberry Tart</div>
+            <div class="item-desc">苦甜巧克力慕斯、覆盆子甘納許與香草莢義式冰淇淋</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">暖心蘋果肉桂黏黏包</div>
+            <div class="item-name-en">Warm Apple-Cinnamon Sticky-Cinnamon</div>
+            <div class="item-desc">搭配楓糖奶油霜與焦糖胡桃</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🍹</span>
+          <h2>魔法特調飲品</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">帕洛專屬氣泡特調</div>
+            <div class="item-name-en">Palo Spritz</div>
+            <div class="item-price">$10.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">經典貝里尼</div>
+            <div class="item-name-en">Bellini</div>
+            <div class="item-price">$8.75</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">熱情百香果米摩薩</div>
+            <div class="item-name-en">Passion Mimosa</div>
+            <div class="item-price">$10.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">零酒精貝里尼</div>
+            <div class="item-name-en">Bellini – Zero Proof</div>
+            <div class="item-price">$8.00</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ====== SUB: Dinner ====== -->
+      <div class="sub-panel" id="sub-palo-dinner">
+
+        <div class="set-price-banner">
+          <div class="price-main">🌟 威尼斯精選固定價格套餐 · $55.00</div>
+          <div class="price-note">每道餐點請選擇一款菜色 · Please select one dish per course</div>
+        </div>
+
+        <div class="pairing-grid">
+          <div class="pairing-card">
+            <div class="pairing-name">義大利佳釀佐餐</div>
+            <div class="pairing-en">Esperienza del Vino</div>
+            <div class="pairing-price">$90.00</div>
+          </div>
+          <div class="pairing-card">
+            <div class="pairing-name">無酒精特調佐餐</div>
+            <div class="pairing-en">Bella Vita – Zero Proof</div>
+            <div class="pairing-price">$45.00</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">✨</span>
+          <h2>套餐開胃小點</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">義式酥炸魷魚與巨無霸大蝦天婦羅</div>
+            <div class="item-name-en">Fritto di Calamari</div>
+            <div class="item-desc">佐蒜味美乃滋與普羅旺斯沾醬</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">布拉塔起司卡布里沙拉</div>
+            <div class="item-name-en">Burrata Mozzarella Caprese</div>
+            <div class="item-desc">傳家寶番茄、羅勒青醬與10年陳釀巴薩米克醋</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">野生芝麻葉沙拉</div>
+            <div class="item-name-en">Arugula Salad</div>
+            <div class="item-desc">烤葵花籽、帕瑪森乾酪、爐烤藤蔓番茄</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">夏日茴香柑橘沙拉</div>
+            <div class="item-name-en">Fennel and Citrus Salad</div>
+            <div class="item-desc">血橙、葡萄柚、烤松子佐檸檬酒油醋醬</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🌟</span>
+          <h2>套餐主菜</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">放山檸檬鼠尾草烤雞</div>
+            <div class="item-name-en">Free-Range Lemon and Sage Chicken</div>
+            <div class="item-desc">搭配迷你蔬菜、義式烤馬鈴薯與奇揚地紅酒百里香肉汁</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">嫩煎黃鰭鮪魚</div>
+            <div class="item-name-en">Ahi Tuna</div>
+            <div class="item-desc">朝鮮薊、鵪鶉蛋、橄欖、翻糖新馬鈴薯佐檸檬馬鞭草白巴薩米克油醋醬</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">巴羅洛紅酒綜合野菇燉飯</div>
+            <div class="item-name-en">Barolo Mushroom Risotto</div>
+            <div class="item-desc">波特菇、羊肚菌、褐菇與牛肝菌</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">180克黑安格斯牛菲力</div>
+            <div class="item-name-en">180g Black Angus Beef Tenderloin</div>
+            <div class="item-desc">搭配松露馬鈴薯與新鮮菠菜</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🍮</span>
+          <h2>套餐甜點</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">招牌巧克力舒芙蕾</div>
+            <div class="item-name-en">Chocolate Soufflé</div>
+            <div class="item-desc">馬達加斯加香草莢冰淇淋、濃郁巧克力醬與香草安格斯醬</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">Palo 經典提拉米蘇</div>
+            <div class="item-name-en">Palo's Tiramisù</div>
+            <div class="item-desc">咖啡浸潤手指餅乾、層層馬斯卡彭起司與覆盆子橄欖油脆土</div>
+          </div>
+        </div>
+
+        <div class="golden-divider" style="margin:32px auto 8px">
+          <span class="line"></span>
+          <span class="star">✦</span>
+          <span class="line"></span>
+        </div>
+        <div class="restaurant-en" style="margin-bottom:20px">A La Carte Menu · 單點菜單</div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🍅</span>
+          <h2>單點開胃小點</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">義式酥炸魷魚與大蝦天婦羅</div>
+            <div class="item-name-en">Fritto di Calamari e Gamberi</div>
+            <div class="item-price">$17.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">阿瑪菲黃鰭鮪魚生魚片</div>
+            <div class="item-name-en">Yellowfin Crudo</div>
+            <div class="item-desc">烤松子、阿瑪菲檸檬、卡拉布里亞辣椒與初榨橄欖油</div>
+            <div class="item-price">$14.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">布拉塔起司卡布里沙拉</div>
+            <div class="item-name-en">Burrata Mozzarella Caprese</div>
+            <div class="item-price">$16.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">義式薄切生牛肉</div>
+            <div class="item-name-en">Beef Carpaccio</div>
+            <div class="item-desc">醃紅蔥頭、帕瑪森乾酪、野生芝麻葉</div>
+            <div class="item-price">$14.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">義式海鮮濃湯</div>
+            <div class="item-name-en">Ciuppin Soup</div>
+            <div class="item-desc">淡菜、鮮蝦、紅鯛、安康魚、魷魚</div>
+            <div class="item-price">$18.00</div>
+          </div>
+          <div class="menu-item">
+            <span class="note-tag pork">含豬肉</span>
+            <div class="item-name-zh">托斯卡尼白豆湯</div>
+            <div class="item-name-en">Tuscan White Bean Soup</div>
+            <div class="item-price">$14.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">拿坡里瑪格麗特披薩</div>
+            <div class="item-name-en">Neapolitan Margherita</div>
+            <div class="item-price">$16.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">綜合野菇披薩</div>
+            <div class="item-name-en">Funghi Pizza</div>
+            <div class="item-price">$16.00</div>
+          </div>
+          <div class="menu-item">
+            <span class="note-tag pork">含豬肉</span>
+            <div class="item-name-zh">帕瑪生火腿披薩</div>
+            <div class="item-name-en">Prosciutto di Parma Pizza</div>
+            <div class="item-price">$17.00</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🌊</span>
+          <h2>單點主菜</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">嫩煎黃鰭鮪魚</div>
+            <div class="item-name-en">Ahi Tuna</div>
+            <div class="item-desc">翻糖新馬鈴薯、朝鮮薊佐檸檬馬鞭草白巴薩米克油醋醬</div>
+            <div class="item-price">$27.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">辛香多佛鰈魚</div>
+            <div class="item-name-en">Piquant Dover Sole</div>
+            <div class="item-desc">馬拉巴香料、爐烤傳家寶紅蘿蔔、迷迭香烤馬鈴薯</div>
+            <div class="item-price">$36.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">智利海鱸魚</div>
+            <div class="item-name-en">Chilean Sea Bass</div>
+            <div class="item-desc">圖佩洛蜂蜜防風草泥、烤蘆筍佐黑皮諾紅酒濃縮汁</div>
+            <div class="item-price">$36.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">放山檸檬鼠尾草烤雞</div>
+            <div class="item-name-en">Free-Range Lemon and Sage Chicken</div>
+            <div class="item-price">$21.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">米蘭燉牛膝</div>
+            <div class="item-name-en">Osso Buco</div>
+            <div class="item-desc">帶骨小牛膝、米蘭燉飯、義式香草醬</div>
+            <div class="item-price">$32.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">龍蝦寬扁麵</div>
+            <div class="item-name-en">Pappardelle</div>
+            <div class="item-desc">鮮嫩龍蝦、鮭魚卵佐鮮蝦龍蒿奶油濃縮汁</div>
+            <div class="item-price">$26.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">巴羅洛紅酒綜合野菇燉飯</div>
+            <div class="item-name-en">Barolo Mushroom Risotto</div>
+            <div class="item-price">$21.00</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🥂</span>
+          <h2>美好時光分享盤</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <span class="note-tag pork">含豬肉</span>
+            <div class="item-name-zh">義式綜合冷肉拼盤</div>
+            <div class="item-name-en">Antipasto</div>
+            <div class="item-desc">帕瑪生火腿、風乾牛肉、臘腸、各式起司與迷迭香脆餅</div>
+            <div class="item-price">$25.00</div>
+          </div>
+          <div class="menu-item">
+            <span class="note-tag pork">含豬肉</span>
+            <div class="item-name-zh">恩杜亞辣肉醬粗管麵</div>
+            <div class="item-name-en">Rigatoni 'Nduja</div>
+            <div class="item-desc">聖馬札諾番茄與絲綢起司</div>
+            <div class="item-price">$25.00</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🍝</span>
+          <h2>手工義大利麵</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">義式奶油南瓜方形餃</div>
+            <div class="item-name-en">Agnolotti</div>
+            <div class="item-desc">搭配杏仁脆餅、鼠尾草與微型羅勒</div>
+            <div class="item-price">$8.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">番紅花馬鈴薯麵疙瘩</div>
+            <div class="item-name-en">Potato Gnocchi</div>
+            <div class="item-desc">佐經典番茄肉醬</div>
+            <div class="item-price">$8.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">卡拉布里亞辣味筆管麵</div>
+            <div class="item-name-en">Penne</div>
+            <div class="item-desc">辣椒番茄羅勒醬、帕瑪森乾酪</div>
+            <div class="item-price">$8.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">羊肉肉醬粗短管麵</div>
+            <div class="item-name-en">Paccheri</div>
+            <div class="item-desc">搭配百里香與鹽醃瑞可塔起司</div>
+            <div class="item-price">$8.00</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🥩</span>
+          <h2>皇家御用頂級肉品</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">帕瑪森起司脆皮羊小排</div>
+            <div class="item-name-en">Rack of Rhug Estate Lamb</div>
+            <div class="item-price">$44.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">340克帶骨小牛排</div>
+            <div class="item-name-en">340g Veal Chop</div>
+            <div class="item-price">$42.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">黑安格斯 180克菲力 (MBS 2+)</div>
+            <div class="item-name-en">Black Angus Tenderloin</div>
+            <div class="item-price">$25.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">黑安格斯 290克紐約客 (MBS 2+)</div>
+            <div class="item-name-en">Black Angus Striploin</div>
+            <div class="item-price">$30.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">F1混血和牛 180克菲力 (MBS 6+)</div>
+            <div class="item-name-en">F1 Wagyu Tenderloin</div>
+            <div class="item-price">$45.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">F1混血和牛 230克紐約客 (MBS 6+)</div>
+            <div class="item-name-en">F1 Wagyu Striploin</div>
+            <div class="item-price">$55.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">F1混血和牛 800克紅屋 (MBS 4+)</div>
+            <div class="item-name-en">F1 Wagyu Porterhouse</div>
+            <div class="item-price">$110.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">純血和牛 180克菲力 (MBS 8+)</div>
+            <div class="item-name-en">Sanchoku Wagyu Tenderloin</div>
+            <div class="item-price">$65.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">純血和牛 230克紐約客 (MBS 8+)</div>
+            <div class="item-name-en">Sanchoku Wagyu Striploin</div>
+            <div class="item-price">$60.00</div>
+          </div>
+        </div>
+
+        <div class="sauce-list">
+          🥣 <b>醬汁：</b>粉紅胡椒醬 · 番茄伯納西醬 · 松露百里香巴羅洛紅酒汁 · 戈貢佐拉藍紋起司醬 · 義式青醬
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🥦</span>
+          <h2>精緻配菜</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">酥炸育空馬鈴薯</div>
+            <div class="item-name-en">Fried Yukon Potato</div>
+            <div class="item-desc">迷迭香、帕瑪森乾酪、火山鹽</div>
+            <div class="item-price">$6.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">螺旋起司麵</div>
+            <div class="item-name-en">Cavatappi Pasta and Cheese</div>
+            <div class="item-price">$8.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">鐵鍋慢烤野菇</div>
+            <div class="item-name-en">Pan-Roasted Wild Mushrooms</div>
+            <div class="item-price">$8.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">碳烤蘆筍</div>
+            <div class="item-name-en">Grilled Asparagus</div>
+            <div class="item-price">$8.00</div>
+          </div>
+        </div>
+
+        <div class="section-header section-toggle">
+          <span class="section-icon">🍮</span>
+          <h2>甜蜜義式夢境</h2>
+          <span class="toggle-arrow">▼</span>
+        </div>
+        <div class="menu-grid section-content">
+          <div class="menu-item">
+            <div class="item-name-zh">招牌巧克力舒芙蕾</div>
+            <div class="item-name-en">Chocolate Soufflé</div>
+            <div class="item-desc">馬達加斯加香草莢冰淇淋、巧克力醬與香草安格斯醬</div>
+            <div class="item-price">$15.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">義式檸檬酒舒芙蕾</div>
+            <div class="item-name-en">Limoncello Soufflé</div>
+            <div class="item-desc">香草莢冰淇淋與覆盆子果泥</div>
+            <div class="item-price">$15.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">Palo 經典提拉米蘇</div>
+            <div class="item-name-en">Palo's Tiramisù</div>
+            <div class="item-price">$9.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">柳橙杏仁蛋糕</div>
+            <div class="item-name-en">Orange-Almond Cake</div>
+            <div class="item-desc">柳橙茴香沙拉、大黃果泥與檸檬奶油</div>
+            <div class="item-price">$10.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">荔枝義式奶酪</div>
+            <div class="item-name-en">Lychee Panna Cotta</div>
+            <div class="item-desc">開心果空氣海綿蛋糕與覆盆子雪酪</div>
+            <div class="item-price">$10.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">巧克力果仁糖塔</div>
+            <div class="item-name-en">Cioccolato Praline Tart</div>
+            <div class="item-desc">榛果巴瑞脆片、巧克力甘納許與果仁糖脆餅</div>
+            <div class="item-price">$10.00</div>
+          </div>
+          <div class="menu-item">
+            <div class="item-name-zh">義式冰淇淋工坊（任選三球）</div>
+            <div class="item-name-en">Gelato – Choice of Three</div>
+            <div class="item-desc">雙重巧克力 · 開心果 · 榛果 · 綜合莓果 · 焦糖夏威夷豆 · 芒果薄荷 · 濃縮咖啡白巧克力</div>
+            <div class="item-price">$8.00</div>
+          </div>
+          <div class="menu-item">
+            <span class="note-tag no-sugar">✦ 無糖</span>
+            <div class="item-name-zh">義式瑞可塔起司蛋糕</div>
+            <div class="item-name-en">Italian Ricotta Cheesecake</div>
+            <div class="item-desc">冷製瑞可塔起司蛋糕、生薑沙布列餅乾與覆盆子果泥</div>
+            <div class="item-price">$10.00</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-footer">
+        <p>💰 本餐廳為額外付費餐廳，另加收 18% 服務費<br>
+        Premium dining experience · 18% gratuity added to all orders</p>
+      </div>
+    </div>
+  </div>
+
   <!-- Page Footer -->
   <footer style="text-align:center;margin-top:40px;padding:20px;">
     <div class="golden-divider" style="max-width:300px">
@@ -1482,7 +2808,7 @@
 
   // Swipe to switch tabs
   (function() {
-    const tabIds = ['nav', 'pixar', 'animator', 'night4'];
+    const tabIds = ['nav', 'pixar', 'animator', 'night4', 'sulley', 'palo'];
     let touchStartX = 0;
     let touchStartY = 0;
 
@@ -1524,6 +2850,18 @@
       if (content) content.classList.toggle('collapsed');
     });
   });
+
+  // Sub-tab switching within a tab
+  function switchSub(parentId, subId) {
+    const panel = document.getElementById('tab-' + parentId);
+    if (!panel) return;
+    panel.querySelectorAll('.sub-tab-btn').forEach(function(btn) {
+      btn.classList.toggle('active', btn.onclick.toString().indexOf("'" + subId + "'") !== -1);
+    });
+    panel.querySelectorAll('.sub-panel').forEach(function(sp) {
+      sp.classList.toggle('active', sp.id === 'sub-' + parentId + '-' + subId);
+    });
+  }
 </script>
 </body>
 </html>
