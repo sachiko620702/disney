@@ -283,11 +283,18 @@
     cursor: default;
   }
 
-  .menu-item:hover {
-    background: rgba(245,200,66,0.06);
-    border-color: rgba(245,200,66,0.3);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  @media (hover: hover) {
+    .menu-item:hover {
+      background: rgba(245,200,66,0.06);
+      border-color: rgba(245,200,66,0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+  }
+
+  .menu-item:active {
+    background: rgba(245,200,66,0.08);
+    border-color: rgba(245,200,66,0.25);
   }
 
   .item-name-zh {
@@ -381,6 +388,64 @@
     font-style: italic;
   }
 
+  /* Collapsible sections */
+  .section-toggle {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+  }
+
+  .section-toggle .toggle-arrow {
+    font-size: 0.7rem;
+    color: var(--gold);
+    opacity: 0.6;
+    transition: transform 0.3s ease;
+    margin-left: auto;
+    padding-left: 8px;
+  }
+
+  .section-toggle.collapsed .toggle-arrow {
+    transform: rotate(-90deg);
+  }
+
+  .section-content {
+    max-height: 5000px;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+    opacity: 1;
+  }
+
+  .section-content.collapsed {
+    max-height: 0;
+    opacity: 0;
+  }
+
+  /* Back to top button */
+  .back-to-top {
+    display: none;
+    position: fixed;
+    bottom: 24px;
+    right: 20px;
+    z-index: 200;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(245,200,66,0.5);
+    background: rgba(10,22,40,0.9);
+    color: var(--gold);
+    font-size: 1.2rem;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    transition: all 0.3s ease;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .back-to-top.visible {
+    display: flex;
+  }
+
   /* Sticky tabs for mobile */
   .tabs-nav-wrapper {
     position: sticky;
@@ -397,14 +462,16 @@
   @media (max-width: 600px) {
     html { font-size: 16px; -webkit-text-size-adjust: 100%; }
 
-    .page-wrapper { padding: 0 12px 40px; }
+    .page-wrapper { padding: 0 10px 40px; }
 
-    .site-header { padding: 30px 10px 18px; }
-    .site-header h1 { font-size: 1.4rem; }
+    .site-header { padding: 24px 10px 14px; }
+    .site-header h1 { font-size: 1.35rem; }
+    .site-header .subtitle { font-size: 0.78rem; letter-spacing: 0.08em; }
+    .golden-divider { margin: 10px auto; }
 
     .tabs-nav-wrapper {
-      margin: 0 -12px;
-      padding: 8px 0 12px;
+      margin: 0 -10px;
+      padding: 8px 0 10px;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
@@ -415,7 +482,7 @@
       flex-wrap: nowrap;
       justify-content: flex-start;
       gap: 8px;
-      padding: 0 12px;
+      padding: 0 10px;
       min-width: max-content;
     }
 
@@ -428,21 +495,45 @@
       align-items: center;
     }
 
-    .menu-card { padding: 20px 14px; border-radius: 14px; }
-    .menu-grid { grid-template-columns: 1fr; gap: 10px; }
+    .menu-card {
+      padding: 18px 12px;
+      border-radius: 14px;
+      border: none;
+      box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+    }
 
-    .menu-item { padding: 14px; min-height: 44px; }
-    .item-name-zh { font-size: 1rem; }
-    .item-name-en { font-size: 0.78rem; }
-    .item-desc { font-size: 0.8rem; line-height: 1.7; }
+    .menu-grid { grid-template-columns: 1fr; gap: 8px; }
 
-    .restaurant-title { font-size: 1.1rem; }
-    .section-header h2 { font-size: 0.85rem; }
+    .menu-item {
+      padding: 12px 14px;
+      border-radius: 10px;
+    }
+    .item-name-zh { font-size: 1rem; margin-bottom: 1px; }
+    .item-name-en { font-size: 0.78rem; margin-bottom: 4px; }
+    .item-desc { font-size: 0.8rem; line-height: 1.7; color: rgba(253,246,227,0.6); }
 
-    .bread-row { padding: 12px 14px; }
-    .kids-section { padding: 16px 12px; }
+    .restaurant-title { font-size: 1.05rem; margin-bottom: 4px; }
+    .restaurant-en { font-size: 0.75rem; margin-bottom: 20px; }
 
+    .section-header {
+      margin: 24px 0 12px;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(245,200,66,0.15);
+    }
+    .section-header h2 { font-size: 0.88rem; }
+    .section-header .sec-line { display: none; }
+    .section-header small { display: none; }
+
+    .bread-row { padding: 10px 12px; }
+    .kids-section { padding: 14px 10px; border-radius: 10px; }
+    .kids-header { font-size: 0.9rem; }
+
+    .note-tag { font-size: 0.68rem; padding: 3px 10px; }
+
+    .menu-footer { margin-top: 24px; padding-top: 16px; }
     .menu-footer p { font-size: 0.78rem; }
+
+    .back-to-top { bottom: 20px; right: 16px; }
   }
 
   /* Sparkle animation on hover for items */
@@ -519,13 +610,14 @@
       </div>
 
       <!-- Small Plates -->
-      <div class="section-header">
+      <div class="section-header section-toggle">
         <span class="section-icon">✨</span>
         <h2>奇妙開胃小點</h2>
         <span class="sec-line"></span>
         <small style="color:rgba(253,246,227,0.4);font-size:0.72rem">Small Plates</small>
+        <span class="toggle-arrow">▼</span>
       </div>
-      <div class="menu-grid">
+      <div class="menu-grid section-content">
         <div class="menu-item">
           <div class="item-name-zh">森林精靈的香煎舞菇</div>
           <div class="item-name-en">Sautéed Maitake Mushrooms</div>
@@ -559,13 +651,14 @@
       </div>
 
       <!-- Entrées -->
-      <div class="section-header">
+      <div class="section-header section-toggle">
         <span class="section-icon">🌟</span>
         <h2>星光主廚推薦主餐</h2>
         <span class="sec-line"></span>
         <small style="color:rgba(253,246,227,0.4);font-size:0.72rem">Entrées</small>
+        <span class="toggle-arrow">▼</span>
       </div>
-      <div class="menu-grid">
+      <div class="menu-grid section-content">
         <div class="menu-item">
           <div class="item-name-zh">探險家泰式水上船麵</div>
           <div class="item-name-en">Thai Boat Noodles</div>
@@ -619,13 +712,14 @@
       </div>
 
       <!-- Desserts -->
-      <div class="section-header">
+      <div class="section-header section-toggle">
         <span class="section-icon">🍮</span>
         <h2>甜蜜夢境甜點</h2>
         <span class="sec-line"></span>
         <small style="color:rgba(253,246,227,0.4);font-size:0.72rem">Desserts</small>
+        <span class="toggle-arrow">▼</span>
       </div>
-      <div class="menu-grid">
+      <div class="menu-grid section-content">
         <div class="menu-item">
           <div class="item-name-zh">奇幻黑森林熔岩巧克力蛋糕</div>
           <div class="item-name-en">Chocolate Molten Cake</div>
@@ -740,13 +834,14 @@
         </div>
       </div>
 
-      <div class="section-header">
+      <div class="section-header section-toggle">
         <span class="section-icon">✨</span>
         <h2>奇妙開胃小點</h2>
         <span class="sec-line"></span>
         <small style="color:rgba(253,246,227,0.4);font-size:0.72rem">Small Plates</small>
+        <span class="toggle-arrow">▼</span>
       </div>
-      <div class="menu-grid">
+      <div class="menu-grid section-content">
         <div class="menu-item">
           <div class="item-name-zh">盛夏微風青木瓜沙拉</div>
           <div class="item-name-en">Green Papaya Salad</div>
@@ -784,13 +879,14 @@
         </div>
       </div>
 
-      <div class="section-header">
+      <div class="section-header section-toggle">
         <span class="section-icon">🌟</span>
         <h2>星光主廚推薦主餐</h2>
         <span class="sec-line"></span>
         <small style="color:rgba(253,246,227,0.4);font-size:0.72rem">Entrées</small>
+        <span class="toggle-arrow">▼</span>
       </div>
-      <div class="menu-grid">
+      <div class="menu-grid section-content">
         <div class="menu-item">
           <div class="item-name-zh">蘇丹御用沙希庫瑪雞肉咖哩</div>
           <div class="item-name-en">Chicken Shahi Korma</div>
@@ -843,13 +939,14 @@
         </div>
       </div>
 
-      <div class="section-header">
+      <div class="section-header section-toggle">
         <span class="section-icon">🍮</span>
         <h2>甜蜜夢境甜點</h2>
         <span class="sec-line"></span>
         <small style="color:rgba(253,246,227,0.4);font-size:0.72rem">Desserts</small>
+        <span class="toggle-arrow">▼</span>
       </div>
-      <div class="menu-grid">
+      <div class="menu-grid section-content">
         <div class="menu-item">
           <div class="item-name-zh">夢幻白巧克力麵包布丁</div>
           <div class="item-name-en">White Chocolate Bread Pudding</div>
@@ -957,13 +1054,14 @@
         </div>
       </div>
 
-      <div class="section-header">
+      <div class="section-header section-toggle">
         <span class="section-icon">✨</span>
         <h2>奇妙開胃小點</h2>
         <span class="sec-line"></span>
         <small style="color:rgba(253,246,227,0.4);font-size:0.72rem">Small Plates</small>
+        <span class="toggle-arrow">▼</span>
       </div>
-      <div class="menu-grid">
+      <div class="menu-grid section-content">
         <div class="menu-item">
           <div class="item-name-zh">翠玉精靈香煎蔬菜餃</div>
           <div class="item-name-en">Seared Vegetable Dumplings</div>
@@ -1006,13 +1104,14 @@
         </div>
       </div>
 
-      <div class="section-header">
+      <div class="section-header section-toggle">
         <span class="section-icon">🌟</span>
         <h2>奇幻國度主餐</h2>
         <span class="sec-line"></span>
         <small style="color:rgba(253,246,227,0.4);font-size:0.72rem">Entrées</small>
+        <span class="toggle-arrow">▼</span>
       </div>
-      <div class="menu-grid">
+      <div class="menu-grid section-content">
         <div class="menu-item">
           <span class="note-tag pork">含豬肉</span>
           <div class="item-name-zh">木蘭家鄉味港式雲吞麵</div>
@@ -1066,13 +1165,14 @@
         </div>
       </div>
 
-      <div class="section-header">
+      <div class="section-header section-toggle">
         <span class="section-icon">🍮</span>
         <h2>甜蜜夢境甜點</h2>
         <span class="sec-line"></span>
         <small style="color:rgba(253,246,227,0.4);font-size:0.72rem">Desserts</small>
+        <span class="toggle-arrow">▼</span>
       </div>
-      <div class="menu-grid">
+      <div class="menu-grid section-content">
         <div class="menu-item">
           <div class="item-name-zh">盛夏陽光芒果百香果慕斯</div>
           <div class="item-name-en">Mango-Passion Fruit Crème</div>
@@ -1132,13 +1232,14 @@
         </div>
       </div>
 
-      <div class="section-header">
+      <div class="section-header section-toggle">
         <span class="section-icon">✨</span>
         <h2>奇妙開胃小點</h2>
         <span class="sec-line"></span>
         <small style="color:rgba(253,246,227,0.4);font-size:0.72rem">Small Plates</small>
+        <span class="toggle-arrow">▼</span>
       </div>
-      <div class="menu-grid">
+      <div class="menu-grid section-content">
         <div class="menu-item">
           <div class="item-name-zh">尋龍使者韓式烤牛肉刈包</div>
           <div class="item-name-en">Korean Barbecue Beef Steamed Bao</div>
@@ -1181,13 +1282,14 @@
         </div>
       </div>
 
-      <div class="section-header">
+      <div class="section-header section-toggle">
         <span class="section-icon">🌟</span>
         <h2>畫布上的主餐傑作</h2>
         <span class="sec-line"></span>
         <small style="color:rgba(253,246,227,0.4);font-size:0.72rem">Entrées</small>
+        <span class="toggle-arrow">▼</span>
       </div>
-      <div class="menu-grid">
+      <div class="menu-grid section-content">
         <div class="menu-item">
           <div class="item-name-zh">獅城尋寶椰香叻沙</div>
           <div class="item-name-en">Laksa Lemak</div>
@@ -1240,13 +1342,14 @@
         </div>
       </div>
 
-      <div class="section-header">
+      <div class="section-header section-toggle">
         <span class="section-icon">🍮</span>
         <h2>甜蜜調色盤甜點</h2>
         <span class="sec-line"></span>
         <small style="color:rgba(253,246,227,0.4);font-size:0.72rem">Desserts</small>
+        <span class="toggle-arrow">▼</span>
       </div>
-      <div class="menu-grid">
+      <div class="menu-grid section-content">
         <div class="menu-item">
           <div class="item-name-zh">魔法森林杏仁洋梨塔</div>
           <div class="item-name-en">Almond-Pear Tart</div>
@@ -1354,6 +1457,9 @@
 
 </div>
 
+<!-- Back to top button -->
+<button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂部">↑</button>
+
 <script>
   function switchTab(id) {
     // Update buttons
@@ -1364,9 +1470,60 @@
     document.querySelectorAll('.tab-panel').forEach(panel => {
       panel.classList.toggle('active', panel.id === 'tab-' + id);
     });
-    // Scroll to top of tabs
-    document.querySelector('.tabs-nav').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    // Scroll to top of content area
+    document.querySelector('.tabs-nav-wrapper').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+    // Auto-scroll active tab button into view
+    const activeBtn = document.querySelector('.tab-btn.active');
+    if (activeBtn) {
+      activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
   }
+
+  // Swipe to switch tabs
+  (function() {
+    const tabIds = ['nav', 'pixar', 'animator', 'night4'];
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    document.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', function(e) {
+      const dx = e.changedTouches[0].screenX - touchStartX;
+      const dy = e.changedTouches[0].screenY - touchStartY;
+      // Only trigger if horizontal swipe is dominant and > 80px
+      if (Math.abs(dx) > 80 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        const currentIdx = tabIds.indexOf(
+          document.querySelector('.tab-btn.active')?.dataset.tab
+        );
+        if (currentIdx === -1) return;
+        const nextIdx = dx < 0
+          ? Math.min(currentIdx + 1, tabIds.length - 1)
+          : Math.max(currentIdx - 1, 0);
+        if (nextIdx !== currentIdx) switchTab(tabIds[nextIdx]);
+      }
+    }, { passive: true });
+  })();
+
+  // Back to top button visibility
+  (function() {
+    const btn = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', function() {
+      btn.classList.toggle('visible', window.scrollY > 600);
+    }, { passive: true });
+  })();
+
+  // Collapsible sections
+  document.querySelectorAll('.section-toggle').forEach(function(header) {
+    header.addEventListener('click', function() {
+      this.classList.toggle('collapsed');
+      const content = this.nextElementSibling;
+      if (content) content.classList.toggle('collapsed');
+    });
+  });
 </script>
 </body>
 </html>
