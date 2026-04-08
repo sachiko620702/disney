@@ -6363,7 +6363,8 @@
         const zhName = item.querySelector('.item-name-zh')?.textContent.trim() || '';
         const desc = item.querySelector('.item-desc')?.textContent.trim() || '';
         
-        if (enName) { // Only add if there's an English name
+        // Add items that have either English or Chinese name for searching
+        if (enName || zhName) {
           allMenuItems.push({
             enName: enName,
             zhName: zhName,
@@ -6374,6 +6375,9 @@
         }
       });
     });
+    
+    // Log for debugging
+    console.log('Initialized ' + allMenuItems.length + ' menu items');
   }
 
   // Perform search
@@ -6455,7 +6459,10 @@
 
   // Event listeners
   document.addEventListener('DOMContentLoaded', function() {
-    initializeSearchData();
+    // Initialize search data after a small delay to ensure DOM is fully ready
+    setTimeout(function() {
+      initializeSearchData();
+    }, 100);
     
     const searchInput = document.getElementById('searchInput');
     if (searchInput) {
@@ -6501,6 +6508,9 @@
     if (activeBtn) {
       activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     }
+    
+    // Reinitialize search data when switching tabs
+    initializeSearchData();
   }
 
   // Back to top button visibility
@@ -6530,6 +6540,9 @@
     panel.querySelectorAll('.sub-panel').forEach(function(sp) {
       sp.classList.toggle('active', sp.id === 'sub-' + parentId + '-' + subId);
     });
+    
+    // Reinitialize search data when switching sub-tabs
+    initializeSearchData();
   }
 </script>
 </body>
