@@ -648,7 +648,230 @@
     margin-bottom: 10px;
   }
 
+  /* ===== SEARCH BAR ===== */
+  .search-wrapper {
+    position: sticky;
+    top: 0;
+    z-index: 150;
+    background: linear-gradient(180deg, var(--navy) 0%, var(--navy) 80%, transparent 100%);
+    padding: 20px 0 16px;
+    margin: 0 -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .search-container {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 12px 16px 12px 40px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 0.95rem;
+    background: rgba(253,246,227,0.06);
+    border: 1.5px solid rgba(245,200,66,0.3);
+    border-radius: 25px;
+    color: var(--cream);
+    transition: all 0.3s ease;
+    box-shadow: inset 0 0 0 0 rgba(245,200,66,0.1);
+  }
+
+  .search-input::placeholder {
+    color: rgba(253,246,227,0.35);
+  }
+
+  .search-input:focus {
+    outline: none;
+    border-color: var(--gold);
+    background: rgba(253,246,227,0.1);
+    box-shadow: 0 0 20px rgba(245,200,66,0.2), inset 0 0 0 3px rgba(245,200,66,0.05);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--gold);
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .search-wrapper-inner {
+    position: relative;
+  }
+
+  /* Search Results */
+  .search-results-panel {
+    display: none;
+    position: fixed;
+    top: 120px;
+    left: 20px;
+    right: 20px;
+    max-width: calc(100% - 40px);
+    max-height: 70vh;
+    overflow-y: auto;
+    background: linear-gradient(160deg, rgba(18,32,64,0.98) 0%, rgba(10,22,40,0.98) 100%);
+    border: 1.5px solid rgba(245,200,66,0.4);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 12px 60px rgba(0,0,0,0.8), inset 0 1px 0 rgba(245,200,66,0.15);
+    z-index: 140;
+    animation: fadeInResults 0.3s ease;
+  }
+
+  .search-results-panel.active {
+    display: block;
+  }
+
+  @keyframes fadeInResults {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .search-results-header {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .search-results-count {
+    font-size: 0.85rem;
+    color: rgba(253,246,227,0.6);
+    font-family: 'Noto Serif TC', serif;
+  }
+
+  .search-result-item {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(245,200,66,0.15);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .search-result-item:hover {
+    background: rgba(245,200,66,0.08);
+    border-color: rgba(245,200,66,0.3);
+    transform: translateX(4px);
+  }
+
+  .search-result-restaurant {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 0.95rem;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+
+  .search-result-en {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.87rem;
+    color: var(--gold-light);
+    opacity: 0.8;
+    margin-bottom: 4px;
+  }
+
+  .search-result-zh {
+    font-size: 0.9rem;
+    color: var(--cream);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+
+  .search-result-desc {
+    font-size: 0.8rem;
+    color: rgba(253,246,227,0.55);
+    line-height: 1.5;
+  }
+
+  .search-no-results {
+    text-align: center;
+    padding: 32px 20px;
+    color: rgba(253,246,227,0.5);
+  }
+
+  .search-no-results-icon {
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+
+  .search-close-btn {
+    background: none;
+    border: none;
+    color: rgba(253,246,227,0.5);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+  }
+
+  .search-close-btn:hover {
+    color: var(--gold);
+    transform: scale(1.1);
+  }
+
   @media (max-width: 600px) {
+    .search-wrapper {
+      padding: 12px 0 10px;
+      margin: 0 -10px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .search-results-panel {
+      top: 100px;
+      left: 10px;
+      right: 10px;
+      max-width: calc(100% - 20px);
+      max-height: 60vh;
+      padding: 16px;
+    }
+
+    .search-input {
+      font-size: 0.88rem;
+      padding: 10px 14px 10px 36px;
+    }
+
+    .search-icon {
+      left: 12px;
+    }
+
+    .search-result-item {
+      padding: 12px;
+      margin-bottom: 10px;
+    }
+
+    .search-result-restaurant {
+      font-size: 0.88rem;
+    }
+
+    .search-result-en {
+      font-size: 0.8rem;
+    }
+
+    .search-result-zh {
+      font-size: 0.85rem;
+    }
+
     .sub-tabs { gap: 6px; }
     .sub-tab-btn { font-size: 0.75rem; padding: 8px 12px; min-height: 38px; }
     .pairing-grid { grid-template-columns: 1fr; }
@@ -672,6 +895,25 @@
       <span class="line"></span>
     </div>
   </header>
+
+  <!-- SEARCH BAR -->
+  <div class="search-wrapper">
+    <div class="search-container">
+      <div class="search-wrapper-inner">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" class="search-input" placeholder="搜尋英文菜品名稱... Search by English name...">
+      </div>
+    </div>
+  </div>
+
+  <!-- SEARCH RESULTS PANEL -->
+  <div class="search-results-panel" id="searchResultsPanel">
+    <div class="search-results-header">
+      <span>🔎 搜尋結果</span>
+      <button class="search-close-btn" onclick="closeSearchResults()">✕</button>
+    </div>
+    <div id="searchResultsContainer"></div>
+  </div>
 
   <!-- TABS NAV -->
   <div class="tabs-nav-wrapper">
@@ -6100,6 +6342,145 @@
 <button class="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="回到頂部">↑</button>
 
 <script>
+  // ===== SEARCH FUNCTIONALITY =====
+  let allMenuItems = [];
+
+  // Initialize menu data on page load
+  function initializeSearchData() {
+    allMenuItems = [];
+    
+    // Get all restaurant cards
+    document.querySelectorAll('.menu-card').forEach(card => {
+      const restaurantTitle = card.querySelector('.restaurant-title')?.textContent.trim() || '未知餐廳';
+      const restaurantEn = card.querySelector('.restaurant-en')?.textContent.trim() || '';
+      
+      // Get all menu items in this card
+      card.querySelectorAll('.menu-item').forEach(item => {
+        const enName = item.querySelector('.item-name-en')?.textContent.trim() || '';
+        const zhName = item.querySelector('.item-name-zh')?.textContent.trim() || '';
+        const desc = item.querySelector('.item-desc')?.textContent.trim() || '';
+        
+        if (enName) { // Only add if there's an English name
+          allMenuItems.push({
+            enName: enName,
+            zhName: zhName,
+            description: desc,
+            restaurantZh: restaurantTitle,
+            restaurantEn: restaurantEn
+          });
+        }
+      });
+    });
+  }
+
+  // Perform search
+  function performSearch(query) {
+    const searchQuery = query.toLowerCase().trim();
+    const resultsPanel = document.getElementById('searchResultsPanel');
+    const resultsContainer = document.getElementById('searchResultsContainer');
+    
+    if (!searchQuery) {
+      resultsPanel.classList.remove('active');
+      return;
+    }
+
+    // Filter results
+    const results = allMenuItems.filter(item => 
+      item.enName.toLowerCase().includes(searchQuery) ||
+      item.description.toLowerCase().includes(searchQuery)
+    );
+
+    // Display results
+    if (results.length > 0) {
+      let html = `<div class="search-results-count">找到 ${results.length} 項菜品 | Found ${results.length} dish${results.length !== 1 ? 'es' : ''}</div>`;
+      
+      results.forEach(result => {
+        html += `
+          <div class="search-result-item" onclick="scrollToMenuItem('${escapeHtml(result.restaurantZh)}', '${escapeHtml(result.enName)}')">
+            <div class="search-result-restaurant">🍽️ ${escapeHtml(result.restaurantZh)}</div>
+            <div class="search-result-en">${escapeHtml(result.enName)}</div>
+            <div class="search-result-zh">${escapeHtml(result.zhName)}</div>
+            ${result.description ? `<div class="search-result-desc">${escapeHtml(result.description)}</div>` : ''}
+          </div>
+        `;
+      });
+      
+      resultsContainer.innerHTML = html;
+    } else {
+      resultsContainer.innerHTML = `
+        <div class="search-no-results">
+          <div class="search-no-results-icon">🔍</div>
+          <p>沒有找到相符的菜品</p>
+          <p style="font-size:0.8rem;margin-top:8px;opacity:0.6;">No matching dishes found</p>
+        </div>
+      `;
+    }
+    
+    resultsPanel.classList.add('active');
+  }
+
+  // Helper function to escape HTML
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // Close search results
+  function closeSearchResults() {
+    document.getElementById('searchResultsPanel').classList.remove('active');
+    document.getElementById('searchInput').value = '';
+  }
+
+  // Scroll to menu item (currently just shows result - can be enhanced)
+  function scrollToMenuItem(restaurantName, dishName) {
+    closeSearchResults();
+    // Find and scroll to the restaurant
+    const cards = document.querySelectorAll('.menu-card');
+    for (let card of cards) {
+      if (card.querySelector('.restaurant-title').textContent.includes(restaurantName)) {
+        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Highlight the card briefly
+        card.style.boxShadow = '0 0 30px rgba(245,200,66,0.5), inset 0 0 20px rgba(245,200,66,0.1)';
+        setTimeout(() => {
+          card.style.boxShadow = '';
+        }, 2000);
+        break;
+      }
+    }
+  }
+
+  // Event listeners
+  document.addEventListener('DOMContentLoaded', function() {
+    initializeSearchData();
+    
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) {
+      // Perform search on input
+      searchInput.addEventListener('input', function(e) {
+        performSearch(e.target.value);
+      });
+      
+      // Close results when clicking outside
+      document.addEventListener('click', function(e) {
+        const searchWrapper = document.querySelector('.search-wrapper');
+        const resultsPanel = document.getElementById('searchResultsPanel');
+        if (!searchWrapper.contains(e.target) && !resultsPanel.contains(e.target)) {
+          if (e.target.id !== 'searchInput') {
+            resultsPanel.classList.remove('active');
+          }
+        }
+      });
+      
+      // Close results with Escape key
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+          closeSearchResults();
+        }
+      });
+    }
+  });
+
   function switchTab(id) {
     // Update buttons
     document.querySelectorAll('.tab-btn').forEach(btn => {
