@@ -6459,9 +6459,13 @@
     }, 100);
     
     const searchInput = document.getElementById('searchInput');
+    console.log('Search input element found:', searchInput);
+    console.log('allMenuItems length:', allMenuItems.length);
+    
     if (searchInput) {
       // Perform search on input
       searchInput.addEventListener('input', function(e) {
+        console.log('Search input event triggered:', e.target.value);
         performSearch(e.target.value);
       });
       
