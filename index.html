@@ -709,9 +709,9 @@
     display: none;
     position: absolute;
     top: 100%;
-    left: 50%;
-    width: 90%;
-    max-width: 600px;
+    left: 0;
+    right: 0;
+    width: 100%;
     max-height: 70vh;
     overflow-y: auto;
     background: linear-gradient(160deg, rgba(18,32,64,0.98) 0%, rgba(10,22,40,0.98) 100%);
@@ -720,8 +720,7 @@
     padding: 24px;
     box-shadow: 0 12px 60px rgba(0,0,0,0.8), inset 0 1px 0 rgba(245,200,66,0.15);
     z-index: 1000;
-    margin-top: 8px;
-    margin-left: -45%;
+    margin-top: 4px;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -900,16 +899,15 @@
         <span class="search-icon">🔍</span>
         <input type="text" id="searchInput" class="search-input" placeholder="搜尋英文菜品名稱... Search by English name...">
       </div>
+      <!-- SEARCH RESULTS PANEL -->
+      <div class="search-results-panel" id="searchResultsPanel">
+        <div class="search-results-header">
+          <span>🔎 搜尋結果</span>
+          <button class="search-close-btn" onclick="closeSearchResults()">✕</button>
+        </div>
+        <div id="searchResultsContainer"></div>
+      </div>
     </div>
-  </div>
-
-  <!-- SEARCH RESULTS PANEL -->
-  <div class="search-results-panel" id="searchResultsPanel">
-    <div class="search-results-header">
-      <span>🔎 搜尋結果</span>
-      <button class="search-close-btn" onclick="closeSearchResults()">✕</button>
-    </div>
-    <div id="searchResultsContainer"></div>
   </div>
 
   <!-- TABS NAV -->
@@ -6380,6 +6378,11 @@
     const resultsPanel = document.getElementById('searchResultsPanel');
     const resultsContainer = document.getElementById('searchResultsContainer');
     
+    console.log('performSearch called with:', query);
+    console.log('resultsPanel:', resultsPanel);
+    console.log('resultsContainer:', resultsContainer);
+    console.log('allMenuItems count:', allMenuItems.length);
+    
     if (!searchQuery) {
       resultsPanel.classList.remove('active');
       return;
@@ -6390,6 +6393,9 @@
       item.enName.toLowerCase().includes(searchQuery) ||
       item.description.toLowerCase().includes(searchQuery)
     );
+    
+    console.log('Search results count:', results.length);
+    console.log('First result:', results[0]);
 
     // Display results
     if (results.length > 0) {
@@ -6407,6 +6413,8 @@
       });
       
       resultsContainer.innerHTML = html;
+      console.log('Results HTML inserted, container innerHTML length:', resultsContainer.innerHTML.length);
+      console.log('Container content:', resultsContainer.innerHTML.substring(0, 200));
     } else {
       resultsContainer.innerHTML = `
         <div class="search-no-results">
@@ -6417,7 +6425,25 @@
       `;
     }
     
+    console.log('Adding active class to results panel');
+    console.log('resultsPanel display before:', window.getComputedStyle(resultsPanel).display);
     resultsPanel.classList.add('active');
+    console.log('resultsPanel display after:', window.getComputedStyle(resultsPanel).display);
+    console.log('resultsPanel classes:', resultsPanel.className);
+    
+    // Debug CSS styles
+    const styles = window.getComputedStyle(resultsPanel);
+    console.log('Results panel computed styles:');
+    console.log('  width: ' + styles.width);
+    console.log('  height: ' + styles.height);
+    console.log('  max-height: ' + styles.maxHeight);
+    console.log('  position: ' + styles.position);
+    console.log('  top: ' + styles.top);
+    console.log('  left: ' + styles.left);
+    console.log('  opacity: ' + styles.opacity);
+    console.log('  visibility: ' + styles.visibility);
+    console.log('  z-index: ' + styles.zIndex);
+    console.log('  overflow: ' + styles.overflow);
   }
 
   // Helper function to escape HTML
