@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Disney Adventure 房號甲板定位器</title>
+  <style>
+    :root{
+      --bg:#f5f7fb; --card:#ffffff; --ink:#142033; --muted:#64748b; --line:#e2e8f0;
+      --accent:#e11d48; --accent2:#2563eb; --ok:#059669; --warn:#b91c1c; --soft:#fff1f2;
+      --shadow:0 16px 38px rgba(15,23,42,.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:linear-gradient(180deg,#eef6ff 0,#f8fafc 300px);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif}
+    header{max-width:1180px;margin:auto;padding:28px 18px 10px}
+    h1{font-size:clamp(24px,4vw,40px);line-height:1.1;margin:0 0 10px;font-weight:900;letter-spacing:-.03em}
+    .subtitle{margin:0;color:var(--muted);font-size:15px;line-height:1.7}
+    main{max-width:1180px;margin:auto;padding:14px 18px 52px;display:grid;gap:18px}
+    .panel{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:18px}
+    .input-panel{display:grid;grid-template-columns:1.4fr .6fr;gap:16px;align-items:start}
+    @media(max-width:820px){.input-panel{grid-template-columns:1fr}.deck-card{grid-template-columns:1fr!important}.map-wrap{margin:auto}}
+    label{display:block;font-size:14px;font-weight:800;margin:0 0 8px;color:#334155}
+    textarea{width:100%;min-height:142px;resize:vertical;border:1px solid #cbd5e1;border-radius:18px;padding:14px 16px;font:600 17px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#fff;color:#0f172a;outline:none}
+    textarea:focus{border-color:#60a5fa;box-shadow:0 0 0 4px rgba(96,165,250,.18)}
+    .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+    button{border:0;border-radius:999px;padding:11px 17px;cursor:pointer;background:#111827;color:#fff;font-weight:900;letter-spacing:.01em;box-shadow:0 8px 18px rgba(15,23,42,.12)}
+    button.secondary{background:#e2e8f0;color:#0f172a;box-shadow:none}
+    button.danger{background:#fee2e2;color:#991b1b;box-shadow:none}
+    .tips{font-size:13px;color:var(--muted);line-height:1.65;margin:0}
+    .stat-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:8px}
+    .stat{border:1px solid var(--line);border-radius:18px;padding:12px;background:#f8fafc}
+    .stat b{font-size:24px;display:block;color:#0f172a}.stat span{font-size:12px;color:var(--muted);font-weight:700}
+    .summary{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;line-height:1.6}
+    .pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:5px 10px;background:#eff6ff;color:#1d4ed8;font-weight:900}
+    .pill.ok{background:#ecfdf5;color:#047857}.pill.warn{background:#fef2f2;color:#b91c1c}.pill.neutral{background:#f1f5f9;color:#334155}
+    .missing-box{display:none;margin-top:12px;border:1px solid #fecaca;background:#fff1f2;color:#991b1b;border-radius:16px;padding:12px;font-weight:700;line-height:1.6}
+    .deck-grid{display:grid;gap:18px}
+    .deck-card{display:grid;grid-template-columns:260px 1fr;gap:18px;align-items:start}
+    .deck-title{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 12px}
+    .deck-title h2{margin:0;font-size:22px}.deck-title small{color:var(--muted);font-weight:800}
+    .map-wrap{position:relative;width:min(230px,100%);background:#f1f5f9;border:1px solid #dbe4f0;border-radius:20px;padding:10px;overflow:visible}
+    .map-stage{position:relative;width:100%;}
+    .map-stage img{display:block;width:100%;height:auto;border-radius:12px;user-select:none;pointer-events:none}
+    .marker-layer{position:absolute;inset:0;z-index:3}
+    .map-marker{position:absolute;z-index:4;transform:translate(-50%,-50%);cursor:pointer;display:flex;align-items:center;gap:5px}
+    .map-marker .dot{width:15px;height:15px;border-radius:999px;background:var(--accent);border:2px solid #fff;box-shadow:0 2px 8px rgba(0,0,0,.38);flex:none}
+    .map-marker .label{font:900 12px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:rgba(15,23,42,.92);color:#fff;border:1px solid rgba(255,255,255,.9);border-radius:999px;padding:4px 6px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.20)}
+    .map-marker.left-label{flex-direction:row-reverse}
+    .map-marker.active .dot{background:#2563eb;transform:scale(1.18)}
+    .map-marker.active .label{background:#1d4ed8}
+    .room-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:8px;margin:0;padding:0;list-style:none}
+    .room-chip{border:1px solid var(--line);background:#fff;border-radius:14px;padding:9px 10px;cursor:pointer;transition:.15s transform,.15s border-color,.15s background;line-height:1.35}
+    .room-chip:hover,.room-chip.active{transform:translateY(-1px);border-color:#93c5fd;background:#eff6ff}
+    .room-chip b{display:block;font-size:16px}.room-chip span{display:block;color:var(--muted);font-size:12px;margin-top:2px}
+    .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:18px;background:#fff}
+    table{width:100%;border-collapse:collapse;font-size:14px;min-width:720px}
+    th,td{border-bottom:1px solid var(--line);padding:10px;text-align:left;white-space:nowrap}th{background:#f8fafc;color:#475569;font-size:12px;text-transform:uppercase;letter-spacing:.04em}tr:last-child td{border-bottom:0}
+    .footer-note{color:var(--muted);font-size:12px;line-height:1.6;text-align:center;margin-top:8px}
+    .empty{color:var(--muted);padding:24px;text-align:center;border:1px dashed #cbd5e1;border-radius:20px;background:#fff}
+  </style>
+</head>
+<body>
+<header>
+  <h1>Disney Adventure 房號甲板定位器</h1>
+  <p class="subtitle">輸入多個房號後，頁面會自動依 Deck 分組，並直接把標記疊在 mini deck 底圖上。可直接放到 GitHub Pages，純前端執行。</p>
+</header>
+<main>
+  <section class="panel input-panel">
+    <div>
+      <label for="roomsInput">房號列表</label>
+      <textarea id="roomsInput" placeholder="例如：17096, 12104, 15110&#10;也可以一行一個：&#10;17096&#10;12104&#10;15110"></textarea>
+      <div class="btns">
+        <button id="markBtn">標記房號</button>
+        <button class="secondary" id="demoBtn">載入範例</button>
+        <button class="secondary" id="copyLinkBtn">複製目前查詢連結</button>
+        <button class="danger" id="clearBtn">清空</button>
+      </div>
+    </div>
+    <div>
+      <p class="tips">支援逗號、空白、換行混合輸入。資料來源為 <code>adventure-room-map.json</code>，底圖為 <code>assets/adventure-mini-deck-XX.svg</code>。</p>
+      <div class="stat-grid">
+        <div class="stat"><b id="statRooms">—</b><span>資料庫房號數</span></div>
+        <div class="stat"><b id="statDecks">—</b><span>支援 Deck</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div id="summary" class="summary"><span class="pill neutral">尚未查詢</span></div>
+    <div id="missingBox" class="missing-box"></div>
+  </section>
+
+  <section id="deckGrid" class="deck-grid">
+    <div class="empty">輸入房號後，這裡會顯示對應 Deck 的底圖與標記。</div>
+  </section>
+
+  <section class="panel">
+    <div class="deck-title"><h2>明細表</h2><small id="tableCount">0 筆</small></div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>房號</th><th>Deck</th><th>區域</th><th>左右舷</th><th>mini x</th><th>mini y</th><th>底圖</th></tr></thead>
+        <tbody id="resultBody"><tr><td colspan="7" style="text-align:center;color:#64748b">尚未查詢</td></tr></tbody>
+      </table>
+    </div>
+  </section>
+  <p class="footer-note">標記點使用 SVG 房號文字座標換算至 mini deck 底圖，適合快速定位所在甲板與大致位置；實際艙房位置仍以官方甲板圖為準。</p>
+</main>
+<script>
+const DATA_URL = './adventure-room-map.json';
+let ROOM_MAP = null;
+
+const sideName = {'port-left':'左舷 / 左側','starboard-right':'右舷 / 右側','center':'中線附近'};
+const zoneName = {forward:'船頭側', midship:'船中', aft:'船尾側'};
+
+async function loadMap(){
+  if (ROOM_MAP) return ROOM_MAP;
+  const res = await fetch(DATA_URL, {cache:'no-store'});
+  if (!res.ok) throw new Error('找不到 adventure-room-map.json，請確認 index.html 與 JSON 放在同一層。');
+  ROOM_MAP = await res.json();
+  document.getElementById('statRooms').textContent = Object.keys(ROOM_MAP.rooms || {}).length.toLocaleString();
+  const decks = Object.keys(ROOM_MAP.deckStats || {}).sort((a,b)=>Number(a)-Number(b));
+  document.getElementById('statDecks').textContent = decks.join(', ');
+  return ROOM_MAP;
+}
+
+function parseRooms(text){
+  const rooms = (text.match(/\d{3,5}/g) || []).map(String);
+  return [...new Set(rooms)];
+}
+function esc(s){return String(s).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+function clearResults(){
+  document.getElementById('deckGrid').innerHTML = '<div class="empty">輸入房號後，這裡會顯示對應 Deck 的底圖與標記。</div>';
+  document.getElementById('resultBody').innerHTML = '<tr><td colspan="7" style="text-align:center;color:#64748b">尚未查詢</td></tr>';
+  document.getElementById('tableCount').textContent = '0 筆';
+  document.getElementById('summary').innerHTML = '<span class="pill neutral">尚未查詢</span>';
+  document.getElementById('missingBox').style.display = 'none';
+}
+function setActive(room){
+  document.querySelectorAll('.marker-group,.room-chip').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll(`[data-room="${CSS.escape(room)}"]`).forEach(el=>el.classList.add('active'));
+}
+
+async function markRooms(pushState=true){
+  const data = await loadMap();
+  const input = document.getElementById('roomsInput').value;
+  const requested = parseRooms(input);
+  const found = [], missing = [];
+  for (const room of requested){
+    const r = data.rooms[room];
+    if (r) found.push(r); else missing.push(room);
+  }
+  if (pushState){
+    const url = new URL(window.location.href);
+    if (requested.length) url.searchParams.set('rooms', requested.join(',')); else url.searchParams.delete('rooms');
+    history.replaceState(null, '', url);
+  }
+  renderSummary(requested, found, missing);
+  renderTable(found);
+  renderDecks(found);
+}
+function renderSummary(requested, found, missing){
+  const decks = [...new Set(found.map(r=>r.deck))].sort((a,b)=>a-b);
+  document.getElementById('summary').innerHTML =
+    `<span class="pill neutral">輸入 ${requested.length} 間</span>`+
+    `<span class="pill ok">找到 ${found.length} 間</span>`+
+    `<span class="pill neutral">Deck：${decks.length ? decks.join(', ') : '—'}</span>`+
+    (missing.length ? `<span class="pill warn">未找到 ${missing.length} 間</span>` : '');
+  const box = document.getElementById('missingBox');
+  if (missing.length){ box.style.display='block'; box.textContent='找不到：' + missing.join(', ') + '。請確認房號或該 Deck 是否在資料集內。'; }
+  else { box.style.display='none'; box.textContent=''; }
+}
+function renderTable(found){
+  const body = document.getElementById('resultBody');
+  document.getElementById('tableCount').textContent = `${found.length} 筆`;
+  if (!found.length){ body.innerHTML = '<tr><td colspan="7" style="text-align:center;color:#64748b">沒有找到可顯示的房號</td></tr>'; return; }
+  body.innerHTML = found.slice().sort((a,b)=>a.deck-b.deck || a.room.localeCompare(b.room)).map(r =>
+    `<tr data-room="${esc(r.room)}" onclick="setActive('${esc(r.room)}')"><td><b>${esc(r.room)}</b></td><td>${r.deck}</td><td>${zoneName[r.zone] || esc(r.zone)}</td><td>${sideName[r.side] || esc(r.side)}</td><td>${r.mini?.x ?? ''}</td><td>${r.mini?.y ?? ''}</td><td>${esc(r.miniFile)}</td></tr>`
+  ).join('');
+}
+function renderDecks(found){
+  const grid = document.getElementById('deckGrid');
+  if (!found.length){ grid.innerHTML = '<div class="empty">沒有可標記的房號。</div>'; return; }
+  const byDeck = found.reduce((acc,r)=>{(acc[r.deck] ||= []).push(r); return acc;},{});
+  grid.innerHTML = '';
+  for (const deck of Object.keys(byDeck).sort((a,b)=>Number(a)-Number(b))){
+    const rooms = byDeck[deck].slice().sort((a,b)=>a.room.localeCompare(b.room));
+    const miniFile = rooms[0].miniFile;
+    const card = document.createElement('section');
+    card.className = 'panel deck-card';
+    card.innerHTML = `
+      <div>
+        <div class="deck-title"><h2>Deck ${esc(deck)}</h2><small>${rooms.length} 間</small></div>
+        <div class="map-wrap">
+          <div class="map-stage">
+            <img src="${esc(miniFile)}" alt="Deck ${esc(deck)} mini map" loading="lazy">
+            <div class="marker-layer" aria-label="Deck ${esc(deck)} markers"></div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="deck-title"><h2>房號</h2><small>點選可高亮</small></div>
+        <ul class="room-list"></ul>
+      </div>`;
+    const layer = card.querySelector('.marker-layer');
+    const list = card.querySelector('.room-list');
+    rooms.forEach((r,idx)=>{
+      const x = Number(r.normalized.x) * 100;
+      const y = Number(r.normalized.y) * 100;
+      const marker = document.createElement('div');
+      marker.className = 'map-marker' + (x > 72 ? ' left-label' : '');
+      marker.dataset.room = r.room;
+      marker.style.left = x.toFixed(3) + '%';
+      marker.style.top = y.toFixed(3) + '%';
+      marker.innerHTML = `<span class="dot"></span><span class="label">${esc(r.room)}</span>`;
+      marker.addEventListener('click',()=>setActive(r.room));
+      marker.addEventListener('mouseenter',()=>setActive(r.room));
+      layer.appendChild(marker);
+      const li = document.createElement('li');
+      li.className = 'room-chip'; li.dataset.room = r.room;
+      li.innerHTML = `<b>${esc(r.room)}</b><span>${zoneName[r.zone] || esc(r.zone)} · ${sideName[r.side] || esc(r.side)}</span>`;
+      li.addEventListener('click',()=>setActive(r.room));
+      li.addEventListener('mouseenter',()=>setActive(r.room));
+      list.appendChild(li);
+    });
+    grid.appendChild(card);
+  }
+}
+
+document.getElementById('markBtn').addEventListener('click',()=>markRooms().catch(err=>alert(err.message)));
+document.getElementById('demoBtn').addEventListener('click',()=>{document.getElementById('roomsInput').value='17096, 12104, 15110, 9216, 18100'; markRooms().catch(err=>alert(err.message));});
+document.getElementById('clearBtn').addEventListener('click',()=>{document.getElementById('roomsInput').value=''; clearResults(); const url=new URL(location.href); url.searchParams.delete('rooms'); history.replaceState(null,'',url);});
+document.getElementById('copyLinkBtn').addEventListener('click',async()=>{await markRooms(); try{await navigator.clipboard.writeText(location.href); alert('已複製目前查詢連結');}catch(e){prompt('請手動複製連結', location.href);}});
+window.addEventListener('DOMContentLoaded',async()=>{
+  await loadMap().catch(err=>alert(err.message));
+  const params = new URLSearchParams(location.search);
+  const rooms = params.get('rooms');
+  if (rooms){ document.getElementById('roomsInput').value = rooms; await markRooms(false).catch(err=>alert(err.message)); }
+});
+</script>
+</body>
+</html>
