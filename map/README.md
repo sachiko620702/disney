@@ -1,16 +1,26 @@
-# Disney Adventure 房號甲板定位器（GitHub Pages 靜態版）
+# Disney Adventure 房號 Full Deck 高亮定位器
 
-這是一個純前端工具，可直接部署到 GitHub Pages。
+這是 GitHub Pages 可直接部署的純前端版本。
 
-## 檔案
+## 功能
 
-- `index.html`：主網頁
-- `adventure-room-map.json`：房號到 Deck / 座標的索引
-- `assets/adventure-mini-deck-XX.svg`：mini deck 底圖
+- 輸入多個房號
+- 自動依 Deck 分組
+- 載入完整 `DCL_DeckPlans_Adventure_Flat_DeckXX.svg`
+- 保留所有房間匡線
+- 直接高亮 `room-房號` 房間框
+- 同步高亮 `number-房號` 房號文字
+- 支援 `?rooms=17096,12259,15110` 分享查詢
+
+## 部署到 GitHub Pages
+
+1. 將本 ZIP 解壓後所有檔案放到 repo 根目錄。
+2. 到 GitHub repo `Settings → Pages`。
+3. Source 選 `Deploy from a branch`。
+4. Branch 選 `main`，Folder 選 `/root`。
+5. 儲存後等待 Pages 發布。
 
 ## 本機測試
-
-建議用簡單 HTTP server 開啟，避免瀏覽器直接開 file:// 時阻擋 fetch JSON。
 
 ```bash
 python3 -m http.server 8000
@@ -22,20 +32,27 @@ python3 -m http.server 8000
 http://localhost:8000/
 ```
 
-## GitHub Pages 部署
-
-1. 建立 GitHub repo
-2. 把本資料夾內的所有檔案上傳到 repo 根目錄
-3. 到 Settings → Pages
-4. Source 選 `Deploy from a branch`
-5. Branch 選 `main`，資料夾選 `/root`
-6. 儲存後等待 GitHub Pages 發布
-
-## 查詢連結
-
-支援 URL query，例如：
+## 檔案結構
 
 ```text
-?rooms=17096,12104,15110
+index.html
+styles.css
+app.js
+adventure-room-map.json
+assets/
+  flat/
+    DCL_DeckPlans_Adventure_Flat_Deck09.svg
+    DCL_DeckPlans_Adventure_Flat_Deck10.svg
+    DCL_DeckPlans_Adventure_Flat_Deck11.svg
+    DCL_DeckPlans_Adventure_Flat_Deck12.svg
+    DCL_DeckPlans_Adventure_Flat_Deck13.svg
+    DCL_DeckPlans_Adventure_Flat_Deck15.svg
+    DCL_DeckPlans_Adventure_Flat_Deck16.svg
+    DCL_DeckPlans_Adventure_Flat_Deck17.svg
+    DCL_DeckPlans_Adventure_Flat_Deck18.svg
+  mini/
+    adventure-mini-deck-09.svg
+    ...
 ```
 
+目前資料筆數：2111 筆房號。
