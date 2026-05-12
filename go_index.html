@@ -34,25 +34,207 @@
             const [menuQuery, setMenuQuery] = useState('');
             useEffect(() => { if (window.lucide) lucide.createIcons(); }, [activeTab]);
 
-            // 📸 拍照內容 (抓回)
+            // 📸 拍照內容
             const photoSpots = [
-                { deck: 'Deck 11', items: [{n:'魔法師米奇植栽', l:'船中花園'}] },
-                { deck: 'Deck 10', items: [{n:'海底總動員雕像', l:'船尾 Discovery Reef'}] },
-                { deck: 'Deck 9', items: [{n:'冰雪奇緣/星戰光劍/天燈/生活風格', l:'船尾 Observatory'}] },
-                { deck: 'Deck 8', items: [{n:'索爾錘子 Mjolnir', l:'船尾電梯口'}] },
-                { deck: 'Deck 7', items: [{n:'米奇唐老鴨特效', l:'戶外甲板'}, {n:'Duffy七寶/皮克斯/蜘蛛人', l:'船前 Shop'}, {n:'公主/漫威 Portraits', l:'船中 Studio'}] },
-                { deck: 'Deck 6', items: [{n:'史迪奇特效', l:'船頭 Premier Sip'}] }
+                {
+                    deck: 'Deck 19',
+                    items: [
+                        { n: 'Ironcycle Test Run 鋼鐵人海上雲霄飛車', l: 'Marvel Landing / 上層甲板' },
+                        { n: 'Marvel Landing 英雄主題區', l: '船頭/上層戶外區' },
+                        { n: 'Groot Galaxy Spin / Pym Quantum Racers 設施外觀', l: 'Marvel Landing' },
+                        { n: '高空海景與日落視角', l: '戶外甲板' }
+                    ]
+                },
+                {
+                    deck: 'Deck 18',
+                    items: [
+                        { n: 'Marvel Landing 俯拍視角', l: '通往 Deck 19 周邊' },
+                        { n: '上層甲板海景', l: '戶外步道 / 觀景點' }
+                    ]
+                },
+                {
+                    deck: 'Deck 17',
+                    items: [
+                        { n: 'Toy Story Place 玩具總動員主題水上區', l: '中段上層甲板' },
+                        { n: 'Woody and Jessie’s Wild Slides 胡迪與翠絲滑水道', l: 'Toy Story Place' },
+                        { n: 'Pizza Planet 比薩星球招牌', l: 'Toy Story Place' },
+                        { n: 'Wheezy’s Freezies 冰淇淋店', l: 'Toy Story Place' },
+                        { n: 'Sunnyside Family Pool / 戶外大螢幕', l: 'Toy Story Place' }
+                    ]
+                },
+                {
+                    deck: 'Deck 16',
+                    items: [
+                        { n: 'Wayfinder Bay 莫ana海洋主題灣區', l: '船尾戶外區' },
+                        { n: 'Wayfinder Bar 與海景背景', l: 'Wayfinder Bay' },
+                        { n: 'Moana: Call of the Sea 表演前後留影', l: 'Wayfinder Bay 舞台/水池區' },
+                        { n: '船尾無邊海景 / 日落照', l: 'Wayfinder Bay' }
+                    ]
+                },
+                {
+                    deck: 'Deck 11',
+                    items: [
+                        { n: '魔法師米奇植栽 Sorcerer Mickey Topiary', l: 'Disney Imagination Garden / 船中花園' },
+                        { n: 'Disney Imagination Garden 俯視照', l: '船中花園上層步道' },
+                        { n: 'Garden Stage 舞台背景', l: 'Disney Imagination Garden' },
+                        { n: 'San Fransokyo Street 舊京山街景', l: 'Big Hero 6 主題街區' },
+                        { n: 'Baymax Cinemas / 大白主題入口', l: 'San Fransokyo Street' },
+                        { n: 'Duffy and Friends Shop 外觀', l: 'San Fransokyo Street' },
+                        { n: 'Big Hero Arcade 街機感背景', l: 'San Fransokyo Street' }
+                    ]
+                },
+                {
+                    deck: 'Deck 10',
+                    items: [
+                        { n: 'Disney Discovery Reef 海底世界主題區', l: '船尾 Discovery Reef' },
+                        { n: '海底總動員 / 小美人魚 / 星際寶貝海洋風裝置', l: 'Disney Discovery Reef' },
+                        { n: '夜間生物螢光感背景', l: 'Discovery Reef 夜間燈光區' },
+                        { n: 'Palo Café / Luca 義大利海岸風背景', l: 'Discovery Reef' },
+                        { n: 'Taverna Portorosso 港邊酒吧風背景', l: 'Discovery Reef / 船尾' },
+                        { n: 'Mike & Sulley’s Flavors of Asia 怪獸電力公司入口', l: 'Discovery Reef / 船尾' },
+                        { n: 'Town Square 公主主題街區', l: '船中/船頭室內區' }
+                    ]
+                },
+                {
+                    deck: 'Deck 9',
+                    items: [
+                        { n: '冰雪奇緣 Portrait 背景', l: '船尾 Observatory / 攝影區' },
+                        { n: '星戰光劍 Portrait 背景', l: '船尾 Observatory / 攝影區' },
+                        { n: '天燈 Portrait 背景', l: '船尾 Observatory / 攝影區' },
+                        { n: '生活風格 Lifestyle Portrait 背景', l: '船尾 Observatory / 攝影區' },
+                        { n: 'Town Square 公主系裝飾與櫥窗', l: '船中室內區' },
+                        { n: 'Animator’s Table 餐廳入口', l: '船頭' }
+                    ]
+                },
+                {
+                    deck: 'Deck 8',
+                    items: [
+                        { n: '索爾錘子 Mjolnir', l: '船尾電梯口 / Marvel 主題區' },
+                        { n: 'Hollywood Spotlight Club 入口', l: '船尾' },
+                        { n: 'Town Square 上層視角', l: '船中室內區' },
+                        { n: '公主風室內街景', l: 'Town Square' }
+                    ]
+                },
+                {
+                    deck: 'Deck 7',
+                    items: [
+                        { n: '米奇 Magic Shot 特效', l: '戶外甲板 / PhotoPass 指定點', magic: true },
+                        { n: '唐老鴨 Magic Shot 特效', l: '戶外甲板 / PhotoPass 指定點', magic: true },
+                        { n: 'Duffy 七寶 Magic Shot / 主題背景', l: '船前 Shop / 攝影點', magic: true },
+                        { n: '皮克斯 Magic Shot / 主題背景', l: '船前 Shop / 攝影點', magic: true },
+                        { n: '蜘蛛人 Magic Shot / 主題背景', l: '船前 Shop / 攝影點', magic: true },
+                        { n: '公主 Portraits', l: '船中 Studio / 攝影棚' },
+                        { n: '漫威 Portraits', l: '船中 Studio / 攝影棚' },
+                        { n: 'D Lounge 活動入口', l: '船中' },
+                        { n: 'Alley Cat Café / San Fransokyo 風格咖啡背景', l: '船中' }
+                    ]
+                },
+                {
+                    deck: 'Deck 6',
+                    items: [
+                        { n: '史迪奇 Magic Shot 特效', l: '船頭 Premier Sips & Snacks 周邊', magic: true },
+                        { n: 'Disney Imagination Garden 主舞台正面', l: '船中花園' },
+                        { n: 'Let’s Set Sail / Duffy and The Friend Ship 表演前後', l: 'Garden Stage' },
+                        { n: 'Enchanted Summer Restaurant 入口', l: 'Town Square / 船頭' },
+                        { n: 'Navigator’s Club 入口', l: '船尾' },
+                        { n: 'Spellbound 神祕風酒廊入口', l: 'Town Square 周邊' }
+                    ]
+                },
+                {
+                    deck: 'Deck 5',
+                    items: [
+                        { n: 'Walt Disney Theatre 劇院入口', l: '船頭' },
+                        { n: 'Tiana’s Bayou Lounge 蒂安娜河口酒廊', l: '船中' },
+                        { n: 'Animator’s Palate 動畫師畫廊入口', l: '船尾' },
+                        { n: '登船日船內紀念照', l: '劇院 / 中庭動線周邊' }
+                    ]
+                }
             ];
-
-            // 🚢 設施內容 (抓回)
+            
+            // 🚢 設施內容
             const floorData = [
-                { deck: 'Deck 19', items: [{n:'鋼鐵跑道 / 胡迪滑梯', p:'船頭'}] },
-                { deck: 'Deck 18', items: [{n:'皮姆賽車 / 漫威降落地點', p:'船尾'}] },
-                { deck: 'Deck 17', items: [{n:'比薩星球 / 皮克斯市集', p:'中/尾'}] },
-                { deck: 'Deck 12', items: [{n:'Palo 餐廳', p:'船尾'}] },
-                { deck: 'Deck 10', items: [{n:'魔幻夏日餐廳', p:'中'}, {n:'怪獸電力公司', p:'船尾'}] },
-                { deck: 'Deck 6', items: [{n:'航海家俱樂部', p:'船尾'}] },
-                { deck: 'Deck 5', items: [{n:'動畫師畫廊', p:'船尾'}, {n:'劇院', p:'船頭'}] }
+                {
+                    deck: 'Deck 19',
+                    items: [
+                        { n: '鋼鐵跑道 / 胡迪滑梯', p: '船頭' }
+                    ]
+                },
+                {
+                    deck: 'Deck 18',
+                    items: [
+                        { n: '皮姆賽車 / 漫威降落地點', p: '船尾' }
+                    ]
+                },
+                {
+                    deck: 'Deck 17',
+                    items: [
+                        { n: '比薩星球 Pizza Planet', p: '中/尾' },
+                        { n: '皮克斯市集餐廳 Pixar Market Restaurant', p: '船尾' },
+                        { n: 'Market Bar', p: '船尾' },
+                        { n: 'Wheezy’s Freezies 冰淇淋', p: '中/尾' }
+                    ]
+                },
+                {
+                    deck: 'Deck 11',
+                    items: [
+                        { n: 'Palo Trattoria / Palo Café 上層入口區', p: '船尾' },
+                        { n: 'Taverna Portorosso 酒吧', p: '船尾' },
+                        { n: 'Garden Bar', p: '船中' }
+                    ]
+                },
+                {
+                    deck: 'Deck 10',
+                    items: [
+                        { n: 'Palo Trattoria 義式成人餐廳', p: '船尾' },
+                        { n: 'Palo Café', p: '船尾' },
+                        { n: 'Mike & Sulley’s Flavors of Asia 怪獸電力公司亞洲風味餐廳', p: '船尾' },
+                        { n: 'Wayfinder Bar', p: '船尾' },
+                        { n: 'Stitch’s ʻOhana Grill 史迪奇歐哈納燒烤', p: '船中' },
+                        { n: 'Gramma Tala’s Kitchen 塔拉奶奶廚房', p: '船中' },
+                        { n: 'Mowgli’s Eatery 莫格利餐館', p: '船中' },
+                        { n: 'Cosmic Kebabs 宇宙烤肉', p: '船中' },
+                        { n: 'Bewitching Boba and Brews 魔法珍奶飲品店', p: '船尾' }
+                    ]
+                },
+                {
+                    deck: 'Deck 9',
+                    items: [
+                        { n: 'Animator’s Table 動畫師餐桌', p: '船頭' }
+                    ]
+                },
+                {
+                    deck: 'Deck 8',
+                    items: [
+                        { n: 'Hollywood Spotlight Club 好萊塢聚光燈俱樂部', p: '船尾' }
+                    ]
+                },
+                {
+                    deck: 'Deck 7',
+                    items: [
+                        { n: 'D Lounge', p: '船中' },
+                        { n: 'Alley Cat Café 巷弄貓咖啡', p: '船中' },
+                        { n: 'Bacha Coffee', p: '船中' },
+                        { n: 'TWG Tea', p: '船中' }
+                    ]
+                },
+                {
+                    deck: 'Deck 6',
+                    items: [
+                        { n: 'Enchanted Summer Restaurant 魔幻夏日餐廳', p: '船頭/船尾' },
+                        { n: 'Navigator’s Club 航海家俱樂部', p: '船尾' },
+                        { n: 'Premiere Sips & Snacks', p: '船中' },
+                        { n: 'Buccaneer Bar', p: '船中' },
+                        { n: 'Spellbound', p: '船中' }
+                    ]
+                },
+                {
+                    deck: 'Deck 5',
+                    items: [
+                        { n: 'Animator’s Palate 動畫師畫廊', p: '船尾' },
+                        { n: 'Tiana’s Bayou Lounge 蒂安娜河口酒廊', p: '船中' },
+                        { n: '劇院 Walt Disney Theatre', p: '船頭' }
+                    ]
+                }
             ];
 
             // 🗓️ 行程表 (Day 1-6 )
@@ -344,6 +526,32 @@
                                         <p>• 給服務員 $10 小費可換熱情積極服務。</p>
                                         <p>• 點餐建議「一次點齊」，避免久候。</p>
                                         <p className="text-red-600 underline decoration-red-500 font-black">• 務必餐前洗手！醫務室費用一次 $300 起。</p>
+                                    </div>
+                                </section>
+                                <section className="bg-white text-slate-900 rounded-[2rem] p-7 shadow-md border border-slate-200">
+                                    <h4 className="text-blue-700 font-title mb-4 font-black">📸 拍照與 Magic Shot Tips</h4>
+
+                                    <div className="space-y-4 font-main font-black">
+                                        <p>• Magic Shot 不一定每天、每個地點都有；看到 PhotoPass 攝影師時可以直接問：「Do you have any Magic Shots here？」</p>
+
+                                        <p>• 建議白天拍戶外：Toy Story Place、Marvel Landing、Wayfinder Bay；晚上拍室內與燈光區：Discovery Reef、Imagination Garden、Town Square。</p>
+
+                                        <p>• Immersive Portraits / Lifestyle Portraits 建議穿比較完整的造型去拍，效果會比臨時路過更好。</p>
+
+                                        <p>• 拍照前先整理房卡、掛繩、手環、包包位置；Magic Shot 常需要擺手勢，畫面越乾淨越好看。</p>
+                                    </div>
+                                </section>
+                                <section className="bg-white text-slate-900 rounded-[2rem] p-7 shadow-md border border-slate-200">
+                                    <h4 className="text-blue-700 font-title mb-4 font-black">🍽️ 餐廳與點餐 Tips</h4>
+
+                                    <div className="space-y-4 font-main font-black">
+                                        <p>• 第一晚就告訴服務員：不吃的食材、過敏、想喝的飲料、喜歡熱茶或冰水、甜點偏好。</p>
+
+                                        <p>• 想拍餐廳空景，建議在入座後、人潮還沒完全進來前快速拍；不要等到上菜後才拍全景。</p>
+
+                                        <p>• Palo / Mike & Sulley’s 這類 Premium Dining 建議提早抵達，入口、酒吧與窗邊區域通常都很好拍。</p>
+
+                                        <p>• 若主餐猶豫，可以禮貌詢問服務員推薦；DCL 晚餐通常可以多點前菜或甜點，但仍建議適量避免浪費。</p>
                                     </div>
                                 </section>
                             </div>
