@@ -1,0 +1,488 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title data-id="th-modified">Disney Adventure 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #ffffff; font-size: 14px; color: #0f172a; }
+        .tab-active { background: #2563eb; color: white; box-shadow: 0 4px 12px rgba(37,99,235,0.4); }
+        .hero-gradient { background: linear-gradient(0deg, rgba(15,23,42,0.55) 0%, rgba(15,23,42,0.12) 100%); }
+        .photo-card { border-left: 4px solid #8b5cf6; padding-left: 10px; margin-bottom: 12px; }
+        .rec-tag { font-size: 12px; padding: 4px 10px; border-radius: 8px; font-weight: 900; background: #f0fdf4; color: #15803d; border: 1.5px solid #bbf7d0; }
+        .food-header { border-left: 4px solid #2563eb; padding-left: 8px; font-weight: 900; margin-bottom: 8px; color: #1e293b; }
+    </style>
+</head>
+<body class="font-black">
+    <div id="root"></div>
+
+    <script src="./menuData.js"></script>
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const App = () => {
+            const [activeTab, setActiveTab] = useState('dining');
+            const [menuRootTab, setMenuRootTab] = useState('nav');
+            const [menuSubTab, setMenuSubTab] = useState('sulley-steak');
+            const [menuQuery, setMenuQuery] = useState('');
+            useEffect(() => { if (window.lucide) lucide.createIcons(); }, [activeTab]);
+
+            // 📸 拍照內容 (抓回)
+            const photoSpots = [
+                { deck: 'Deck 11', items: [{n:'魔法師米奇植栽', l:'船中花園'}] },
+                { deck: 'Deck 10', items: [{n:'海底總動員雕像', l:'船尾 Discovery Reef'}] },
+                { deck: 'Deck 9', items: [{n:'冰雪奇緣/星戰光劍/天燈/生活風格', l:'船尾 Observatory'}] },
+                { deck: 'Deck 8', items: [{n:'索爾錘子 Mjolnir', l:'船尾電梯口'}] },
+                { deck: 'Deck 7', items: [{n:'米奇唐老鴨特效', l:'戶外甲板'}, {n:'Duffy七寶/皮克斯/蜘蛛人', l:'船前 Shop'}, {n:'公主/漫威 Portraits', l:'船中 Studio'}] },
+                { deck: 'Deck 6', items: [{n:'史迪奇特效', l:'船頭 Premier Sip'}] }
+            ];
+
+            // 🚢 設施內容 (抓回)
+            const floorData = [
+                { deck: 'Deck 19', items: [{n:'鋼鐵跑道 / 胡迪滑梯', p:'船頭'}] },
+                { deck: 'Deck 18', items: [{n:'皮姆賽車 / 漫威降落地點', p:'船尾'}] },
+                { deck: 'Deck 17', items: [{n:'比薩星球 / 皮克斯市集', p:'中/尾'}] },
+                { deck: 'Deck 12', items: [{n:'Palo 餐廳', p:'船尾'}] },
+                { deck: 'Deck 10', items: [{n:'魔幻夏日餐廳', p:'中'}, {n:'怪獸電力公司', p:'船尾'}] },
+                { deck: 'Deck 6', items: [{n:'航海家俱樂部', p:'船尾'}] },
+                { deck: 'Deck 5', items: [{n:'動畫師畫廊', p:'船尾'}, {n:'劇院', p:'船頭'}] }
+            ];
+
+            // 🗓️ 行程表 (Day 1-6 )
+            const itinerary = [
+                { d: '6/17', t: 'Day 1: 新加坡日', items: [
+                    { time: '04:30', act: '桃園機場 長榮 CI' },
+                    { time: '11:55', act: '新加坡 蜂旅遊負責當地行程 (已預約門票 濱海灣花園 花穹+雲霧林)', color: 'text-green-600' },
+                    { time: '17:30', act: '住宿 CI：金沙酒店', loc: 'Marina Bay Sands, SINGAPORE 018956' },
+                    { time: '18:45', act: '晚餐: Mott 32', loc: 'B1-42-44 The Shoppes, Marina Bay Sands' }
+                ]},
+                { d: '6/18', t: 'Day 2: 啟航日', items: [
+                    { time: '08:30', act: 'Breakfast' },
+                    { time: '10:15', act: '金沙 Check Out' },
+                    { time: '10:45', act: 'MBCC 報到登船' },
+                    { time: '12:30', act: '可進入房間休息', color: 'text-green-600' },
+                    { time: '17:45', act: '晚餐: 好萊塢聚光燈俱樂部', loc: 'Hollywood Spotlight Club (D8 船尾)'}
+                ]},
+                { d: '6/19', t: 'Day 3: 角色見面', items: [
+                    { time: '10:45', act: '👑 Royal Gathering', color: 'text-pink-600' },
+                    { time: '17:45', act: '晚餐: 動畫家餐桌', loc: 'Animator’s Table (D9 船頭)' },
+                ]},
+                { d: '6/20', t: 'Day 4: Palo 饗宴', items: [
+                    { time: '10:00', act: '🍴 Palo Trattoria Brunch', color: 'text-amber-600 font-black', loc: 'Deck 12 船尾' },
+                    { time: '17:45', act: '晚餐: 仲夏魔法餐廳', loc: 'Enchanted Summer Restaurant（D6 船頭）' }
+                ]},
+                { d: '6/21', t: 'Day 5: 離船前夕', items: [
+                    { time: '20:30', act: '晚餐: 怪獸電力公司', loc: 'Mike & Sulley\'s (D10 船尾)' },
+                    { time: '22:00', act: '托運行李截止', color: 'text-red-500 font-black' }
+                ]},
+                { d: '6/22', t: 'Day 6: 離船', items: [
+                    { time: '07:10', act: '禮賓集合', loc: 'D Lounge (D7)' },
+                    { time: '08:00', act: '快速通道下船' },
+                    { time: '08:30', act: '逛一下星耀樟宜' },
+                    { time: '13:00', act: '長榮 check in' }
+                ]}
+            ];
+
+            const menuRootTabs = [
+                { id: 'nav', label: '⚓ 航海家' },
+                { id: 'pixar', label: '🌿 皮克斯' },
+                { id: 'animator', label: '🎨 動畫家' },
+                { id: 'night4', label: '🎇 星空夜' },
+                { id: 'sulley', label: '🚪 怪獸餐廳' },
+                { id: 'palo', label: '🍷 Palo' },
+                { id: 'bev', label: '🍸 酒吧' },
+            ];
+
+            const menuSubTabs = {
+                sulley: [
+                    { id: 'sulley-steak', label: '🥩 牛排館' },
+                    { id: 'sulley-omakase', label: '🍣 無菜單' },
+                    { id: 'sulley-teppan', label: '🔥 鐵板燒' },
+                    { id: 'sulley-sushi', label: '🐟 壽司' },
+                ],
+                palo: [
+                    { id: 'palo-brunch', label: '☀️ Brunch' },
+                    { id: 'palo-dinner', label: '🌙 Dinner' },
+                ],
+            };
+
+            const categoryLabels = {
+                bread: '麵包',
+                appetizers: '前菜',
+                entrees: '主餐',
+                desserts: '甜點',
+                kids: '兒童餐',
+                sharing: '分享盤',
+                sides: '配菜',
+                sushi: '壽司與生魚片',
+                handrolls: '手卷',
+                asian: '亞洲熱食',
+                eggs: '蛋料理',
+                pastries: '烘焙',
+                drinks: '飲品',
+                cocktails: '調酒',
+                'non-alcoholic': '無酒精',
+                coffee: '咖啡',
+                tea: '茶飲',
+                'milk-tea': '奶茶',
+                'set-appetizers': '套餐前菜',
+                'set-entrees': '套餐主餐',
+                'set-desserts': '套餐甜點',
+                pizza: '披薩',
+                pasta: '義大利麵',
+                meats: '肉類主菜',
+            };
+
+            const categoryOrder = [
+                'bread', 'appetizers', 'set-appetizers', 'entrees', 'set-entrees',
+                'sharing', 'meats', 'sushi', 'handrolls', 'asian', 'pasta', 'pizza',
+                'sides', 'eggs', 'pastries', 'desserts', 'set-desserts', 'kids',
+                'drinks', 'cocktails', 'non-alcoholic', 'coffee', 'tea', 'milk-tea'
+            ];
+
+            const tagLabel = {
+                seafood: '海鮮',
+                meat: '肉類',
+                beef: '牛肉',
+                pork: '含豬肉',
+                vegetarian: '蛋奶素',
+                vegan: '全素',
+                dessert: '甜點',
+                'no-sugar': '無加糖',
+                kids: '兒童',
+                'kids-disney': '迪士尼兒童',
+                'non-alcoholic': '無酒精',
+                coffee: '咖啡',
+                alcoholic: '酒精',
+                tea: '茶飲',
+                milk: '奶類',
+                pastry: '烘焙',
+                mocktail: '無酒精特調',
+            };
+
+            const getFriendlyTagLabel = (token) => {
+                if (tagLabel[token]) return tagLabel[token];
+                if (token.endsWith('s') && tagLabel[token.slice(0, -1)]) return tagLabel[token.slice(0, -1)];
+                if (/^[a-z-]+$/i.test(token)) {
+                    return token
+                        .split('-')
+                        .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+                        .join(' ');
+                }
+                return token || '標籤';
+            };
+
+            const parseTagTokens = (tag) => {
+                if (!tag) return [];
+                if (['kids-disney', 'no-sugar', 'non-alcoholic'].includes(tag)) return [tag];
+                return tag.split('-').filter(Boolean);
+            };
+
+            const tagClass = (token) => {
+                if (token === 'pork') return 'bg-red-100 text-red-700 border border-red-200';
+                if (token === 'vegetarian' || token === 'vegan') return 'bg-green-100 text-green-700 border border-green-200';
+                if (token === 'no-sugar') return 'bg-teal-100 text-teal-700 border border-teal-200';
+                if (token === 'kids' || token === 'kids-disney') return 'bg-orange-100 text-orange-700 border border-orange-200';
+                if (token === 'alcoholic') return 'bg-purple-100 text-purple-700 border border-purple-200';
+                if (token === 'non-alcoholic') return 'bg-cyan-100 text-cyan-700 border border-cyan-200';
+                return 'bg-blue-100 text-blue-700 border border-blue-200';
+            };
+
+            const getRestaurantIds = () => {
+                if (menuRootTab === 'sulley') return [menuSubTab];
+                if (menuRootTab === 'palo') return [menuSubTab];
+                if (menuRootTab === 'bev') {
+                    return (window.menuData || [])
+                        .map(i => i.restaurant)
+                        .filter((v, i, arr) => v && v.startsWith('bev-') && arr.indexOf(v) === i);
+                }
+                return [menuRootTab];
+            };
+
+            const query = menuQuery.trim().toLowerCase();
+            const selectedRestaurantIds = getRestaurantIds();
+            const menuItems = (window.menuData || []).filter(item => selectedRestaurantIds.includes(item.restaurant));
+            const visibleMenuItems = query
+                ? menuItems.filter(item => (
+                    (item.name_zh || '').toLowerCase().includes(query) ||
+                    (item.name_en || '').toLowerCase().includes(query) ||
+                    (item.desc || '').toLowerCase().includes(query)
+                ))
+                : menuItems;
+
+            const groupedItems = visibleMenuItems.reduce((acc, item) => {
+                const category = item.category || 'others';
+                if (!acc[category]) acc[category] = [];
+                acc[category].push(item);
+                return acc;
+            }, {});
+
+            const sortedCategories = Object.keys(groupedItems).sort((a, b) => {
+                const ai = categoryOrder.indexOf(a);
+                const bi = categoryOrder.indexOf(b);
+                if (ai === -1 && bi === -1) return a.localeCompare(b, 'zh-Hant');
+                if (ai === -1) return 1;
+                if (bi === -1) return -1;
+                return ai - bi;
+            });
+
+            const coverageReport = window.menuCoverageReport || {
+                totalItems: (window.menuData || []).length,
+                restaurantsCount: [...new Set((window.menuData || []).map(i => i.restaurant))].length,
+                missingRestaurants: [],
+                missingCategories: [],
+                ok: true,
+            };
+
+            return (
+                <div className="max-w-md mx-auto min-h-screen bg-white pb-32 relative shadow-2xl font-black">
+                    <div className="relative h-48 w-full overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&q=80&w=800" className="absolute w-full h-full object-cover" />
+                        <div className="absolute inset-0 hero-gradient flex flex-col justify-end p-6 pb-6 text-white text-center font-black">
+                            <h1 className="text-2xl italic">Singapore Disney Adventure</h1>
+                        </div>
+                    </div>
+
+                    <div className="px-2 -mt-6 relative z-10 space-y-6">
+                        <div className="flex bg-white shadow-xl p-1 rounded-2xl border border-slate-200 sticky top-4 z-50">
+                            {['itinerary', 'photo', 'dining', 'tips', 'menu'].map(tab => (
+                                <button key={tab} onClick={() => setActiveTab(tab)} className={`flex-1 py-3 text-[10px] font-black rounded-xl transition-all ${activeTab === tab ? 'tab-active' : 'text-slate-400'}`}>
+                                    {tab === 'itinerary' ? '行程' : tab === 'photo' ? '拍照' : tab === 'dining' ? '設施' : tab === 'tips' ? '攻略' : '菜單'}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* --- 🚢 設施與【美食推薦】強制歸位 --- */}
+                        {activeTab === 'dining' && (
+                            <div className="space-y-6 animate-in fade-in pb-10">
+                                {/* 🔴 推薦必吃 (紅榜) */}
+                                <section className="bg-white text-slate-900 rounded-[2rem] p-7 shadow-md font-black border border-slate-200">
+                                    <h4 className="text-blue-700 font-title mb-6 flex items-center gap-2"><i data-lucide="utensils" /> 下船群友激推必吃</h4>
+                                    <div className="space-y-6">
+                                        <div>
+                                            <p className="food-header">主餐廳與精緻餐飲</p>
+                                            <div className="flex flex-wrap gap-2">
+                                                <span className="rec-tag">牛排/魚排/干貝</span>
+                                                <span className="rec-tag">Navigator 鮭魚/蝦子</span>
+                                                <span className="rec-tag">脆皮叉燒</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p className="food-header">快餐、甲板與甜點</p>
+                                            <div className="flex flex-wrap gap-2">
+                                                <span className="rec-tag">漢堡/熱狗 (必加泡菜)</span>
+                                                <span className="rec-tag">18F 雞肉熱狗</span>
+                                                <span className="rec-tag">史迪奇牛肉熱狗</span>
+                                                <span className="rec-tag">炸薯條</span>
+                                                <span className="rec-tag">17F 霜淇淋/Pizza</span>
+                                            </div>
+                                        </div>
+                                        <div className="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                                            <p className="text-blue-700 font-small underline mb-2">蔬菜與自助餐推薦：</p>
+                                            <p className="text-slate-700 font-main">節瓜、炒芥藍、炒蘑菇、優格</p>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                {/* 禮賓供餐時段 */}
+                                <section className="bg-white text-slate-900 rounded-[2rem] p-7 shadow-md border border-slate-200 font-black">
+                                    <h4 className="text-blue-700 font-title mb-6 flex items-center gap-2 font-black font-black font-black"><i data-lucide="clock" /> 禮賓專屬供餐 (17F 酒廊)</h4>
+                                    <div className="space-y-5 font-main">
+                                        <div className="flex justify-between border-b border-slate-100 pb-2"><span>活力早餐 (含點餐)</span><span className="text-blue-600">07:00 – 10:30</span></div>
+                                        <div className="flex justify-between border-b border-slate-100 pb-2"><span>精緻午餐 (含點餐)</span><span className="text-blue-600">11:00 – 14:30</span></div>
+                                        <div className="flex justify-between border-b border-slate-100 pb-2"><span>悠閒下午茶</span><span className="text-blue-600">15:00 – 16:30</span></div>
+                                        <div className="flex justify-between border-b border-slate-100 pb-2 text-amber-600 font-black font-black font-black"><span>酒水暢飲時段</span><span>17:00 – 22:00</span></div>
+                                        <div className="flex justify-between"><span>宵夜甜點時光</span><span className="text-amber-600">20:30 – 22:00</span></div>
+                                    </div>
+                                </section>
+
+                                {/* 設施指南 */}
+                                <section className="bg-white rounded-3xl p-6 shadow-md border font-black">
+                                    <h4 className="font-title text-slate-900 mb-5 border-b-2 border-blue-500 pb-2">19F-5F 樓層設施指南</h4>
+                                    {floorData.map((f, idx) => (
+                                        <div key={idx} className="mb-4 last:mb-0 border-b border-slate-100 pb-4">
+                                            <span className="bg-blue-600 text-white font-small px-3 py-1 rounded-lg inline-block mb-3">{f.deck}</span>
+                                            {f.items.map((item, i) => (<p key={i} className="text-slate-900 font-main pl-2">• {item.n} ({item.p})</p>))}
+                                        </div>
+                                    ))}
+                                </section>
+                            </div>
+                        )}
+
+                        {/* --- 📸 拍照內容 (抓回) --- */}
+                        {activeTab === 'photo' && (
+                            <div className="space-y-6 animate-in fade-in pb-10">
+                                {photoSpots.map((p, idx) => (
+                                    <div key={idx} className="bg-white rounded-3xl p-6 shadow-md border border-purple-100">
+                                        <span className="bg-purple-600 text-white font-small px-3 py-1 rounded-lg inline-block mb-4 font-black">{p.deck}</span>
+                                        <div className="space-y-4 font-black">
+                                            {p.items.map((item, i) => (<div key={i} className="photo-card font-black"><p className="font-main font-black font-black">{item.n}</p><p className="font-small text-blue-600 font-black font-black font-black font-black">📍 {item.l}</p></div>))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+                        {/* --- 🏆 攻略與教戰 (抓回) --- */}
+                        {activeTab === 'tips' && (
+                            <div className="space-y-6 animate-in fade-in pb-10">
+                                <div className="bg-white text-slate-900 rounded-[2rem] p-7 shadow-md border border-slate-200">
+                                    <h4 className="text-blue-700 font-title mb-4 flex items-center gap-2"><i data-lucide="popcorn" /> 🍿 禮賓爆米花領取</h4>
+                                    <p className="font-main font-black font-black font-black font-black font-black">演出前 40 分鐘前往 5F 船頭 (Walt Disney Theatre) 找禮賓人員領取。</p>
+                                </div>
+                                <section className="bg-white text-slate-900 rounded-[2rem] p-7 shadow-md border border-slate-200 font-black font-black font-black">
+                                    <h4 className="text-blue-700 font-title mb-4 font-black font-black font-black font-black font-black">🏆 航行教戰守則</h4>
+                                    <div className="space-y-4 font-main font-black">
+                                        <p>• Day 1-3 16:00 準時搶預約！</p>
+                                        <p>• 給服務員 $10 小費可換熱情積極服務。</p>
+                                        <p>• 點餐建議「一次點齊」，避免久候。</p>
+                                        <p className="text-red-600 underline decoration-red-500 font-black">• 務必餐前洗手！醫務室費用一次 $300 起。</p>
+                                    </div>
+                                </section>
+                            </div>
+                        )}
+
+                        {activeTab === 'itinerary' && (
+                            <div className="space-y-4 animate-in fade-in pb-10 font-black font-black">
+                                {itinerary.map((day, i) => (
+                                    <div key={i} className="bg-white rounded-3xl p-5 shadow-sm border border-slate-100 font-black font-black font-black font-black">
+                                        <div className="flex items-center gap-2 mb-3 border-b pb-2"><span className="text-blue-600 font-title">{day.d}</span><span className="text-slate-800 font-title font-black">{day.t}</span></div>
+                                        <div className="space-y-4 ml-1 border-l-2 border-blue-100 pl-4">
+                                            {day.items.map((ev, j) => (<div key={j} className="font-black font-black"><p className="font-small text-slate-400">{ev.time}</p><p className={`font-main ${ev.color || 'text-slate-800'}`}>{ev.act}</p>{ev.loc && <p className="font-small text-blue-600 font-black">📍 {ev.loc}</p>}</div>))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                        {activeTab === 'menu' && (
+                            <div className="space-y-4 animate-in fade-in pb-10">
+                                <section className="bg-white rounded-3xl p-4 shadow-md border border-slate-200">
+                                    <div className="grid grid-cols-2 gap-2 mb-3">
+                                        {menuRootTabs.map(tab => (
+                                            <button
+                                                key={tab.id}
+                                                onClick={() => {
+                                                    setMenuRootTab(tab.id);
+                                                    setMenuQuery('');
+                                                    if (tab.id === 'sulley') setMenuSubTab('sulley-steak');
+                                                    if (tab.id === 'palo') setMenuSubTab('palo-brunch');
+                                                }}
+                                                className={`px-3 py-2 rounded-xl text-xs border font-black ${menuRootTab === tab.id ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-600 border-slate-200'}`}
+                                            >
+                                                {tab.label}
+                                            </button>
+                                        ))}
+                                    </div>
+
+                                    {(menuRootTab === 'sulley' || menuRootTab === 'palo') && (
+                                        <div className="flex gap-2 overflow-x-auto pb-1 mb-3">
+                                            {menuSubTabs[menuRootTab].map(tab => (
+                                                <button
+                                                    key={tab.id}
+                                                    onClick={() => setMenuSubTab(tab.id)}
+                                                    className={`shrink-0 px-3 py-2 rounded-xl text-xs border font-black ${menuSubTab === tab.id ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-600 border-slate-200'}`}
+                                                >
+                                                    {tab.label}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    <input
+                                        value={menuQuery}
+                                        onChange={(e) => setMenuQuery(e.target.value)}
+                                        placeholder="搜尋中文、英文或描述"
+                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 font-black text-sm"
+                                    />
+                                </section>
+
+                                <section className="bg-white rounded-3xl p-4 shadow-md border border-slate-200">
+                                    <div className="flex items-center justify-between mb-2">
+                                        <h3 className="text-slate-900 text-sm">資料檢查器</h3>
+                                        <span className={`text-[10px] px-2 py-1 rounded-lg ${coverageReport.ok ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}>
+                                            {coverageReport.ok ? '完整' : '待補'}
+                                        </span>
+                                    </div>
+                                    <p className="text-xs text-slate-500">項目 {coverageReport.totalItems} 筆 / 餐廳 {coverageReport.restaurantsCount} 個</p>
+                                    {coverageReport.missingRestaurants.length > 0 && (
+                                        <p className="text-xs text-red-600 mt-2">缺餐廳：{coverageReport.missingRestaurants.join(', ')}</p>
+                                    )}
+                                    {coverageReport.missingCategories.length > 0 && (
+                                        <p className="text-xs text-amber-700 mt-1">
+                                            缺類別：{coverageReport.missingCategories.slice(0, 6).map(x => `${x.restaurant}/${x.category}`).join(', ')}
+                                            {coverageReport.missingCategories.length > 6 ? ` ...共 ${coverageReport.missingCategories.length} 項` : ''}
+                                        </p>
+                                    )}
+                                </section>
+
+                                {visibleMenuItems.length === 0 && (
+                                    <section className="bg-white rounded-3xl p-6 shadow-md border border-slate-200 text-center text-slate-500">
+                                        目前此區還沒有資料，下一步會分批補上。
+                                    </section>
+                                )}
+
+                                {sortedCategories.map(category => (
+                                    <section key={category} className="bg-white rounded-3xl p-4 shadow-md border border-slate-200">
+                                        <h3 className="text-slate-900 text-base border-l-4 border-blue-600 pl-3 mb-3">
+                                            {categoryLabels[category] || category}
+                                        </h3>
+                                        <div className="space-y-3">
+                                            {groupedItems[category].map((item, idx) => (
+                                                <article key={`${item.restaurant}-${item.name_en}-${idx}`} className="bg-white rounded-xl p-4 border border-slate-200">
+                                                    <div className="flex items-start justify-between gap-2">
+                                                        <div>
+                                                            <p className="text-slate-900 text-sm">{item.name_zh}</p>
+                                                            <p className="text-slate-500 text-xs italic">{item.name_en}</p>
+                                                        </div>
+                                                        {item.price && (
+                                                            <span className="text-blue-600 text-xs whitespace-nowrap">{item.price}</span>
+                                                        )}
+                                                    </div>
+                                                    {item.desc && (
+                                                        <p className="text-slate-500 text-xs mt-2 leading-relaxed">{item.desc}</p>
+                                                    )}
+                                                    {item.tag && (
+                                                        <div className="mt-2 flex flex-wrap gap-1.5">
+                                                            {parseTagTokens(item.tag).map((token) => (
+                                                                <span
+                                                                    key={`${item.name_en}-${token}`}
+                                                                    className={`inline-flex px-2 py-1 rounded-lg text-[10px] font-black ${tagClass(token)}`}
+                                                                >
+                                                                    {getFriendlyTagLabel(token)}
+                                                                </span>
+                                                            ))}
+                                                        </div>
+                                                    )}
+                                                </article>
+                                            ))}
+                                        </div>
+                                    </section>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    <nav className="fixed bottom-0 inset-x-0 h-20 bg-white/95 backdrop-blur-md flex items-center justify-around z-50 shadow-2xl border-t pb-2 font-black font-black font-black font-black">
+                        {['itinerary', 'photo', 'dining', 'tips', 'menu'].map(tab => (
+                            <button key={tab} onClick={() => setActiveTab(tab)} className={`flex flex-col items-center gap-1 ${activeTab === tab ? 'text-blue-600 scale-110' : 'text-slate-400'} font-black font-black font-black`}>
+                                <i data-lucide={tab === 'itinerary' ? 'calendar' : tab === 'photo' ? 'camera' : tab === 'dining' ? 'utensils' : tab === 'tips' ? 'zap' : 'languages'} size={24}/>
+                                <span className="text-[10px] font-black">{tab === 'itinerary' ? '行程' : tab === 'photo' ? '拍照' : tab === 'dining' ? '設施' : tab === 'tips' ? '攻略' : '菜單'}</span>
+                            </button>
+                        ))}
+                    </nav>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
