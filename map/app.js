@@ -316,20 +316,13 @@ function renderRoomNoteLabels(svg, rooms){
   $$('.room-note-label', svg).forEach(el => el.remove());
   rooms.forEach(roomData => {
     const note = ROOM_NOTES[roomData.room];
-    const labelText = buildRoomMapLabel(roomData, note);
-    if (!labelText) return;
+    if (!note) return;
     const roomEl = svg.querySelector(roomSelector('room-', roomData.room));
     if (!roomEl || !roomEl.getBBox) return;
     const box = roomEl.getBBox();
-    const label = createSvgNoteLabel(roomData.room, labelText, box);
+    const label = createSvgNoteLabel(roomData.room, note, box);
     svg.appendChild(label);
   });
-}
-
-function buildRoomMapLabel(roomData, note){
-  const detail = roomData.detail;
-  const compactDetail = detail ? [detail.category, detail.occupancy ? `${detail.occupancy}人` : '', detail.roomType].filter(Boolean).join(' / ') : '';
-  return [note, compactDetail].filter(Boolean).join(' · ');
 }
 
 function createSvgNoteLabel(room, note, box){
