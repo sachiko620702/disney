@@ -257,11 +257,11 @@
                     { time: '17:45', act: '晚餐: 動畫家餐桌', loc: 'Animator’s Table (D9 船頭)' },
                 ]},
                 { d: '6/20', t: 'Day 4: Palo 饗宴', items: [
-                    { time: '10:00', act: '🍴 Palo Trattoria Brunch', color: 'text-amber-600 font-black', loc: 'Deck 12 船尾' },
+                    { time: '10:00', act: '🍴 Palo Trattoria Brunch', color: 'text-amber-600 font-black', loc: 'Palo Trattoria (D12 船尾)' },
                     { time: '17:45', act: '晚餐: 仲夏魔法餐廳', loc: 'Enchanted Summer Restaurant（D6 船頭）' }
                 ]},
                 { d: '6/21', t: 'Day 5: 離船前夕', items: [
-                    { time: '18:00', act: 'Palo Trattoria Dinner', loc: 'Palo Trattoria (D12 船尾)' },
+                    { time: '18:00', act: 'Palo Trattoria Dinner', color: 'text-amber-600 font-black', loc: 'Palo Trattoria (D12 船尾)' },
                     { time: '22:00', act: '托運行李截止', color: 'text-red-500 font-black' }
                 ]},
                 { d: '6/22', t: 'Day 6: 離船', items: [
@@ -293,6 +293,52 @@
                     { id: 'palo-brunch', label: '☀️ Brunch' },
                     { id: 'palo-dinner', label: '🌙 Dinner' },
                 ],
+            };
+
+            const paloWishOrders = {
+                dinner: {
+                    title: 'Palo Trattoria Dinner',
+                    subtitle: '晚餐想吃清單',
+                    groups: [
+                        {
+                            label: '先點 / To Start',
+                            items: ['Yellowfin Crudo', 'Beef Carpaccio', 'Arugula Salad', 'Agnolotti']
+                        },
+                        {
+                            label: '主餐分享 / Main to Share',
+                            items: ['F1 Wagyu 230g Striploin, medium']
+                        },
+                        {
+                            label: '配菜 / Sides',
+                            items: ['Pan-roasted Wild Mushrooms', 'Grilled Asparagus']
+                        }
+                    ],
+                    script: 'For dinner, we would like to start with the Yellowfin Crudo, Beef Carpaccio, Arugula Salad, and Agnolotti. For the main course, we would like to share the F1 Wagyu 230g Striploin, cooked medium, with Pan-roasted Wild Mushrooms and Grilled Asparagus on the side.'
+                },
+                brunch: {
+                    title: 'Palo Trattoria Brunch',
+                    subtitle: '早午餐想吃清單',
+                    groups: [
+                        {
+                            label: '分享盤 / Selections',
+                            items: ['1 Antipasti Seafood Selection', '1 Charcuterie Selection']
+                        },
+                        {
+                            label: '蛋料理與鹹食 / Savory',
+                            items: [
+                                '2 Poached Eggs with sliced smoked salmon, Hollandaise sauce, and caviar',
+                                '1 Prosciutto Calzone',
+                                '1 Roasted Red Snapper Filet',
+                                '1 Rollatini Melanzane'
+                            ]
+                        },
+                        {
+                            label: '甜點分享 / Sweet to Share',
+                            items: ['1 Strawberry Waffles']
+                        }
+                    ],
+                    script: 'For brunch, we would like to order one Antipasti Seafood Selection, one Charcuterie Selection, two Poached Eggs with sliced smoked salmon, Hollandaise sauce, and caviar, one Prosciutto Calzone, one Roasted Red Snapper Filet, one Rollatini Melanzane, and one Strawberry Waffles to share.'
+                }
             };
 
             const categoryLabels = {
@@ -414,6 +460,8 @@
                 if (bi === -1) return -1;
                 return ai - bi;
             });
+
+            const activePaloWishOrder = paloWishOrders[menuSubTab.replace('palo-', '')] || paloWishOrders.brunch;
 
             const coverageReport = window.menuCoverageReport || {
                 totalItems: (window.menuData || []).length,
@@ -610,6 +658,44 @@
                                         className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 font-black text-sm"
                                     />
                                 </section>
+
+                                {menuRootTab === 'palo' && (
+                                    <section className="bg-amber-50 rounded-3xl p-4 shadow-md border border-amber-200">
+                                        <div className="flex items-start justify-between gap-3 mb-4">
+                                            <div>
+                                                <p className="text-[11px] text-amber-700 tracking-wide uppercase">Wish Order</p>
+                                                <h3 className="text-slate-900 text-lg">{activePaloWishOrder.title}</h3>
+                                                <p className="text-slate-500 text-xs mt-1">{activePaloWishOrder.subtitle}</p>
+                                            </div>
+                                            <span className="shrink-0 bg-white text-amber-700 border border-amber-200 rounded-xl px-3 py-1 text-[11px]">
+                                                先給服務員看
+                                            </span>
+                                        </div>
+
+                                        <div className="space-y-3">
+                                            {activePaloWishOrder.groups.map((group) => (
+                                                <div key={group.label} className="bg-white rounded-2xl p-3 border border-amber-100">
+                                                    <p className="text-xs text-amber-700 mb-2">{group.label}</p>
+                                                    <div className="space-y-2">
+                                                        {group.items.map((item) => (
+                                                            <div key={item} className="flex gap-2 text-sm text-slate-800 leading-snug">
+                                                                <span className="mt-1.5 h-2 w-2 rounded-full bg-amber-500 shrink-0"></span>
+                                                                <span>{item}</span>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+
+                                        <div className="mt-4 bg-white rounded-2xl p-3 border border-amber-100">
+                                            <p className="text-xs text-slate-500 mb-2">點餐方式 / English order script</p>
+                                            <p className="text-sm text-slate-900 leading-relaxed font-bold">
+                                                {activePaloWishOrder.script}
+                                            </p>
+                                        </div>
+                                    </section>
+                                )}
 
                                 <section className="bg-white rounded-3xl p-4 shadow-md border border-slate-200">
                                     <div className="flex items-center justify-between mb-2">
