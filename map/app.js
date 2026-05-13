@@ -3,6 +3,7 @@ let ROOM_MAP = null;
 let CURRENT_FOUND = [];
 let CURRENT_ACTIVE = null;
 const DECK_ZOOM = {};
+const ROOM_NOTES = {};
 
 const $ = (sel, root=document) => root.querySelector(sel);
 const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
@@ -60,9 +61,19 @@ function renderTable(found){
     <tr data-room="${esc(r.room)}" data-deck="${esc(r.deck)}">
       <td data-label="房號"><b>${esc(r.room)}</b></td><td data-label="Deck">${esc(r.deck)}</td>
       <td data-label="區域">${zoneName[r.zone] || esc(r.zone || '')}</td><td data-label="左右舷">${sideName[r.side] || esc(r.side || '')}</td>
+      <td data-label="備註"><input class="note-input" data-note-room="${esc(r.room)}" type="text" value="${esc(ROOM_NOTES[r.room] || '')}" placeholder="例如：爸媽房、靠近電梯"></td>
       <td data-label="SVG 房間框"><code>room-${esc(r.room)}</code></td><td data-label="SVG 房號"><code>number-${esc(r.room)}</code></td>
     </tr>`).join('');
   $$('tr[data-room]', body).forEach(row => row.addEventListener('click', () => activateRoom(row.dataset.room, row.dataset.deck)));
+  $$('.note-input', body).forEach(input => {
+    input.addEventListener('click', e => e.stopPropagation());
+    input.addEventListener('input', () => {
+      const room = input.dataset.noteRoom;
+      const value = input.value.trim();
+      if (value) ROOM_NOTES[room] = value; else delete ROOM_NOTES[room];
+      updateRoomNoteLabels();
+    });
+  });
 }
 
 async function fetchSvg(path){
@@ -115,6 +126,7 @@ async function renderDecks(found){
       svg.setAttribute('role','img');
       svg.setAttribute('aria-label',`Deck ${deck} full deck plan with highlighted cabins`);
       highlightRoomsInSvg(svg, rooms.map(r => r.room));
+      renderRoomNoteLabels(svg, rooms);
       initDeckTools(section, deck);
       $$('.room-chip', section).forEach(btn => btn.addEventListener('click', () => activateRoom(btn.dataset.room, btn.dataset.deck)));
     } catch (err) {
@@ -131,6 +143,63 @@ function highlightRoomsInSvg(svg, rooms){
     const numberEl = svg.querySelector(roomSelector('number-', room));
     if (roomEl) roomEl.classList.add('room-highlight');
     if (numberEl) numberEl.classList.add('number-highlight');
+  });
+}
+
+function renderRoomNoteLabels(svg, rooms){
+  $$('.room-note-label', svg).forEach(el => el.remove());
+  rooms.forEach(roomData => {
+    const note = ROOM_NOTES[roomData.room];
+    if (!note) return;
+    const roomEl = svg.querySelector(roomSelector('room-', roomData.room));
+    if (!roomEl || !roomEl.getBBox) return;
+    const box = roomEl.getBBox();
+    const label = createSvgNoteLabel(roomData.room, note, box);
+    svg.appendChild(label);
+  });
+}
+
+function createSvgNoteLabel(room, note, box){
+  const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  group.classList.add('room-note-label');
+  group.dataset.room = room;
+  const text = trimNote(note);
+  const charWidth = 8;
+  const width = Math.max(58, Math.min(170, text.length * charWidth + 24));
+  const height = 30;
+  const x = box.x + box.width / 2 - width / 2;
+  const y = Math.max(4, box.y - height - 6);
+  const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  rect.setAttribute('x', x);
+  rect.setAttribute('y', y);
+  rect.setAttribute('width', width);
+  rect.setAttribute('height', height);
+  rect.setAttribute('rx', 5);
+  rect.setAttribute('ry', 5);
+  const textEl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  textEl.setAttribute('x', x + width / 2);
+  textEl.setAttribute('y', y + 20);
+  textEl.setAttribute('text-anchor', 'middle');
+  textEl.textContent = text;
+  group.appendChild(rect);
+  group.appendChild(textEl);
+  return group;
+}
+
+function trimNote(note){
+  const text = String(note || '').trim();
+  return text.length > 14 ? text.slice(0, 13) + '…' : text;
+}
+
+function updateRoomNoteLabels(){
+  $$('.deck-section').forEach(section => {
+    const svg = $('svg', section);
+    if (!svg) return;
+    const rooms = $$('.room-chip', section).map(btn => {
+      const room = btn.dataset.room;
+      return CURRENT_FOUND.find(r => r.room === room);
+    }).filter(Boolean);
+    renderRoomNoteLabels(svg, rooms);
   });
 }
 
@@ -265,6 +334,8 @@ function cloneSvgForExport(svg){
     .room-active{fill:#67e8f9!important;stroke:#0e7490!important;stroke-width:6!important;filter:drop-shadow(0 0 5px rgba(14,116,144,.8))}
     .number-highlight,.number-active{fill:#991b1b!important;font-weight:900!important;paint-order:stroke;stroke:#fff!important;stroke-width:2.5px!important}
     .number-active{fill:#0e7490!important}
+    .room-note-label rect{fill:#111827;stroke:#fff;stroke-width:2;filter:drop-shadow(0 1px 2px rgba(15,23,42,.35))}
+    .room-note-label text{fill:#fff;font:700 13px sans-serif;paint-order:stroke;stroke:#111827;stroke-width:1px}
   `;
   clone.insertBefore(style, clone.firstChild);
   return clone;

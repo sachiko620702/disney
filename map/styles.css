@@ -20,7 +20,7 @@ body{
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","Microsoft JhengHei",sans-serif;
   background:linear-gradient(180deg,#eaf4ff 0,#f8fafc 310px);
 }
-button,textarea{font:inherit}
+button,textarea,input{font:inherit}
 
 .hero{
   max-width:1240px;
@@ -382,7 +382,7 @@ table{
   width:100%;
   border-collapse:collapse;
   font-size:14px;
-  min-width:740px;
+  min-width:900px;
 }
 th,td{
   border-bottom:1px solid var(--line);
@@ -400,6 +400,21 @@ th{
 tr:last-child td{border-bottom:0}
 tr[data-room]{cursor:pointer}
 tr.active td{background:#ecfeff}
+.note-input{
+  width:220px;
+  max-width:100%;
+  min-height:36px;
+  border:1px solid #c8d4e3;
+  border-radius:8px;
+  padding:7px 10px;
+  color:#0f172a;
+  background:#fff;
+  outline:none;
+}
+.note-input:focus{
+  border-color:#38bdf8;
+  box-shadow:0 0 0 3px rgba(14,116,144,.14);
+}
 .muted{color:var(--muted)}
 .center{text-align:center}
 .footer{
@@ -433,6 +448,20 @@ tr.active td{background:#ecfeff}
   stroke-width:2.5px!important;
 }
 .deck-svg .number-active{fill:#0e7490!important}
+.deck-svg .room-note-label{pointer-events:none}
+.deck-svg .room-note-label rect{
+  fill:#111827;
+  stroke:#fff;
+  stroke-width:2;
+  filter:drop-shadow(0 1px 2px rgba(15,23,42,.35));
+}
+.deck-svg .room-note-label text{
+  fill:#fff;
+  font:700 13px -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif;
+  paint-order:stroke;
+  stroke:#111827;
+  stroke-width:1px;
+}
 
 @media(max-width:860px){
   body{background:#f8fafc}
@@ -536,6 +565,10 @@ tr.active td{background:#ecfeff}
     border-bottom:1px solid var(--line);
   }
   td:first-child::before{content:"房號"}
+  .note-input{
+    width:min(62vw,260px);
+    text-align:left;
+  }
   tr:not([data-room]) td{
     display:block;
     text-align:center;
