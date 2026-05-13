@@ -147,11 +147,6 @@ button.compact{
   font-size:13px;
   line-height:1.6;
 }
-.input-side{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
 .explore-card{
   display:grid;
   grid-template-columns:minmax(0,1.2fr) minmax(300px,.8fr);
@@ -170,22 +165,6 @@ button.compact{
 .inline-controls input{flex:1 1 auto;min-width:0}
 .inline-controls select{flex:1 1 150px}
 .compact-controls{justify-content:flex-end}
-.stat{
-  border:1px solid var(--line);
-  border-radius:8px;
-  padding:13px;
-  background:#f8fafc;
-}
-.stat b{
-  display:block;
-  font-size:25px;
-  color:#0f172a;
-}
-.stat span{
-  font-size:12px;
-  color:var(--muted);
-  font-weight:800;
-}
 .note{grid-column:1/-1}
 code{
   background:#eef6ff;
@@ -519,7 +498,6 @@ tr.active td{background:#ecfeff}
     grid-template-columns:1fr 1fr;
   }
   .actions button:first-child{grid-column:1/-1}
-  .input-side{grid-template-columns:1fr 1fr}
   .status-card{
     margin-left:-12px;
     margin-right:-12px;
@@ -628,7 +606,6 @@ tr.active td{background:#ecfeff}
   .inline-controls{display:grid;grid-template-columns:1fr}
   .compact-controls{grid-template-columns:1fr 1fr}
   .compact-controls select{grid-column:1/-1}
-  .input-side{grid-template-columns:1fr}
   .note{grid-column:auto}
   .status-top{display:block}
   #jumpResultsBtn{display:none}

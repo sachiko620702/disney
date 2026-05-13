@@ -43,9 +43,6 @@ async function loadMap(){
   if (!res.ok) throw new Error('無法載入 adventure-room-map.json。請確認 JSON 與 index.html 位於同一層。');
   ROOM_MAP = await res.json();
   await loadRoomDetails();
-  const decks = Object.keys(ROOM_MAP.deckStats || {}).sort((a,b)=>Number(a)-Number(b));
-  $('#statRooms').textContent = Object.keys(ROOM_MAP.rooms || {}).length.toLocaleString();
-  $('#statDecks').textContent = ALL_DECKS.join(', ');
   const deckSelect = $('#deckSelect');
   if (deckSelect && !deckSelect.options.length) {
     deckSelect.innerHTML = ALL_DECKS.map(deck => `<option value="${deck}">Deck ${deck}</option>`).join('');
@@ -67,9 +64,6 @@ async function loadRoomDetails(){
     ROOM_DETAIL_LIST = [];
     ROOM_DETAILS = {};
   }
-  const typeCount = new Set(ROOM_DETAIL_LIST.map(item => item.roomType).filter(Boolean)).size;
-  $('#statDetails').textContent = ROOM_DETAIL_LIST.length ? ROOM_DETAIL_LIST.length.toLocaleString() : '—';
-  $('#statTypes').textContent = typeCount || '—';
   return ROOM_DETAILS;
 }
 
