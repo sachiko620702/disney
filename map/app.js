@@ -6,7 +6,6 @@ let ROOM_DETAILS = null;
 let ROOM_DETAIL_LIST = [];
 let CURRENT_FOUND = [];
 let CURRENT_ACTIVE = null;
-let CURRENT_FACILITY_QUERY = '';
 let CURRENT_MODE = 'idle';
 const DECK_ZOOM = {};
 const ROOM_NOTES = {};
@@ -15,33 +14,11 @@ const $ = (sel, root=document) => root.querySelector(sel);
 const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
 const sideName = {'port-left':'左舷 / 左側','starboard-right':'右舷 / 右側','center':'中線附近'};
 const zoneName = {forward:'船頭側', midship:'船中', aft:'船尾側'};
-const facilityAliases = {
-  '餐廳':['restaurant','dining','eatery','kitchen','grill','cafe','café','market'],
-  '吃':['restaurant','dining','eatery','kitchen','grill','cafe','café','market'],
-  '廁所':['restroom'],
-  '洗手間':['restroom'],
-  '劇院':['theatre','theater'],
-  '酒吧':['bar','lounge'],
-  '泳池':['pool','splash'],
-  '水療':['spa'],
-  '健身':['fitness'],
-  '商店':['shop','store','worldofdisney'],
-  '小孩':['nursery','oceaneer','club','edge','vibe'],
-  '兒童':['nursery','oceaneer','club','edge','vibe'],
-  '客服':['guestservices','guestservice']
-};
-
 function esc(s){return String(s).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
 function deckNo(deck){return String(deck).padStart(2,'0');}
 function parseRooms(text){return [...new Set((text.match(/\d{3,5}/g) || []).map(String))];}
 function roomSelector(prefix, room){return `#${CSS.escape(prefix + room)}`;}
 function flatPathForDeck(deck){return `assets/flat/DCL_DeckPlans_Adventure_Flat_Deck${deckNo(deck)}.svg`;}
-function normalizeSearchText(text){return String(text || '').toLowerCase().replace(/&amp;/g,'&').replace(/[^a-z0-9\u4e00-\u9fff]+/g,'');}
-function searchTermsFor(query){
-  const base = normalizeSearchText(query);
-  const aliases = facilityAliases[base] || [];
-  return [base, ...aliases.map(normalizeSearchText)].filter(Boolean);
-}
 function yesNo(value){return value ? '是' : '否';}
 function detailForRoom(room){return ROOM_DETAILS ? ROOM_DETAILS[String(room)] : null;}
 function mergeRoomData(roomData){
@@ -196,12 +173,10 @@ async function renderDecks(found, options={}){
   for (const deck of decks){
     const rooms = (byDeck[deck] || []).slice().sort((a,b)=>a.room.localeCompare(b.room));
     const flatPath = flatPathForDeck(deck);
-    const title = mode === 'facility' ? `Deck ${esc(deck)} 設施搜尋` : `Deck ${esc(deck)}`;
+    const title = `Deck ${esc(deck)}`;
     const description = mode === 'overview'
       ? 'Deck 全覽模式：可縮放、拖曳檢視，並下載目前甲板圖。'
-      : mode === 'facility'
-        ? `搜尋「${esc(options.facilityQuery || '')}」的設施文字；點下方標籤可定位到圖面文字。`
-        : '完整甲板圖：保留所有房間匡線，黃色為搜尋命中房間。點房號可跳到該房間。';
+      : '完整甲板圖：保留所有房間匡線，黃色為搜尋命中房間。點房號可跳到該房間。';
     const chipHtml = rooms.length
       ? rooms.map(r => `<button class="room-chip" data-room="${esc(r.room)}" data-deck="${esc(deck)}" title="${esc(roomDetailLine(r))}">${esc(roomChipLabel(r))}</button>`).join('')
       : '<span class="muted mini-note">載入圖面後顯示可定位項目</span>';
@@ -238,7 +213,6 @@ async function renderDecks(found, options={}){
         highlightRoomsInSvg(svg, rooms.map(r => r.room));
         renderRoomNoteLabels(svg, rooms);
       }
-      if (mode === 'facility') renderFacilityMatches(section, svg, options.facilityQuery || '');
       initDeckTools(section, deck);
       $$('.room-chip', section).forEach(btn => btn.addEventListener('click', () => activateRoom(btn.dataset.room, btn.dataset.deck)));
     } catch (err) {
@@ -256,60 +230,6 @@ function highlightRoomsInSvg(svg, rooms){
     if (roomEl) roomEl.classList.add('room-highlight');
     if (numberEl) numberEl.classList.add('number-highlight');
   });
-}
-
-function renderFacilityMatches(section, svg, query){
-  const terms = searchTermsFor(query);
-  const matches = [];
-  $$('text', svg).forEach(textEl => {
-    const label = textEl.textContent.replace(/\s+/g, ' ').trim();
-    const normalizedLabel = normalizeSearchText(label);
-    if (!label || !terms.some(term => normalizedLabel.includes(term))) return;
-    textEl.classList.add('facility-highlight');
-    textEl.dataset.facilityIndex = String(matches.length);
-    matches.push({label, el:textEl});
-  });
-  const list = $('.room-list', section);
-  if (!list) return;
-  if (!matches.length) {
-    list.innerHTML = '<span class="muted mini-note">此 Deck 沒有符合的設施文字</span>';
-    return;
-  }
-  list.innerHTML = matches.slice(0, 24).map((match, index) =>
-    `<button class="facility-chip" data-facility-index="${index}" type="button">${esc(match.label)}</button>`
-  ).join('');
-  if (matches.length > 24) list.insertAdjacentHTML('beforeend', `<span class="muted mini-note">另有 ${matches.length - 24} 筆</span>`);
-  $$('.facility-chip', list).forEach(btn => {
-    btn.addEventListener('click', () => {
-      $$('.facility-chip.active', section).forEach(el => el.classList.remove('active'));
-      $$('.facility-active', section).forEach(el => el.classList.remove('facility-active'));
-      btn.classList.add('active');
-      const match = matches[Number(btn.dataset.facilityIndex)];
-      const target = match ? match.el : null;
-      if (target) {
-        target.classList.add('facility-active');
-        scrollSvgWrapToElement(section, target);
-      }
-    });
-  });
-}
-
-async function findFacilityDecks(query){
-  const terms = searchTermsFor(query);
-  if (!terms.length) return [];
-  const matchedDecks = [];
-  for (const deck of ALL_DECKS) {
-    try {
-      const svgText = await fetchSvg(flatPathForDeck(deck));
-      const doc = new DOMParser().parseFromString(svgText, 'image/svg+xml');
-      const hasMatch = $$('text', doc).some(el => {
-        const text = normalizeSearchText(el.textContent);
-        return terms.some(term => text.includes(term));
-      });
-      if (hasMatch) matchedDecks.push(deck);
-    } catch {}
-  }
-  return matchedDecks;
 }
 
 function renderRoomNoteLabels(svg, rooms){
@@ -500,8 +420,6 @@ function cloneSvgForExport(svg){
     .room-active{fill:#67e8f9!important;stroke:#0e7490!important;stroke-width:6!important;filter:drop-shadow(0 0 5px rgba(14,116,144,.8))}
     .number-highlight,.number-active{fill:#991b1b!important;font-weight:900!important;paint-order:stroke;stroke:#fff!important;stroke-width:2.5px!important}
     .number-active{fill:#0e7490!important}
-    .facility-highlight{fill:#0e7490!important;font-weight:950!important;paint-order:stroke;stroke:#fff!important;stroke-width:3px!important;filter:drop-shadow(0 0 4px rgba(14,116,144,.65))}
-    .facility-active{fill:#d91f45!important;stroke:#fff!important;stroke-width:4px!important;filter:drop-shadow(0 0 6px rgba(217,31,69,.82))}
     .room-note-label rect{fill:#111827;stroke:#fff;stroke-width:2;filter:drop-shadow(0 1px 2px rgba(15,23,42,.35))}
     .room-note-label text{fill:#fff;font:700 13px sans-serif;paint-order:stroke;stroke:#111827;stroke-width:1px}
   `;
@@ -575,7 +493,6 @@ function updateUrlForRooms(requested){
   if (requested.length) url.searchParams.set('rooms', requested.join(',')); else url.searchParams.delete('rooms');
   const notes = encodeNotesParam();
   if (notes) url.searchParams.set('notes', notes); else url.searchParams.delete('notes');
-  url.searchParams.delete('facility');
   url.searchParams.delete('deck');
   history.replaceState(null, '', url);
 }
@@ -593,7 +510,6 @@ async function markRooms(pushState=true){
   const found = [], missing = [];
   requested.forEach(room => data.rooms[room] ? found.push(mergeRoomData(data.rooms[room])) : missing.push(room));
   CURRENT_FOUND = found;
-  CURRENT_FACILITY_QUERY = '';
   CURRENT_MODE = 'rooms';
   if (pushState) updateUrlForRooms(requested);
   renderSummary(requested, found, missing);
@@ -601,41 +517,9 @@ async function markRooms(pushState=true){
   await renderDecks(found);
 }
 
-async function searchFacilities(pushState=true){
-  const query = $('#facilityInput').value.trim();
-  if (!query) return;
-  CURRENT_FOUND = [];
-  CURRENT_ACTIVE = null;
-  CURRENT_FACILITY_QUERY = query;
-  CURRENT_MODE = 'facility';
-  $('#resultBody').innerHTML = '<tr><td colspan="12" class="muted center">設施搜尋不會列入房號明細</td></tr>';
-  $('#tableCount').textContent = '設施模式';
-  $('#summary').innerHTML = '<span class="pill neutral">搜尋設施中...</span>';
-  $('#deckTabs').innerHTML = '';
-  const decks = await findFacilityDecks(query);
-  if (pushState) {
-    const url = new URL(window.location.href);
-    url.searchParams.set('facility', query);
-    url.searchParams.delete('rooms');
-    url.searchParams.delete('deck');
-    history.replaceState(null, '', url);
-  }
-  if (!decks.length) {
-    renderModeSummary(`<span class="pill warn">找不到「${esc(query)}」</span>`, []);
-    $('#viewerArea').innerHTML = '<div class="empty">沒有找到符合的公共設施文字；可以試試英文關鍵字，例如 Restroom、Spa、Theatre。</div>';
-    return;
-  }
-  renderModeSummary(
-    `<span class="pill neutral">設施：${esc(query)}</span><span class="pill ok">找到 ${decks.length} 個 Deck</span>`,
-    decks
-  );
-  await renderDecks([], {mode:'facility', decks, facilityQuery:query});
-}
-
 async function viewDecks(decks, pushState=true){
   CURRENT_FOUND = [];
   CURRENT_ACTIVE = null;
-  CURRENT_FACILITY_QUERY = '';
   CURRENT_MODE = 'overview';
   const normalizedDecks = decks.map(Number).filter(deck => ALL_DECKS.includes(deck));
   if (!normalizedDecks.length) return;
@@ -649,7 +533,6 @@ async function viewDecks(decks, pushState=true){
     const url = new URL(window.location.href);
     url.searchParams.set('deck', normalizedDecks.join(','));
     url.searchParams.delete('rooms');
-    url.searchParams.delete('facility');
     history.replaceState(null, '', url);
   }
   await renderDecks([], {mode:'overview', decks:normalizedDecks});
@@ -657,8 +540,7 @@ async function viewDecks(decks, pushState=true){
 
 function clearAll(){
   $('#roomsInput').value = '';
-  $('#facilityInput').value = '';
-  $('#viewerArea').innerHTML = '<div class="empty">輸入房號、搜尋設施，或開啟 Deck 全覽後，會在這裡載入完整 deck plan。</div>';
+  $('#viewerArea').innerHTML = '<div class="empty">輸入房號或開啟 Deck 全覽後，會在這裡載入完整 deck plan。</div>';
   $('#summary').innerHTML = '<span class="pill neutral">尚未查詢</span>';
   $('#missingBox').style.display = 'none'; $('#missingBox').textContent = '';
   $('#deckTabs').innerHTML = '';
@@ -666,7 +548,6 @@ function clearAll(){
   $('#tableCount').textContent = '0 筆';
   CURRENT_FOUND = [];
   CURRENT_ACTIVE = null;
-  CURRENT_FACILITY_QUERY = '';
   CURRENT_MODE = 'idle';
   Object.keys(ROOM_NOTES).forEach(room => delete ROOM_NOTES[room]);
   history.replaceState(null, '', location.pathname);
@@ -677,8 +558,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   restoreNotesFromUrl();
   $('#markBtn').addEventListener('click', () => markRooms(true));
   $('#roomsInput').addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') markRooms(true); });
-  $('#facilityInput').addEventListener('keydown', e => { if (e.key === 'Enter') searchFacilities(true); });
-  $('#facilityBtn').addEventListener('click', () => searchFacilities(true));
   $('#viewDeckBtn').addEventListener('click', () => viewDecks([Number($('#deckSelect').value)], true));
   $('#viewAllDecksBtn').addEventListener('click', () => viewDecks(ALL_DECKS, true));
   $('#demoBtn').addEventListener('click', () => { $('#roomsInput').value = '17096, 12259, 15110, 18100'; markRooms(true); });
@@ -692,14 +571,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
   const params = new URLSearchParams(location.search);
   const initialRooms = params.get('rooms');
-  const initialFacility = params.get('facility');
   const initialDecks = params.get('deck');
   if (initialRooms){
     $('#roomsInput').value = initialRooms;
     await markRooms(false);
-  } else if (initialFacility) {
-    $('#facilityInput').value = initialFacility;
-    await searchFacilities(false);
   } else if (initialDecks) {
     const decks = initialDecks.split(',').map(Number);
     await viewDecks(decks, false);
