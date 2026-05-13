@@ -408,7 +408,7 @@ function initDeckTools(section, deck){
 }
 
 function setDeckZoom(section, deck, next){
-  DECK_ZOOM[deck] = Math.min(2.2, Math.max(.72, Number(next.toFixed(2))));
+  DECK_ZOOM[deck] = Math.min(2.2, Math.max(.4, Number(next.toFixed(2))));
   applyDeckZoom(section, deck);
   if (CURRENT_ACTIVE && CURRENT_ACTIVE.deck === String(deck)) {
     const svg = $('svg', section);
