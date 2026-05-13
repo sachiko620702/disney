@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Disney Adventure 房號 定位標示工具</title>
-  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./styles.css?v=20260513-3" />
 </head>
 <body>
 <header class="hero">
@@ -31,7 +31,27 @@
     <aside class="input-side">
       <div class="stat"><b id="statRooms">—</b><span>房號資料</span></div>
       <div class="stat"><b id="statDecks">—</b><span>支援甲板</span></div>
+      <div class="stat"><b id="statDetails">—</b><span>房型資料</span></div>
+      <div class="stat"><b id="statTypes">—</b><span>房型種類</span></div>
     </aside>
+  </section>
+
+  <section class="card explore-card">
+    <div class="explore-block">
+      <label for="facilityInput">公共設施搜尋</label>
+      <div class="inline-controls">
+        <input id="facilityInput" type="search" placeholder="例如：Restroom、Spa、Theatre、餐廳" />
+        <button id="facilityBtn" type="button">搜尋設施</button>
+      </div>
+    </div>
+    <div class="explore-block">
+      <label for="deckSelect">Deck 全覽</label>
+      <div class="inline-controls compact-controls">
+        <select id="deckSelect" aria-label="選擇 Deck"></select>
+        <button class="secondary" id="viewDeckBtn" type="button">開啟 Deck</button>
+        <button class="secondary" id="viewAllDecksBtn" type="button">全部 Deck</button>
+      </div>
+    </div>
   </section>
 
   <section class="card status-card">
@@ -51,14 +71,14 @@
     <div class="section-title"><h2>搜尋明細</h2><small id="tableCount">0 筆</small></div>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>房號</th><th>Deck</th><th>區域</th><th>左右舷</th><th>備註</th><th>SVG 房間框</th><th>SVG 房號</th></tr></thead>
-        <tbody id="resultBody"><tr><td colspan="6" class="muted center">尚未查詢</td></tr></tbody>
+        <thead><tr><th>房號</th><th>Deck</th><th>房型</th><th>分類</th><th>可住</th><th>主題</th><th>Concierge</th><th>區域</th><th>左右舷</th><th>備註</th><th>SVG 房間框</th><th>SVG 房號</th></tr></thead>
+        <tbody id="resultBody"><tr><td colspan="12" class="muted center">尚未查詢</td></tr></tbody>
       </table>
     </div>
   </section>
 </main>
 
 <footer class="footer">資料以提供的 DCL DeckPlans SVG 為準；本頁只做視覺定位與高亮輔助。</footer>
-<script src="./app.js"></script>
+<script src="./app.js?v=20260513-3"></script>
 </body>
 </html>
