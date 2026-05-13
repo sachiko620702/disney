@@ -319,6 +319,18 @@ code{
   font-size:13px;
   font-weight:900;
 }
+.download-map{
+  min-height:38px;
+  padding:8px 11px;
+  background:#0e7490;
+  color:#fff;
+  box-shadow:none;
+  white-space:nowrap;
+}
+.download-map:disabled{
+  cursor:progress;
+  opacity:.72;
+}
 .svg-wrap{
   height:min(76vh,820px);
   min-height:520px;
@@ -473,6 +485,13 @@ tr.active td{background:#ecfeff}
     text-overflow:ellipsis;
     white-space:nowrap;
   }
+  .tool-group{
+    width:100%;
+    justify-content:flex-start;
+    overflow-x:auto;
+    padding-bottom:2px;
+  }
+  .download-map{margin-left:auto}
   .svg-wrap{
     height:66vh;
     min-height:430px;

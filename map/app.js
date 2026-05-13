@@ -101,6 +101,7 @@ async function renderDecks(found){
           <button class="icon-btn zoom-in" type="button" aria-label="放大 Deck ${esc(deck)}" title="放大">＋</button>
           <button class="icon-btn recenter" type="button" aria-label="回到目前房間" title="回到目前房間">⌖</button>
           <button class="icon-btn reset-zoom" type="button" aria-label="重設縮放" title="重設縮放">↺</button>
+          <button class="download-map" type="button">下載標記圖</button>
         </div>
       </div>
       <div class="svg-wrap"><div class="svg-stage"><div class="muted">載入 Deck ${esc(deck)}...</div></div></div>`;
@@ -157,6 +158,7 @@ function initDeckTools(section, deck){
   const zoomOut = $('.zoom-out', section);
   const resetZoom = $('.reset-zoom', section);
   const recenter = $('.recenter', section);
+  const download = $('.download-map', section);
   if (zoomIn) zoomIn.addEventListener('click', () => setDeckZoom(section, deck, DECK_ZOOM[deck] + 0.18));
   if (zoomOut) zoomOut.addEventListener('click', () => setDeckZoom(section, deck, DECK_ZOOM[deck] - 0.18));
   if (resetZoom) resetZoom.addEventListener('click', () => setDeckZoom(section, deck, 1));
@@ -167,6 +169,7 @@ function initDeckTools(section, deck){
       : {room: firstChip ? firstChip.dataset.room : '', deck:String(deck)};
     if (active && active.room) activateRoom(active.room, active.deck);
   });
+  if (download) download.addEventListener('click', () => downloadDeckImage(section, deck));
 }
 
 function setDeckZoom(section, deck, next){
@@ -201,6 +204,112 @@ function scrollSvgWrapToElement(section, el, opts={}) {
   const targetLeft = (box.x - vb.x) * scaleX - wrap.clientWidth * 0.45;
   wrap.scrollTo({top: Math.max(0, targetTop), left: Math.max(0, targetLeft), behavior:'smooth'});
   if (opts.sectionScroll !== false) section.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+async function downloadDeckImage(section, deck){
+  const svg = $('svg', section);
+  if (!svg) return;
+  const button = $('.download-map', section);
+  const originalText = button ? button.textContent : '';
+  try {
+    if (button) {
+      button.disabled = true;
+      button.textContent = '產生中';
+    }
+    const blob = await svgToPngBlob(svg);
+    const filename = buildDeckImageName(deck);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1200);
+    if (button) button.textContent = '已下載';
+  } catch (err) {
+    console.error(err);
+    const svgBlob = svgToSvgBlob(svg);
+    const url = URL.createObjectURL(svgBlob);
+    window.open(url, '_blank');
+    setTimeout(() => URL.revokeObjectURL(url), 3000);
+    if (button) button.textContent = '已開啟圖檔';
+  } finally {
+    if (button) {
+      setTimeout(() => {
+        button.disabled = false;
+        button.textContent = originalText;
+      }, 1400);
+    }
+  }
+}
+
+function buildDeckImageName(deck){
+  const rooms = CURRENT_FOUND
+    .filter(r => String(r.deck) === String(deck))
+    .map(r => r.room)
+    .join('-');
+  return `disney-adventure-deck-${deck}${rooms ? '-' + rooms : ''}.png`;
+}
+
+function cloneSvgForExport(svg){
+  const clone = svg.cloneNode(true);
+  clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  clone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+  clone.style.width = '';
+  clone.style.maxWidth = '';
+  clone.style.height = '';
+  const style = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+  style.textContent = `
+    .room-highlight{fill:#fff176!important;stroke:#d91f45!important;stroke-width:5!important;filter:drop-shadow(0 0 4px rgba(217,31,69,.7))}
+    .room-active{fill:#67e8f9!important;stroke:#0e7490!important;stroke-width:6!important;filter:drop-shadow(0 0 5px rgba(14,116,144,.8))}
+    .number-highlight,.number-active{fill:#991b1b!important;font-weight:900!important;paint-order:stroke;stroke:#fff!important;stroke-width:2.5px!important}
+    .number-active{fill:#0e7490!important}
+  `;
+  clone.insertBefore(style, clone.firstChild);
+  return clone;
+}
+
+function svgToSvgBlob(svg){
+  const clone = cloneSvgForExport(svg);
+  const markup = new XMLSerializer().serializeToString(clone);
+  return new Blob([markup], {type:'image/svg+xml;charset=utf-8'});
+}
+
+function svgToPngBlob(svg){
+  return new Promise((resolve, reject) => {
+    const clone = cloneSvgForExport(svg);
+    const vb = clone.viewBox.baseVal;
+    const width = Math.max(1, Math.round(vb && vb.width ? vb.width : svg.getBoundingClientRect().width));
+    const height = Math.max(1, Math.round(vb && vb.height ? vb.height : svg.getBoundingClientRect().height));
+    clone.setAttribute('width', width);
+    clone.setAttribute('height', height);
+    const markup = new XMLSerializer().serializeToString(clone);
+    const svgBlob = new Blob([markup], {type:'image/svg+xml;charset=utf-8'});
+    const url = URL.createObjectURL(svgBlob);
+    const img = new Image();
+    img.onload = () => {
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, width, height);
+        ctx.drawImage(img, 0, 0, width, height);
+        URL.revokeObjectURL(url);
+        canvas.toBlob(blob => blob ? resolve(blob) : reject(new Error('無法建立 PNG。')), 'image/png');
+      } catch (err) {
+        URL.revokeObjectURL(url);
+        reject(err);
+      }
+    };
+    img.onerror = () => {
+      URL.revokeObjectURL(url);
+      reject(new Error('無法載入匯出的 SVG。'));
+    };
+    img.src = url;
+  });
 }
 
 async function markRooms(pushState=true){
