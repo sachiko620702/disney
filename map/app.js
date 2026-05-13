@@ -19,7 +19,6 @@ function deckNo(deck){return String(deck).padStart(2,'0');}
 function parseRooms(text){return [...new Set((text.match(/\d{3,5}/g) || []).map(String))];}
 function roomSelector(prefix, room){return `#${CSS.escape(prefix + room)}`;}
 function flatPathForDeck(deck){return `assets/flat/DCL_DeckPlans_Adventure_Flat_Deck${deckNo(deck)}.svg`;}
-function yesNo(value){return value ? '是' : '否';}
 function detailForRoom(room){return ROOM_DETAILS ? ROOM_DETAILS[String(room)] : null;}
 function mergeRoomData(roomData){
   const detail = detailForRoom(roomData.room);
@@ -104,7 +103,7 @@ function renderTable(found){
   $('#tableCount').textContent = `${found.length} 筆`;
   const body = $('#resultBody');
   if (!found.length){
-    body.innerHTML = '<tr><td colspan="12" class="muted center">沒有找到可顯示的房號</td></tr>';
+    body.innerHTML = '<tr><td colspan="9" class="muted center">沒有找到可顯示的房號</td></tr>';
     return;
   }
   body.innerHTML = found.slice().sort((a,b)=>a.deck-b.deck || a.room.localeCompare(b.room)).map(r => `
@@ -114,10 +113,8 @@ function renderTable(found){
       <td data-label="分類">${esc(r.detail && r.detail.category || '—')}</td>
       <td data-label="可住">${r.detail && r.detail.occupancy ? `${esc(r.detail.occupancy)} 人` : '—'}</td>
       <td data-label="主題">${esc(r.detail && r.detail.theme || '—')}</td>
-      <td data-label="Concierge">${r.detail ? yesNo(r.detail.isConcierge) : '—'}</td>
       <td data-label="區域">${zoneName[r.zone] || esc(r.zone || '')}</td><td data-label="左右舷">${sideName[r.side] || esc(r.side || '')}</td>
       <td data-label="備註"><input class="note-input" data-note-room="${esc(r.room)}" type="text" value="${esc(ROOM_NOTES[r.room] || '')}" placeholder="例如：爸媽房、靠近電梯"></td>
-      <td data-label="SVG 房間框"><code>room-${esc(r.room)}</code></td><td data-label="SVG 房號"><code>number-${esc(r.room)}</code></td>
     </tr>`).join('');
   $$('tr[data-room]', body).forEach(row => row.addEventListener('click', () => activateRoom(row.dataset.room, row.dataset.deck)));
   $$('.note-input', body).forEach(input => {
@@ -502,7 +499,7 @@ function clearAll(){
   $('#summary').innerHTML = '<span class="pill neutral">尚未查詢</span>';
   $('#missingBox').style.display = 'none'; $('#missingBox').textContent = '';
   $('#deckTabs').innerHTML = '';
-  $('#resultBody').innerHTML = '<tr><td colspan="12" class="muted center">尚未查詢</td></tr>';
+  $('#resultBody').innerHTML = '<tr><td colspan="9" class="muted center">尚未查詢</td></tr>';
   $('#tableCount').textContent = '0 筆';
   CURRENT_FOUND = [];
   CURRENT_ACTIVE = null;
