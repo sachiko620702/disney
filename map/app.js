@@ -516,7 +516,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   restoreNotesFromUrl();
   $('#markBtn').addEventListener('click', () => markRooms(true));
   $('#roomsInput').addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') markRooms(true); });
-  $('#demoBtn').addEventListener('click', () => { $('#roomsInput').value = '17096, 12259, 15110, 18100'; markRooms(true); });
+  $('#demoBtn').addEventListener('click', () => { $('#roomsInput').value = '18206, 12259, 15110, 18100'; markRooms(true); });
   $('#clearBtn').addEventListener('click', clearAll);
   $('#jumpResultsBtn').addEventListener('click', () => $('#resultsCard').scrollIntoView({behavior:'smooth', block:'start'}));
   $('#copyLinkBtn').addEventListener('click', async () => {
