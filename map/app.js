@@ -43,11 +43,6 @@ async function loadMap(){
   if (!res.ok) throw new Error('無法載入 adventure-room-map.json。請確認 JSON 與 index.html 位於同一層。');
   ROOM_MAP = await res.json();
   await loadRoomDetails();
-  const deckSelect = $('#deckSelect');
-  if (deckSelect && !deckSelect.options.length) {
-    deckSelect.innerHTML = ALL_DECKS.map(deck => `<option value="${deck}">Deck ${deck}</option>`).join('');
-    deckSelect.value = '9';
-  }
   return ROOM_MAP;
 }
 
@@ -105,13 +100,6 @@ function renderDeckTabs(decks){
   }));
 }
 
-function renderModeSummary(html, decks){
-  $('#summary').innerHTML = html;
-  $('#missingBox').style.display = 'none';
-  $('#missingBox').textContent = '';
-  renderDeckTabs(decks);
-}
-
 function renderTable(found){
   $('#tableCount').textContent = `${found.length} 筆`;
   const body = $('#resultBody');
@@ -152,25 +140,22 @@ async function fetchSvg(path){
   return text;
 }
 
-async function renderDecks(found, options={}){
+async function renderDecks(found){
   const area = $('#viewerArea');
-  const mode = options.mode || 'rooms';
-  if (mode === 'rooms' && !found.length){ area.innerHTML = '<div class="empty">沒有可標記的房號。</div>'; return; }
+  if (!found.length){ area.innerHTML = '<div class="empty">沒有可標記的房號。</div>'; return; }
   const byDeck = found.reduce((acc,r)=>{
     if (!acc[r.deck]) acc[r.deck] = [];
     acc[r.deck].push(r);
     return acc;
   }, {});
-  const decks = options.decks || Object.keys(byDeck).sort((a,b)=>Number(a)-Number(b));
+  const decks = Object.keys(byDeck).sort((a,b)=>Number(a)-Number(b));
   if (!decks.length){ area.innerHTML = '<div class="empty">沒有可顯示的 Deck。</div>'; return; }
   area.innerHTML = '';
   for (const deck of decks){
     const rooms = (byDeck[deck] || []).slice().sort((a,b)=>a.room.localeCompare(b.room));
     const flatPath = flatPathForDeck(deck);
     const title = `Deck ${esc(deck)}`;
-    const description = mode === 'overview'
-      ? 'Deck 全覽模式：可縮放、拖曳檢視，並下載目前甲板圖。'
-      : '完整甲板圖：保留所有房間匡線，黃色為搜尋命中房間。點房號可跳到該房間。';
+    const description = '完整甲板圖：保留所有房間匡線，黃色為搜尋命中房間。點房號可跳到該房間。';
     const chipHtml = rooms.length
       ? rooms.map(r => `<button class="room-chip" data-room="${esc(r.room)}" data-deck="${esc(deck)}" title="${esc(roomDetailLine(r))}">${esc(roomChipLabel(r))}</button>`).join('')
       : '<span class="muted mini-note">載入圖面後顯示可定位項目</span>';
@@ -511,30 +496,9 @@ async function markRooms(pushState=true){
   await renderDecks(found);
 }
 
-async function viewDecks(decks, pushState=true){
-  CURRENT_FOUND = [];
-  CURRENT_ACTIVE = null;
-  CURRENT_MODE = 'overview';
-  const normalizedDecks = decks.map(Number).filter(deck => ALL_DECKS.includes(deck));
-  if (!normalizedDecks.length) return;
-  $('#resultBody').innerHTML = '<tr><td colspan="12" class="muted center">Deck 全覽模式不會列入房號明細</td></tr>';
-  $('#tableCount').textContent = 'Deck 全覽';
-  renderModeSummary(
-    `<span class="pill neutral">Deck 全覽</span><span class="pill ok">${normalizedDecks.length} 張甲板圖</span>`,
-    normalizedDecks
-  );
-  if (pushState) {
-    const url = new URL(window.location.href);
-    url.searchParams.set('deck', normalizedDecks.join(','));
-    url.searchParams.delete('rooms');
-    history.replaceState(null, '', url);
-  }
-  await renderDecks([], {mode:'overview', decks:normalizedDecks});
-}
-
 function clearAll(){
   $('#roomsInput').value = '';
-  $('#viewerArea').innerHTML = '<div class="empty">輸入房號或開啟 Deck 全覽後，會在這裡載入完整 deck plan。</div>';
+  $('#viewerArea').innerHTML = '<div class="empty">輸入房號後，會依照甲板載入完整 deck plan，並把該房間的外框高亮。</div>';
   $('#summary').innerHTML = '<span class="pill neutral">尚未查詢</span>';
   $('#missingBox').style.display = 'none'; $('#missingBox').textContent = '';
   $('#deckTabs').innerHTML = '';
@@ -552,8 +516,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   restoreNotesFromUrl();
   $('#markBtn').addEventListener('click', () => markRooms(true));
   $('#roomsInput').addEventListener('keydown', e => { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') markRooms(true); });
-  $('#viewDeckBtn').addEventListener('click', () => viewDecks([Number($('#deckSelect').value)], true));
-  $('#viewAllDecksBtn').addEventListener('click', () => viewDecks(ALL_DECKS, true));
   $('#demoBtn').addEventListener('click', () => { $('#roomsInput').value = '17096, 12259, 15110, 18100'; markRooms(true); });
   $('#clearBtn').addEventListener('click', clearAll);
   $('#jumpResultsBtn').addEventListener('click', () => $('#resultsCard').scrollIntoView({behavior:'smooth', block:'start'}));
@@ -565,12 +527,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
   const params = new URLSearchParams(location.search);
   const initialRooms = params.get('rooms');
-  const initialDecks = params.get('deck');
   if (initialRooms){
     $('#roomsInput').value = initialRooms;
     await markRooms(false);
-  } else if (initialDecks) {
-    const decks = initialDecks.split(',').map(Number);
-    await viewDecks(decks, false);
   }
 });
