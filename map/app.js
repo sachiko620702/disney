@@ -12,8 +12,8 @@ const ROOM_NOTES = {};
 
 const $ = (sel, root=document) => root.querySelector(sel);
 const $$ = (sel, root=document) => [...root.querySelectorAll(sel)];
-const sideName = {'port-left':'左舷 / 左側','starboard-right':'右舷 / 右側','center':'中線附近'};
-const zoneName = {forward:'船頭側', midship:'船中', aft:'船尾側'};
+const sideName = {'port-left':'左舷','starboard-right':'右舷','center':'中線'};
+const zoneName = {forward:'船頭', midship:'船中', aft:'船尾'};
 function esc(s){return String(s).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
 function deckNo(deck){return String(deck).padStart(2,'0');}
 function parseRooms(text){return [...new Set((text.match(/\d{3,5}/g) || []).map(String))];}
