@@ -16,7 +16,62 @@ const sideName = {'port-left':'左舷','starboard-right':'右舷','center':'中�
 const zoneName = {forward:'船頭', midship:'船中', aft:'船尾'};
 function esc(s){return String(s).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
 function deckNo(deck){return String(deck).padStart(2,'0');}
-function parseRooms(text){return [...new Set((text.match(/\d{3,5}/g) || []).map(String))];}
+function parseRooms(text){return parseRoomInput(text).requested;}
+function cleanInlineNote(text){
+  return String(text || '')
+    .replace(/^[\s\-–—:：,，、/]+/, '')
+    .replace(/[\s,，、/&]+$/, '')
+    .trim();
+}
+function parseRoomInput(text){
+  const requested = [];
+  const seen = new Set();
+  const notes = {};
+  let hasInlineNotes = false;
+
+  String(text || '').split(/\r?\n/).forEach(line => {
+    if (!/^\s*\d/.test(line)) return;
+
+    const matches = [...line.matchAll(/\d{3,5}/g)].map(match => ({
+      room: match[0],
+      start: match.index,
+      end: match.index + match[0].length
+    }));
+    if (!matches.length) return;
+
+    const lineNotes = [];
+    matches.forEach((match, index) => {
+      if (!seen.has(match.room)) {
+        seen.add(match.room);
+        requested.push(match.room);
+      }
+
+      const next = matches[index + 1];
+      const rawNote = line.slice(match.end, next ? next.start : line.length);
+      const note = cleanInlineNote(rawNote);
+      lineNotes[index] = note;
+      if (note) {
+        notes[match.room] = note;
+        hasInlineNotes = true;
+      }
+    });
+
+    const notedIndexes = lineNotes
+      .map((note, index) => note ? index : -1)
+      .filter(index => index >= 0);
+    const hasSharedTrailingNote = matches.length > 1 &&
+      notedIndexes.length === 1 &&
+      notedIndexes[0] === matches.length - 1;
+
+    if (hasSharedTrailingNote) {
+      matches.forEach(match => {
+        notes[match.room] = lineNotes[notedIndexes[0]];
+      });
+    }
+  });
+
+  return {requested, notes, hasInlineNotes};
+}
 function roomSelector(prefix, room){return `#${CSS.escape(prefix + room)}`;}
 function flatPathForDeck(deck){return `assets/flat/DCL_DeckPlans_Adventure_Flat_Deck${deckNo(deck)}.svg`;}
 function detailForRoom(room){return ROOM_DETAILS ? ROOM_DETAILS[String(room)] : null;}
@@ -482,7 +537,12 @@ function updateUrlNotesOnly(){
 
 async function markRooms(pushState=true){
   const data = await loadMap();
-  const requested = parseRooms($('#roomsInput').value);
+  const parsedInput = parseRoomInput($('#roomsInput').value);
+  const requested = parsedInput.requested;
+  if (parsedInput.hasInlineNotes) {
+    requested.forEach(room => delete ROOM_NOTES[room]);
+    Object.assign(ROOM_NOTES, parsedInput.notes);
+  }
   const found = [], missing = [];
   requested.forEach(room => data.rooms[room] ? found.push(mergeRoomData(data.rooms[room])) : missing.push(room));
   CURRENT_FOUND = found;

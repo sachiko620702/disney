@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Disney Adventure 房號 定位標示工具</title>
-  <link rel="stylesheet" href="./styles.css?v=20260515-1" />
+  <link rel="stylesheet" href="./styles.css?v=20260515-2" />
 </head>
 <body>
 <header class="hero">
@@ -19,14 +19,14 @@
   <section class="card input-card">
     <div class="input-main">
       <label for="roomsInput">房號列表</label>
-      <textarea id="roomsInput" placeholder="例如：18206, 12259, 15110&#10;也可以一行一個：&#10;18206&#10;12259&#10;15110"></textarea>
+      <textarea id="roomsInput" placeholder="例如：18206, 12259, 15110&#10;也可以一行一個並加備註：&#10;11200-美麗姊妹&#10;15646、15648 帥哥駕到"></textarea>
       <div class="actions">
         <button id="markBtn">高亮房間</button>
         <button class="secondary" id="demoBtn">載入範例</button>
         <button class="secondary" id="copyLinkBtn">複製查詢連結</button>
         <button class="ghost" id="clearBtn">清空</button>
       </div>
-      <p class="input-hint">可貼上逗號、空格或換行分隔的房號；桌面可按 Ctrl / Cmd + Enter 查詢。</p>
+      <p class="input-hint">可貼上逗號、空格或換行分隔的房號；若寫成「房號-備註」會自動把備註帶入明細與地圖標籤。桌面可按 Ctrl / Cmd + Enter 查詢。</p>
     </div>
   </section>
 
@@ -55,6 +55,6 @@
 </main>
 
 <footer class="footer">資料以提供的 DCL DeckPlans SVG 為準；本頁只做視覺定位與高亮輔助。</footer>
-<script src="./app.js?v=20260515-1"></script>
+<script src="./app.js?v=20260515-2"></script>
 </body>
 </html>
