@@ -1,0 +1,1184 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title data-id="th-modified">Disney Adventure 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap');
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #f1f5f9; font-size: 14px; color: #0f172a; }
+        .tab-active { background: #2563eb; color: white; box-shadow: 0 4px 12px rgba(37,99,235,0.4); }
+        .hero-gradient { background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 100%); }
+        .photo-card { border-left: 4px solid #8b5cf6; padding-left: 10px; margin-bottom: 12px; }
+        .rec-tag { font-size: 12px; padding: 4px 10px; border-radius: 8px; font-weight: 900; background: #f0fdf4; color: #15803d; border: 1.5px solid #bbf7d0; }
+        .food-header { border-left: 4px solid #facc15; padding-left: 8px; font-weight: 900; margin-bottom: 8px; color: #fef08a; }
+    </style>
+<meta property="og:title" content="Disney Adventure 2026" data-id="th-modified" ><meta property="og:image" content="https://tiiny.host/assets/logo-purple-bg.png" data-id="th-modified" ><meta property="og:image:width" content="1501" data-id="th-modified" ><meta property="og:image:height" content="1501" data-id="th-modified" ><meta property="og:image:type" content="image/png" data-id="th-modified" ><meta property="og:url" content="https://disney.tiiny.site/" data-id="th-modified" ><meta property="og:type" content="website" data-id="th-modified" ><script defer data-domain="disney.tiiny.site" src="https://analytics.tiiny.site/js/plausible.js"></script><script type="text/javascript" src="https://tiiny.host/ad-script.js"></script></head>
+<body class="font-black">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        const App = () => {
+            const [activeTab, setActiveTab] = useState('dining');
+            const [menuRootTab, setMenuRootTab] = useState('nav');
+            const [menuSubTab, setMenuSubTab] = useState('sulley-steak');
+            const [menuQuery, setMenuQuery] = useState('');
+            useEffect(() => { if (window.lucide) lucide.createIcons(); }, [activeTab]);
+
+            // 📸 拍照內容 (抓回)
+            const photoSpots = [
+                { deck: 'Deck 11', items: [{n:'魔法師米奇植栽', l:'船中花園'}] },
+                { deck: 'Deck 10', items: [{n:'海底總動員雕像', l:'船尾 Discovery Reef'}] },
+                { deck: 'Deck 9', items: [{n:'冰雪奇緣/星戰光劍/天燈/生活風格', l:'船尾 Observatory'}] },
+                { deck: 'Deck 8', items: [{n:'索爾錘子 Mjolnir', l:'船尾電梯口'}] },
+                { deck: 'Deck 7', items: [{n:'米奇唐老鴨特效', l:'戶外甲板'}, {n:'Duffy七寶/皮克斯/蜘蛛人', l:'船前 Shop'}, {n:'公主/漫威 Portraits', l:'船中 Studio'}] },
+                { deck: 'Deck 6', items: [{n:'史迪奇特效', l:'船頭 Premier Sip'}] }
+            ];
+
+            // 🚢 設施內容 (抓回)
+            const floorData = [
+                { deck: 'Deck 19', items: [{n:'鋼鐵跑道 / 胡迪滑梯', p:'船頭'}] },
+                { deck: 'Deck 18', items: [{n:'皮姆賽車 / 漫威降落地點', p:'船尾'}] },
+                { deck: 'Deck 17', items: [{n:'比薩星球 / 皮克斯市集', p:'中/尾'}] },
+                { deck: 'Deck 12', items: [{n:'Palo 餐廳', p:'船尾'}] },
+                { deck: 'Deck 10', items: [{n:'魔幻夏日餐廳', p:'中'}, {n:'怪獸電力公司', p:'船尾'}] },
+                { deck: 'Deck 6', items: [{n:'航海家俱樂部', p:'船尾'}] },
+                { deck: 'Deck 5', items: [{n:'動畫師畫廊', p:'船尾'}, {n:'劇院', p:'船頭'}] }
+            ];
+
+            // 🗓️ 行程表 (Day 1-5 完整補齊)
+            const itinerary = [
+                { d: '5/14', t: 'Day 1: 啟航日', items: [
+                    { time: '11:00', act: 'MBCC 報到登船' },
+                    { time: '登船首要', act: '🆘 處理 Palo 四人預約', color: 'text-red-600 font-black', note: '上船立刻找 17F 禮賓櫃檯加入剩餘 4 人' },
+                    { time: '12:30', act: '🏠 可進入房間休息', color: 'text-green-600' },
+                    { time: '17:45', act: '晚餐: 航海家俱樂部', loc: 'Navigators Club (D6 後)' }
+                ]},
+                { d: '5/15', t: 'Day 2: 角色見面', items: [
+                    { time: '09:00', act: 'Boutique 變身 (Guan Le)', note: '預約末兩碼: 73' },
+                    { time: '11:00', act: '👑 Royal Gathering', color: 'text-pink-600' },
+                    { time: '17:45', act: '晚餐: 樂佩公主餐廳', loc: 'Rapunzel’s Royal Table (D10 中)' },
+                    { time: '20:30', act: '🎭 Disney Seas the Adventure', color: 'text-indigo-600' }
+                ]},
+                { d: '5/16', t: 'Day 3: Palo 饗宴', items: [
+                    { time: '10:00', act: '🍴 Palo Trattoria Brunch', color: 'text-amber-600 font-black', loc: 'Deck 12 船尾' },
+                    { time: '17:45', act: '晚餐: 好萊塢聚光燈俱樂部', loc: 'Hollywood Spotlight Club (D8 後)' }
+                ]},
+                { d: '5/17', t: 'Day 4: 離船前夕', items: [
+                    { time: '14:00', act: '🎭 Remember (Live Show)', color: 'text-indigo-600' },
+                    { time: '18:00', act: '晚餐: 怪獸電力公司', loc: 'Mike & Sulley\'s (D10 後)' },
+                    { time: '22:00', act: '托運行李截止', color: 'text-red-500 font-black' }
+                ]},
+                { d: '5/18', t: 'Day 5: 離船', items: [
+                    { time: '07:15', act: '禮賓集合', loc: 'D Lounge (D7)' },
+                    { time: '08:00', act: '快速通道下船' }
+                ]}
+            ];
+
+            const menuRootTabs = [
+                { id: 'nav', label: '⚓ 航海家' },
+                { id: 'pixar', label: '🌿 皮克斯' },
+                { id: 'animator', label: '🎨 動畫家' },
+                { id: 'night4', label: '🎇 星空夜' },
+                { id: 'sulley', label: '🚪 怪獸餐廳' },
+                { id: 'palo', label: '🍷 Palo' },
+                { id: 'bev', label: '🍸 酒吧' },
+            ];
+
+            const menuSubTabs = {
+                sulley: [
+                    { id: 'sulley-steak', label: '🥩 牛排館' },
+                    { id: 'sulley-omakase', label: '🍣 無菜單' },
+                    { id: 'sulley-teppan', label: '🔥 鐵板燒' },
+                    { id: 'sulley-sushi', label: '🐟 壽司' },
+                ],
+                palo: [
+                    { id: 'palo-brunch', label: '☀️ Brunch' },
+                    { id: 'palo-dinner', label: '🌙 Dinner' },
+                ],
+            };
+
+            const categoryLabels = {
+                bread: '麵包',
+                appetizers: '前菜',
+                entrees: '主餐',
+                desserts: '甜點',
+                kids: '兒童餐',
+                sharing: '分享盤',
+                sides: '配菜',
+                sushi: '壽司與生魚片',
+                handrolls: '手卷',
+                asian: '亞洲熱食',
+                eggs: '蛋料理',
+                pastries: '烘焙',
+                drinks: '飲品',
+                cocktails: '調酒',
+                'non-alcoholic': '無酒精',
+                coffee: '咖啡',
+                tea: '茶飲',
+                'milk-tea': '奶茶',
+                'set-appetizers': '套餐前菜',
+                'set-entrees': '套餐主餐',
+                'set-desserts': '套餐甜點',
+                pizza: '披薩',
+                pasta: '義大利麵',
+                meats: '肉類主菜',
+            };
+
+            const menuData = [
+                // TODO 順序進度
+                // 1. nav + pixar + night4 + animator (completed)
+                // 2. sulley-* (completed)
+                // 3. palo-* (completed)
+                // 4. bev-* (completed)
+
+                // ⚓ NAV
+                { restaurant: 'nav', category: 'bread', name_zh: '魔法烘焙綜合麵包', name_en: 'Mini Herb Brioche · Soft White · Whole Wheat Rolls', desc: '' },
+                { restaurant: 'nav', category: 'appetizers', name_zh: '森林精靈的香煎舞菇', name_en: 'Sautéed Maitake Mushrooms', desc: '佐芝麻朝鮮薊泥、皇宮菜（落葵）、鮮菇高湯與柑橘油醋', tag: 'vegetarian' },
+                { restaurant: 'nav', category: 'appetizers', name_zh: '仙女谷的清脆西洋梨沙拉', name_en: 'Fennel, Bartlett Pear, Tatsoi Salad', desc: '新鮮茴香、塔菇菜、曼徹格乾酪、蜜蠟核桃與陳年雪莉酒醋', tag: 'vegetarian' },
+                { restaurant: 'nav', category: 'appetizers', name_zh: '航海家的寶藏黃鰭鮪魚刺身', name_en: 'Porcini-spiced Ahi Tuna Sashimi', desc: '牛肝菌風味鮪魚、醃漬蓮藕、蠔菇、黑芝麻脆片佐芥末柚子美乃滋', tag: 'seafood' },
+                { restaurant: 'nav', category: 'appetizers', name_zh: '皇室御用油封鴨肉派', name_en: 'Duck Confit Pastilla', desc: '融合椰棗、杏桃、生薑、紅甜椒、番紅花與黑覆盆子果醬', tag: 'meat' },
+                { restaurant: 'nav', category: 'appetizers', name_zh: '奇幻國度泰式鮮蝦南瓜濃湯', name_en: 'Thai Shrimp Pumpkin Soup', desc: '搭配溫潤椰奶、香菜與清新香茅', tag: 'seafood' },
+                { restaurant: 'nav', category: 'appetizers', name_zh: '魔法花園爐烤番茄濃湯', name_en: 'Roasted Roma Tomato Soup', desc: '爐烤羅馬番茄濃湯佐酸種紫羅勒麵包脆片', tag: 'vegetarian' },
+                { restaurant: 'nav', category: 'entrees', name_zh: '探險家泰式水上船麵', name_en: 'Thai Boat Noodles', desc: '米線、鮮蝦、嫩雞肉、羅望子紅辣椒醬、醃紅蔥頭、雞蛋、烤花生與新鮮萊姆', tag: 'seafood-meat' },
+                { restaurant: 'nav', category: 'entrees', name_zh: '秋日童話奶油南瓜燉飯', name_en: 'Roasted Butternut Squash Risotto', desc: '爐烤南瓜、鼠尾草、迷你韭蔥、新鮮菠菜與烤榛果', tag: 'vegetarian' },
+                { restaurant: 'nav', category: 'entrees', name_zh: '阿格拉巴香料烤雞咖哩', name_en: 'Chicken Tikka Masala', desc: '印度坦都里烤雞、孜然飯、印度小黃瓜番茄沙拉、薄荷優格醬與印度煎餅', tag: 'meat' },
+                { restaurant: 'nav', category: 'entrees', name_zh: '龍宮秘製味噌海鱸魚', name_en: 'Miso-glazed Chilean Sea Bass', desc: '味噌釉燒智利海鱸魚、青江菜、壽司米與韓式大白菜泡菜', tag: 'seafood' },
+                { restaurant: 'nav', category: 'entrees', name_zh: '綠洲幻影摩洛哥香料烤南瓜', name_en: 'Moroccan-spiced Roasted Kabocha', desc: '摩洛哥茄子番茄沙拉、鷹嘴豆、肉桂糙米、北非小米、香菜、口袋餅與哈里薩辣味優格', tag: 'vegan' },
+                { restaurant: 'nav', category: 'entrees', name_zh: '好萊塢紅毯極品黑胡椒菲力', name_en: 'Peppered Filet Mignon', desc: '黑胡椒菲力牛排、奶油長四季豆、培根、手壓馬鈴薯餅佐粉紅胡椒咖啡歐蕾醬汁', tag: 'meat-beef' },
+                { restaurant: 'nav', category: 'entrees', name_zh: '魔法異國慢燉蔬菜咖哩', name_en: 'Pav Bhaji Slow-cooked Vegetable Curry', desc: '薑黃、生薑、孜然、香菜、檸檬燉煮蔬菜，佐孜然飯、薄荷優格醬與帕夫小麵包', tag: 'vegetarian' },
+                { restaurant: 'nav', category: 'entrees', name_zh: '小美人魚的深海龍蝦沙拉', name_en: 'Lobster Salad', desc: '奶油萵苣、苦苣、酪梨、豆薯、芹菜、紫馬鈴薯、酥炸青香蕉片、黑豆、小番茄、香菜與萊姆', tag: 'seafood' },
+                { restaurant: 'nav', category: 'entrees', name_zh: '神鳥秘製海南雞飯', name_en: 'Hainanese Chicken, Rice', desc: '經典海南雞佐甜黑醬油、薑蒜醬與秘製辣椒醬', tag: 'meat' },
+                { restaurant: 'nav', category: 'entrees', name_zh: '叢林奇航香蕉葉蒸鮭魚', name_en: 'Banana Leaf Steamed Filet of Salmon', desc: '清蒸鮭魚菲力佐白飯與青江菜', tag: 'seafood' },
+                { restaurant: 'nav', category: 'desserts', name_zh: '奇幻黑森林熔岩巧克力蛋糕', name_en: 'Chocolate Molten Cake', desc: '雙重巧克力醬、牛奶巧克力脆土、抹茶冰淇淋', price: '$15.00', tag: 'dessert' },
+                { restaurant: 'nav', category: 'desserts', name_zh: '夢幻紫薯焦糖烤布蕾', name_en: 'Ube Creme Brulee', desc: '搭配香脆椰香義大利脆餅', tag: 'dessert' },
+                { restaurant: 'nav', category: 'desserts', name_zh: '仙女教母的藍莓檸檬巴伐利亞', name_en: 'Blueberry-Lemon Bavarian Cream', desc: '藍莓果盤、檸檬糖塊、新鮮莓果與覆盆子蛋白霜脆餅', tag: 'dessert' },
+                { restaurant: 'nav', category: 'desserts', name_zh: '熱帶島嶼椰香西米露', name_en: 'Coconut-Tapioca Pudding', desc: '搭配芒果草莓薄荷莎莎醬', tag: 'dessert-vegan' },
+                { restaurant: 'nav', category: 'desserts', name_zh: '米妮的最愛：草莓蛋糕聖代', name_en: 'Strawberry Shortcake Sundae', desc: '香草冰淇淋、草莓果盤與輕盈鮮奶油', tag: 'dessert' },
+                { restaurant: 'nav', category: 'kids', name_zh: '溫暖擁抱番茄濃湯', name_en: 'Roasted Creamy Tomato Soup', desc: '濃郁爐烤番茄湯搭香脆起司扭結麵包', tag: 'kids' },
+                { restaurant: 'nav', category: 'kids', name_zh: '歡樂農場玉米毛豆沙拉', name_en: 'Sweet Corn and Edamame Salad', desc: '新鮮綜合生菜、菠菜、甜玉米粒、毛豆，搭配您喜愛的沙拉醬', tag: 'kids' },
+                { restaurant: 'nav', category: 'kids', name_zh: '媽媽的溫馨雞肉派', name_en: 'Chicken Pot Pie', desc: '內含紅蘿蔔、馬鈴薯、芹菜與青豆', tag: 'kids' },
+                { restaurant: 'nav', category: 'kids', name_zh: '小飛俠金黃酥脆鱈魚', name_en: 'Panko Crusted Cod', desc: '日式麵包粉烤鱈魚搭配美乃滋塔塔醬', tag: 'kids' },
+                { restaurant: 'nav', category: 'kids', name_zh: '玩具總動員BBQ烤雞披薩', name_en: 'Barbecue Chicken Pizza', desc: '', tag: 'kids' },
+                { restaurant: 'nav', category: 'kids', name_zh: '米奇迷你起司漢堡', name_en: 'Mini Cheeseburger', desc: '搭配鬆軟布里歐麵包', tag: 'kids' },
+                { restaurant: 'nav', category: 'kids', name_zh: '勇士爐烤火雞胸肉', name_en: 'Roasted Turkey Breast', desc: '搭配藜麥、地瓜、爐烤紅蘿蔔條與新鮮蘋果片', tag: 'kids-disney' },
+                { restaurant: 'nav', category: 'kids', name_zh: '旋轉木馬全麥螺旋麵', name_en: 'Whole Wheat Spiral Pasta', desc: '搭配番茄醬汁、奶油南瓜、櫛瓜與水果沙拉', tag: 'kids-disney' },
+                { restaurant: 'nav', category: 'kids', name_zh: '好萊塢大秀杯子蛋糕', name_en: 'Showtime Cupcake', desc: '香草杯子蛋糕、焦糖奶油霜與糖霜爆米花', tag: 'kids' },
+
+                // 🌿 PIXAR
+                { restaurant: 'pixar', category: 'bread', name_zh: '魔法烘焙綜合麵包', name_en: 'Matcha Marble · Soft White · Whole Wheat Rolls', desc: '' },
+                { restaurant: 'pixar', category: 'appetizers', name_zh: '盛夏微風青木瓜沙拉', name_en: 'Green Papaya Salad', desc: '長豆、辣椒、小番茄，佐棕櫚糖萊姆醬', tag: 'vegetarian' },
+                { restaurant: 'pixar', category: 'appetizers', name_zh: '熱帶島嶼夏日生春捲', name_en: 'Summer Roll', desc: '鮮蝦、冬粉、香菜、黃瓜、羅勒、奶油萵苣、烤芝麻，佐特製海鮮醬', tag: 'seafood' },
+                { restaurant: 'pixar', category: 'appetizers', name_zh: '小米主廚的松露牛肝菌福袋麵', name_en: 'Porcini Sacchetti', desc: '牛肝菌義大利餃、瑞士與芳提娜乾酪、大蒜、百里香，佐普羅賽克氣泡酒醬汁', tag: 'vegetarian' },
+                { restaurant: 'pixar', category: 'appetizers', name_zh: '義大利風情風乾牛肉薄片', name_en: 'Sliced Bresaola', desc: '搭配傳家寶番茄與花椒風味羊奶起司', tag: 'meat' },
+                { restaurant: 'pixar', category: 'appetizers', name_zh: '綠野仙蹤寶石生菜沙拉', name_en: 'Baby Gem Salad', desc: '小寶石萵苣、櫻桃番茄、烤玉米、萊姆、科提加起司，佐孜然酪梨奶油醬', tag: 'vegetarian' },
+                { restaurant: 'pixar', category: 'appetizers', name_zh: '東方神龍酸辣湯', name_en: 'Hot Sour Soup', desc: '豆腐、紅蘿蔔、香菇、竹筍，點綴鎮江香醋', tag: 'vegetarian' },
+                { restaurant: 'pixar', category: 'appetizers', name_zh: '巴黎街頭法式洋蔥湯', name_en: 'French Onion Soup', desc: '搭配香濃格呂耶爾起司烤麵包塊', tag: 'vegetarian' },
+                { restaurant: 'pixar', category: 'entrees', name_zh: '蘇丹御用沙希庫瑪雞肉咖哩', name_en: 'Chicken Shahi Korma', desc: '', tag: 'meat' },
+                { restaurant: 'pixar', category: 'entrees', name_zh: '羅馬假期雙子星肉醬麵', name_en: 'Gemelli Bolognese', desc: '', tag: 'meat' },
+                { restaurant: 'pixar', category: 'entrees', name_zh: '魔法金絲哈魯米起司派', name_en: 'Sesame Halloumi Filo Parcels', desc: '', tag: 'vegetarian' },
+                { restaurant: 'pixar', category: 'entrees', name_zh: '海底總動員嫩煎鮭魚菲力', name_en: 'Seared Verlasso Salmon Fillet', desc: '', tag: 'seafood' },
+                { restaurant: 'pixar', category: 'entrees', name_zh: '超人特攻隊爐烤肋眼牛排', name_en: 'Roasted Prime Rib of Beef', desc: '', tag: 'meat-beef' },
+                { restaurant: 'pixar', category: 'entrees', name_zh: '茉莉公主的泥爐烤茄子泥', name_en: 'Baingan Bharta', desc: '', tag: 'vegan' },
+                { restaurant: 'pixar', category: 'entrees', name_zh: '探險家熱帶芒果雞肉沙拉', name_en: 'Mango-Chicken Salad', desc: '', tag: 'meat' },
+                { restaurant: 'pixar', category: 'entrees', name_zh: '神鳥秘製海南雞飯', name_en: 'Hainanese Chicken Rice', desc: '', tag: 'meat' },
+                { restaurant: 'pixar', category: 'entrees', name_zh: '叢林奇航香蕉葉蒸鮭魚', name_en: 'Banana Leaf Steamed Fillet of Salmon', desc: '', tag: 'seafood' },
+                { restaurant: 'pixar', category: 'entrees', name_zh: '胡迪警長的炭烤穀飼沙朗牛排', name_en: 'Grilled Grain-fed Sirloin Steak', desc: '', tag: 'meat-beef' },
+                { restaurant: 'pixar', category: 'desserts', name_zh: '夢幻白巧克力麵包布丁', name_en: 'White Chocolate Bread Pudding', desc: '奶油糖醬、杏仁佛羅倫汀脆餅、香草冰淇淋', tag: 'dessert' },
+                { restaurant: 'pixar', category: 'desserts', name_zh: '陽光柑橘杏仁蛋糕', name_en: 'Orange Almond Cake', desc: '搭配芭樂果膠與荔枝優格奶霜', tag: 'dessert' },
+                { restaurant: 'pixar', category: 'desserts', name_zh: '夏日微風檸檬泰式羅勒塔', name_en: 'Lemon Thai Basil Tart', desc: '檸檬凝乳、泰式羅勒鮮奶油甘納許與覆盆子醬', tag: 'dessert' },
+                { restaurant: 'pixar', category: 'desserts', name_zh: '海洋奇緣椰香米布丁', name_en: 'Coconut Rice Pudding', desc: '', tag: 'no-sugar' },
+                { restaurant: 'pixar', category: 'desserts', name_zh: '卡爾爺爺的歡樂巧克力聖代', name_en: 'Chocolate Fudge Sundae', desc: '香草冰淇淋、胡桃布朗尼碎塊、濃郁巧克力醬與新鮮鮮奶油', tag: 'dessert' },
+                { restaurant: 'pixar', category: 'kids', name_zh: '哈茱蒂的香甜胡蘿蔔湯', name_en: 'Sweet Carrot Soup', desc: '搭配香酥奶油烤麵包塊', tag: 'kids' },
+                { restaurant: 'pixar', category: 'kids', name_zh: '蟲蟲危機田園沙拉', name_en: 'Garden Salad', desc: '新鮮綜合生菜、胡蘿蔔絲、黃瓜片', tag: 'kids' },
+                { restaurant: 'pixar', category: 'kids', name_zh: '海陸大進擊', name_en: 'Surf and Turf', desc: '沙朗牛排與炭烤鮮蝦', tag: 'kids' },
+                { restaurant: 'pixar', category: 'kids', name_zh: '青春養成記日式雞肉煎餃', name_en: 'Chicken Potstickers', desc: '搭配照燒芝麻醬', tag: 'kids' },
+                { restaurant: 'pixar', category: 'kids', name_zh: '彈簧狗迷你起司漢堡', name_en: 'Mini Cheeseburger', desc: '搭配鬆軟布里歐麵包', tag: 'kids' },
+                { restaurant: 'pixar', category: 'kids', name_zh: '羅賓漢火雞肉醬麵', name_en: 'Turkey Bolognese', desc: '搭配義大利寬麵、蒸胡蘿蔔與新鮮蘋果片', tag: 'kids-disney' },
+                { restaurant: 'pixar', category: 'kids', name_zh: '魔法滿屋全麥筆管麵', name_en: 'Whole Wheat Penne Pasta', desc: '搭配番茄醬汁、莫札瑞拉起司、青花菜', tag: 'kids-disney' },
+                { restaurant: 'pixar', category: 'kids', name_zh: '翠絲的草莓起司蛋糕', name_en: 'Strawberry Cheesecake', desc: '香草起司蛋糕、草莓果盤與輕盈鮮奶油', tag: 'kids' },
+
+                // 🎇 NIGHT4
+                { restaurant: 'night4', category: 'bread', name_zh: '魔法烘焙綜合麵包', name_en: 'Garlic · Soft White · Whole Wheat Rolls', desc: '' },
+                { restaurant: 'night4', category: 'appetizers', name_zh: '翠玉精靈香煎蔬菜餃', name_en: 'Seared Vegetable Dumplings', desc: '搭配青江菜絲、毛豆與特調黑醋醬油', tag: 'vegetarian' },
+                { restaurant: 'night4', category: 'appetizers', name_zh: '亞特蘭提斯秘製海灣蝦', name_en: 'Pickled Gulf Shrimp', desc: '佐薩摩蜜橘沙拉、油封紅洋蔥、鮮嫩菠菜葉與皺葉萵苣', tag: 'seafood' },
+                { restaurant: 'night4', category: 'appetizers', name_zh: '愛麗絲的秘密花園黃瓜捲', name_en: 'Cucumber Garden Roll', desc: '鮮脆紅蘿蔔、甜椒、櫛瓜、香菜佐白醬油檸檬醬汁', tag: 'vegetarian' },
+                { restaurant: 'night4', category: 'appetizers', name_zh: '辛巴達的黃金蔬菜咖哩餃', name_en: 'Vegetable Samosa', desc: '融合馬鈴薯、青豆、大蒜、孜然、生薑、羅望子與薄荷酸辣醬', tag: 'vegetarian' },
+                { restaurant: 'night4', category: 'appetizers', name_zh: '海洋奇緣蒔蘿梅爾檸檬醃鮮蝦', name_en: 'Dill and Meyer Lemon-marinated Shrimp', desc: '明尼奧拉橘、英國黃瓜、法式酸奶油與鮭魚子', tag: 'seafood' },
+                { restaurant: 'night4', category: 'appetizers', name_zh: '夏日綠洲西瓜蜜橘白蘿蔔沙拉', name_en: 'Watermelon, Orange, Daikon Radish Salad', desc: '苦苣、酪梨佐萊姆德麥拉拉蔗糖醬汁', tag: 'vegetarian' },
+                { restaurant: 'night4', category: 'appetizers', name_zh: '熱帶叢林冰鎮芒果濃湯', name_en: 'Chilled Mango Soup', desc: '點綴百香果、生薑與椰奶', tag: 'vegetarian' },
+                { restaurant: 'night4', category: 'appetizers', name_zh: '兔子雷哥的最愛：胡蘿蔔香菜濃湯', name_en: 'Carrot and Cilantro Soup', desc: '搭配香甜香蕉麵包脆丁', tag: 'vegetarian' },
+                { restaurant: 'night4', category: 'entrees', name_zh: '木蘭家鄉味港式雲吞麵', name_en: 'Hong Kong Wonton', desc: '雞肉雲吞、濃郁雞骨高湯、蜜汁叉燒、雞蛋麵與季節時蔬', tag: 'pork' },
+                { restaurant: 'night4', category: 'entrees', name_zh: '幸運貓滿腹酥炸雞胸肉', name_en: 'Chicken Breast Katsu', desc: '搭配白飯、日式咖哩與日式豬排醬', tag: 'meat' },
+                { restaurant: 'night4', category: 'entrees', name_zh: '阿格拉巴宮廷瑪萊鮮蝦咖哩', name_en: 'Chungdi Malai Shrimp Curry', desc: '薑黃、椰香葛拉姆馬薩拉香料，佐印度煎餅、印度香米與萊姆', tag: 'seafood' },
+                { restaurant: 'night4', category: 'entrees', name_zh: '禪意花園香菇豆腐烏龍麵', name_en: 'Shittake and Tofu Udon', desc: '烏龍麵、迷你青江菜、青蔥、昆布、蠔菇與味噌香菇高湯', tag: 'vegetarian' },
+                { restaurant: 'night4', category: 'entrees', name_zh: '尋夢環遊記碳烤鮪魚排', name_en: 'Grilled Tuna Steak', desc: '黑豆泥、新鮮乾酪、酥脆木薯與烤玉米墨西哥辣椒莎莎醬', tag: 'seafood' },
+                { restaurant: 'night4', category: 'entrees', name_zh: '龍之焰薑汁照燒安格斯牛菲力', name_en: 'Ginger-Teriyaki Dusted Angus Beef Tenderloin', desc: '芥末馬鈴薯泥、青江菜與羅望子燒烤濃縮醬汁', tag: 'meat-beef' },
+                { restaurant: 'night4', category: 'entrees', name_zh: '寶萊塢狂歡乳酪蔬菜咖哩', name_en: 'Paneer Jalfrezi', desc: '印度茅屋起司、甜椒、番茄、綠辣椒、萊姆葉、香菜，佐印度香米、印度煎餅與薄荷優格醬', tag: 'vegetarian' },
+                { restaurant: 'night4', category: 'entrees', name_zh: '神燈精靈的羊肉沙威瑪沙拉', name_en: 'Lamb Shawarma Salad', desc: '慢烤孜然手撕羊腿肉、洋蔥、美生菜、藤蔓番茄、醃紫高麗菜、烤鷹嘴豆、檸檬優格醬與口袋餅', tag: 'meat' },
+                { restaurant: 'night4', category: 'entrees', name_zh: '神鳥秘製海南雞飯', name_en: 'Hainanese Chicken, Rice', desc: '經典海南雞佐甜黑醬油、薑蒜醬與秘製辣椒醬', tag: 'meat' },
+                { restaurant: 'night4', category: 'entrees', name_zh: '叢林奇航香蕉葉蒸鮭魚', name_en: 'Banana Leaf Steamed Fillet of Salmon', desc: '清蒸鮭魚菲力佐白飯與青江菜', tag: 'seafood' },
+                { restaurant: 'night4', category: 'desserts', name_zh: '盛夏陽光芒果百香果慕斯', name_en: 'Mango-Passion Fruit Creme', desc: '芒果果盤、椰香馬卡龍底與芭樂法式水果軟糖', tag: 'dessert' },
+                { restaurant: 'night4', category: 'desserts', name_zh: '泰山的叢林香蕉太妃糖暖布丁', name_en: 'Warm Banana Sticky Toffee Pudding', desc: '佐海鹽焦糖醬與香草冰淇淋', tag: 'dessert' },
+                { restaurant: 'night4', category: 'desserts', name_zh: '奇奇蒂蒂的焦糖夏威夷豆起司塔', name_en: 'Caramel-Macadamia Nut Cheesecake Tart', desc: '牛奶巧克力慕斯與焦糖甘納許', tag: 'dessert' },
+                { restaurant: 'night4', category: 'desserts', name_zh: '船長專屬星空聖代', name_en: 'The Captain\'s Table Sundae', desc: '薄荷巧克力碎片冰淇淋、濃郁巧克力醬、鮮奶油與酥脆蛋白霜', tag: 'dessert' },
+                { restaurant: 'night4', category: 'desserts', name_zh: '睡美人覆盆子烤布蕾', name_en: 'Raspberry Creme Brulee', desc: '', tag: 'no-sugar' },
+                { restaurant: 'night4', category: 'desserts', name_zh: '黑魔女的魔鏡巧克力起司蛋糕', name_en: 'Chocolate Cheesecake', desc: '巧克力戚風蛋糕與巧克力鏡面糖霜', tag: 'dessert' },
+
+                // 🎨 ANIMATOR
+                { restaurant: 'animator', category: 'bread', name_zh: '魔法烘焙綜合麵包', name_en: 'Spring Onion Cheese · Soft White · Whole Wheat Rolls', desc: '' },
+                { restaurant: 'animator', category: 'appetizers', name_zh: '尋龍使者韓式烤牛肉刈包', name_en: 'Korean Barbecue Beef Steamed Bao', desc: '搭配醃黃瓜與韓式苦椒海鮮醬', tag: 'meat' },
+                { restaurant: 'animator', category: 'appetizers', name_zh: '熊貓村清爽米線沙拉', name_en: 'Rice Noodle Salad', desc: '白蘿蔔、黃瓜、紅蘿蔔、荷蘭豆、辣椒、香菜、甜洋蔥，佐米醋與龍舌蘭萊姆醬汁', tag: 'vegetarian' },
+                { restaurant: 'animator', category: 'appetizers', name_zh: '神龍秘製壽司捲', name_en: 'Dragon Roll', desc: '辣味鮪魚捲、蒲燒淡水鰻魚、酪梨與特製鰻魚醬', tag: 'seafood' },
+                { restaurant: 'animator', category: 'appetizers', name_zh: '叢林探險沙嗲烤雞串', name_en: 'Chicken Satay', desc: '搭配椰香飯、黃瓜、印尼甜醬油與烤花生沾醬', tag: 'meat' },
+                { restaurant: 'animator', category: 'appetizers', name_zh: '奇幻綠洲棕櫚心沙拉', name_en: 'Hearts of Palm', desc: '香菜與萊姆、黃瓜、紫洋蔥、甜椒、地瓜、香料黃甜椒、柑橘醬汁，並點綴歡樂爆米花', tag: 'vegetarian' },
+                { restaurant: 'animator', category: 'appetizers', name_zh: '奧林帕斯經典凱薩沙拉', name_en: 'Romaine Heart Caesar Salad', desc: '蘿蔓之心、櫻桃番茄、帕馬森乾酪、烤巧巴達麵包丁與凱薩醬', tag: 'vegetarian' },
+                { restaurant: 'animator', category: 'appetizers', name_zh: '木蘭家傳鮮雞雲吞湯', name_en: 'Wonton Soup', desc: '軟嫩雞肉雲吞、濃郁雞高湯、生薑、大白菜與青蔥', tag: 'meat' },
+                { restaurant: 'animator', category: 'appetizers', name_zh: '史迪奇的夏威夷玉米芋頭濃湯', name_en: 'Molokai Corn and Taro Chowder', desc: '鮮甜黃玉米粒與青蔥段', tag: 'vegetarian' },
+                { restaurant: 'animator', category: 'entrees', name_zh: '獅城尋寶椰香叻沙', name_en: 'Laksa Lemak', desc: '鮮蝦、豆卜（油豆腐）、叻沙葉與些許辣椒', tag: 'seafood' },
+                { restaurant: 'animator', category: 'entrees', name_zh: '茉莉公主的奶油燉雞', name_en: 'Murgh Makhani Butter Chicken', desc: '葛拉姆馬薩拉香料、香菜，佐茉莉香米、薄荷優格醬與印度煎餅', tag: 'meat' },
+                { restaurant: 'animator', category: 'entrees', name_zh: '川頓國王的香煎太平洋干貝', name_en: 'Pan-seared Pacific Scallops', desc: '搭配松露洋菇燉飯、烤榛果與芝麻葉檸檬油點綴', tag: 'seafood' },
+                { restaurant: 'animator', category: 'entrees', name_zh: '莫娜的島嶼風味豆腐波奇碗', name_en: 'Tofu Poke', desc: '豆腐、無麩質醬油、黃瓜、紫高麗菜、糙米、芝麻、酪梨、香菜佐芥末檸檬醬汁', tag: 'vegan' },
+                { restaurant: 'animator', category: 'entrees', name_zh: '水手香煎地中海鱸魚排', name_en: 'Pan-seared Branzino Fillet', desc: '茴香、白腰豆、切里尼奧拉油橄欖、甜椒、育空馬鈴薯與拉曼查番紅花高湯', tag: 'seafood' },
+                { restaurant: 'animator', category: 'entrees', name_zh: '野獸莊園慢烤迷迭香牛菲力', name_en: 'Carved Slow-roasted Rosemary Beef Tenderloin', desc: '搭配第戎蜂蜜烤防風草泥、奶油四季豆與卡本內百里香肉汁', tag: 'meat-beef' },
+                { restaurant: 'animator', category: 'entrees', name_zh: '森林王子香料蔬菜庫瑪咖哩', name_en: 'Chettinad Vegetable Korma', desc: '小豆蔻、肉桂、辣椒、腰果、椰漿，佐茉莉香米、薄荷優格醬與印度煎餅', tag: 'vegan' },
+                { restaurant: 'animator', category: 'entrees', name_zh: '唐老鴨也瘋狂：蜜汁醬烤鴨肉木瓜沙拉', name_en: 'Honey Soy-roasted Duck and Papaya Salad', desc: '白蘿蔔、白菜、甜椒、紫紅洋蔥、青蔥、石榴籽、烤芝麻佐味噌薑汁醬', tag: 'meat' },
+                { restaurant: 'animator', category: 'entrees', name_zh: '神鳥秘製海南雞飯', name_en: 'Hainanese Chicken, Rice', desc: '經典海南雞佐甜黑醬油、薑蒜醬與秘製辣椒醬', tag: 'meat' },
+                { restaurant: 'animator', category: 'entrees', name_zh: '叢林奇航香蕉葉蒸鮭魚', name_en: 'Banana Leaf Steamed Filet of Salmon', desc: '清蒸鮭魚菲力佐白飯與青江菜', tag: 'seafood' },
+                { restaurant: 'animator', category: 'desserts', name_zh: '魔法森林杏仁洋梨塔', name_en: 'Almond-Pear Tart', desc: '糖水燉洋梨、杏仁奶油餡、抹茶脆土與香草冰淇淋', tag: 'dessert' },
+                { restaurant: 'animator', category: 'desserts', name_zh: '料理鼠王的焦糖海鹽起司蛋糕', name_en: 'Salted Caramel Cheesecake', desc: '香草起司蛋糕、焦糖牛奶糖霜與花生醬米香脆餅', tag: 'dessert' },
+                { restaurant: 'animator', category: 'desserts', name_zh: '夢幻極致巧克力三重奏', name_en: 'Chocolate Decadence', desc: '苦甜巧克力慕斯、松露巧克力慕斯與榛果戚風蛋糕', tag: 'dessert' },
+                { restaurant: 'animator', category: 'desserts', name_zh: '仙女教母卡布奇諾慕斯', name_en: 'Cappuccino Mousse', desc: '卡布奇諾慕斯與覆盆子果泥', tag: 'no-sugar' },
+                { restaurant: 'animator', category: 'desserts', name_zh: '米奇巧酥冰淇淋聖代', name_en: "Cookies 'n Cream Sundae", desc: '巧酥冰淇淋、巧克力威化餅乾、巧克力糖漿與輕盈鮮奶油', tag: 'dessert' },
+                { restaurant: 'animator', category: 'kids', name_zh: '溫暖擁抱奶油馬鈴薯濃湯', name_en: 'Creamed Potato Soup', desc: '搭配紅蘿蔔與芹菜', tag: 'kids' },
+                { restaurant: 'animator', category: 'kids', name_zh: '奇妙花園生菜沙拉', name_en: 'Garden Salad', desc: '新鮮綜合生菜、紅蘿蔔絲、黃瓜片', tag: 'kids' },
+                { restaurant: 'animator', category: 'kids', name_zh: '大英雄天團日式炸雞排', name_en: 'Chicken Katsu', desc: '搭配黃瓜條、椰香飯與日式豬排醬', tag: 'kids' },
+                { restaurant: 'animator', category: 'kids', name_zh: '木須龍金黃蔬菜春捲', name_en: 'Crisp Vegetable Spring Rolls', desc: '搭配海鮮醬沾醬', tag: 'kids' },
+                { restaurant: 'animator', category: 'kids', name_zh: '史迪奇夏威夷BBQ烤雞披薩', name_en: 'Hawaiian Barbecue Chicken Pizza', desc: '', tag: 'kids' },
+                { restaurant: 'animator', category: 'kids', name_zh: '米奇迷你起司漢堡', name_en: 'Mini Cheeseburger', desc: '搭配鬆軟布里歐麵包', tag: 'kids' },
+                { restaurant: 'animator', category: 'kids', name_zh: '活力滿點香烤雞肉', name_en: 'Grilled Chicken', desc: '搭配薑蔥飯、清蒸迷你青江菜與芒果西米露', tag: 'kids-disney' },
+                { restaurant: 'animator', category: 'kids', name_zh: '小姐與流氓全麥義大利麵', name_en: 'Whole Wheat Spaghetti Pasta', desc: '搭配巨無霸火雞肉丸、義大利海員番茄醬、花園沙拉與新鮮蘋果片', tag: 'kids-disney' },
+                { restaurant: 'animator', category: 'kids', name_zh: '歡樂馬戲團巧克力圓頂', name_en: 'Chocolate Dome', desc: '巧克力慕斯、草莓果盤與巧克力布朗尼', tag: 'kids' },
+
+                // 🚪 SULLEY-STEAK
+                { restaurant: 'sulley-steak', category: 'appetizers', name_zh: '大眼仔的驚喜車海老', name_en: 'Karuma Ebi', desc: '酥炸南瓜、頂級老虎蝦佐松露蒜味美乃滋', price: '$25.00', tag: 'seafood' },
+                { restaurant: 'sulley-steak', category: 'appetizers', name_zh: '怪獸大學頂級和牛韃靼', name_en: 'Wagyu Tartare', desc: '生和牛韃靼搭配日式最中餅、煙燻蛋與青蘋果', price: '$35.00', tag: 'meat-beef' },
+                { restaurant: 'sulley-steak', category: 'appetizers', name_zh: '深海極品黑鮪魚大腹', name_en: 'O-Toro', desc: '黑鮪魚大腹肉、新鮮海膽、蔥花與日式烤飯糰', price: '$39.00', tag: 'seafood' },
+                { restaurant: 'sulley-steak', category: 'appetizers', name_zh: '雪怪的極地鱈場蟹塔', name_en: 'Tarabagani', desc: '帝王蟹風味塔、哈密瓜、柚子寒天與魚子醬', price: '$30.00', tag: 'seafood' },
+                { restaurant: 'sulley-steak', category: 'appetizers', name_zh: '驚嚇專員伊勢龍蝦土瓶蒸', name_en: 'Ise Ebi Dobin Mushi', desc: '錦繡龍蝦、香菇與濃郁鰹魚高湯，以傳統日式土瓶精心呈現', price: '$35.00', tag: 'seafood' },
+                { restaurant: 'sulley-steak', category: 'sharing', name_zh: '毛怪的翠綠羽衣甘藍', name_en: 'Kale', desc: '羽衣甘藍、豌豆泥、松子佐爆米花柚子奇亞籽油醋', price: '$15.00', tag: 'vegetarian' },
+                { restaurant: 'sulley-steak', category: 'sharing', name_zh: '兵工廠碳烤兵庫縣生蠔', name_en: 'Kaki', desc: '碳烤兵庫縣生蠔佐蒲燒奶油釉燒與香脆蒜片', price: '$35.00', tag: 'seafood' },
+                { restaurant: 'sulley-steak', category: 'sharing', name_zh: '任意門秘境真鯛刺身', name_en: 'Tai-Kuro-Toryufu', desc: '新鮮真鯛生魚片、鹽昆布佐香草松露油醋', price: '$35.00', tag: 'seafood' },
+                { restaurant: 'sulley-steak', category: 'entrees', name_zh: '歡笑收集瓶秘製銀鱈', name_en: 'Gindara', desc: '鮮嫩黑鱈魚、香菜醬油長蔥與菠菜豆腐', price: '$45.00', tag: 'seafood' },
+                { restaurant: 'sulley-steak', category: 'entrees', name_zh: '怪獸城市季節鮮魚', name_en: 'Shun No Sakana', desc: '季節特選漁獲、西京味噌、芹菜根泥與清酒乳沫', price: '$65.00', tag: 'seafood' },
+                { restaurant: 'sulley-steak', category: 'entrees', name_zh: '絨毛雪怪綿羊豬頸肉', name_en: 'Mangalica Butaniku', desc: '壽喜燒醬燒綿羊豬頸肉、蠶豆與焦糖洋蔥泥', price: '$45.00', tag: 'pork' },
+                { restaurant: 'sulley-steak', category: 'wagyu', name_zh: 'A5 鹿兒島黑毛和牛紐約客', name_en: 'A5 Kuroge Satsuma Striploin', desc: '霜降油花評級 12+', price: '$108.00' },
+                { restaurant: 'sulley-steak', category: 'wagyu', name_zh: 'A5 鹿兒島黑毛和牛肋眼', name_en: 'A5 Kuroge Satsuma Ribeye', desc: '霜降油花評級 12+', price: '$98.00' },
+                { restaurant: 'sulley-steak', category: 'wagyu', name_zh: '霜降純種和牛紐約客', name_en: 'Shimo Fullblood Striploin', desc: '霜降油花評級 7+', price: '$70.00' },
+                { restaurant: 'sulley-steak', category: 'wagyu', name_zh: '霜降純種和牛菲力', name_en: 'Shimo Fullblood Tenderloin', desc: '霜降油花評級 7+', price: '$75.00' },
+                { restaurant: 'sulley-steak', category: 'angus', name_zh: '澳洲純黑安格斯紐約客', name_en: 'Pure Black Australian Striploin', desc: '霜降油花評級 5+', price: '$45.00' },
+                { restaurant: 'sulley-steak', category: 'angus', name_zh: '澳洲純黑安格斯肋眼', name_en: 'Pure Black Australian Ribeye', desc: '霜降油花評級 5+', price: '$57.00' },
+                { restaurant: 'sulley-steak', category: 'angus', name_zh: '澳洲純黑安格斯菲力', name_en: 'Pure Black Australian Tenderloin', desc: '霜降油花評級 3+', price: '$52.00' },
+                { restaurant: 'sulley-steak', category: 'large-format', name_zh: '流浪者戰斧牛排', name_en: 'Wanderer Tomahawk', desc: '重達 1.2 公斤，霜降油花評級 4+', price: '$199.00' },
+                { restaurant: 'sulley-steak', category: 'large-format', name_zh: '流浪者頂級紅屋牛排', name_en: 'Wanderer Prime Porterhouse', desc: '重達 1.2 公斤，霜降油花評級 4+', price: '$185.00' },
+                { restaurant: 'sulley-steak', category: 'large-format', name_zh: '土鍋和牛炊飯', name_en: 'Donabe Wagyu Beef Rice', desc: '以傳統日式土鍋烹煮頂級日本蓬鬆米飯，搭配純種和牛紐約客', price: '$55.00' },
+                { restaurant: 'sulley-steak', category: 'sides', name_zh: '大眼綠蘆筍', name_en: 'Asparagus', desc: '佐紅薑荷蘭醬與柴魚片', price: '$12.00' },
+                { restaurant: 'sulley-steak', category: 'sides', name_zh: '綜合野菇', name_en: 'Kinoko', desc: '佐清酒萊姆奶油', price: '$12.00' },
+                { restaurant: 'sulley-steak', category: 'sides', name_zh: '綿密馬鈴薯泥', name_en: 'Potato', desc: '佐白芝麻與青豆', price: '$12.00' },
+                { restaurant: 'sulley-steak', category: 'sides', name_zh: '碳烤甜玉米', name_en: 'Tomorokoshi', desc: '佐香鬆奶油與青蔥', price: '$12.00' },
+                { restaurant: 'sulley-steak', category: 'truffle', name_zh: '義大利白松露', name_en: 'White Truffle – Italy', desc: '時價', price: '時價' },
+                { restaurant: 'sulley-steak', category: 'truffle', name_zh: '法國佩里戈爾黑松露', name_en: 'Perigord Black Truffle – France', desc: '時價', price: '時價' },
+                { restaurant: 'sulley-steak', category: 'desserts', name_zh: '電力滿滿抹茶聖代百匯', name_en: 'Matcha Sundae Parfait', desc: '香草聖代、紅豆、麻糬與寒天果凍', price: '$12.00', tag: 'dessert' },
+                { restaurant: 'sulley-steak', category: 'desserts', name_zh: '毛怪專屬：巴斯克紫薯起司蛋糕', name_en: 'Basque Ube Cheesecake', desc: '搭配夢幻藍色蝶豆花奶油與抹茶瓦片', price: '$12.00', tag: 'dessert' },
+                { restaurant: 'sulley-steak', category: 'desserts', name_zh: '巧克力榛果法式薄餅捲', name_en: 'Chocolate-Hazelnut Roll Crepe', desc: '巧克力榛果霜、巧克力薄餅、柑橘鮮奶油甘納許與開心果瓦片', price: '$12.00', tag: 'dessert' },
+                { restaurant: 'sulley-steak', category: 'desserts', name_zh: '東方麻糬大賞', name_en: 'Study Of Mochi', desc: '綜合日式麻糬與新鮮火龍果', price: '$9.00', tag: 'dessert' },
+                { restaurant: 'sulley-steak', category: 'desserts', name_zh: '阿布的最愛：精選冰淇淋', name_en: 'Assorted Ice Cream', desc: '抹茶 · 薰衣草 · 椰子 · 柚子雪酪', price: '$9.00', tag: 'dessert' },
+
+                // 🍣 SULLEY-OMAKASE
+                { restaurant: 'sulley-omakase', category: 'omakase', name_zh: '主廚無菜單料理', name_en: 'Omakase Tasting Menu', desc: '每位', price: '$200.00' },
+                { restaurant: 'sulley-omakase', category: 'wine-pairings', name_zh: '環遊世界品酒之旅', name_en: 'Wines of the World Pairing', price: '$150.00' },
+                { restaurant: 'sulley-omakase', category: 'wine-pairings', name_zh: '東京奇妙之旅品酒', name_en: 'Tour of Japan Pairing', price: '$140.00' },
+                { restaurant: 'sulley-omakase', category: 'wine-pairings', name_zh: '無酒精魔法飲品搭配', name_en: 'Zero-Proof Pairing', price: '$70.00' },
+                { restaurant: 'sulley-omakase', category: 'omakase-course', name_zh: '怪獸城市的頂級海味：海膽蔥花鮪魚泥', name_en: 'Uni Negitoro', desc: '頂級海膽、藍鰭鮪魚腹肉、青蔥與海苔脆餅' },
+                { restaurant: 'sulley-omakase', category: 'omakase-course', name_zh: '毛怪的私房點心：西京味噌鴨肝醬', name_en: 'Saikyo Miso Duck Pate', desc: '搭配薩摩橘子果凍與日式最中餅' },
+                { restaurant: 'sulley-omakase', category: 'omakase-course', name_zh: '迷霧之門煙燻干貝', name_en: 'Smoked Hotategai', desc: '北海道干貝、花椰菜泥與酥脆米片' },
+                { restaurant: 'sulley-omakase', category: 'omakase-course', name_zh: '驚嚇專員的活力泉源：伊勢龍蝦土瓶蒸', name_en: 'Ise Ebi Dobin Mushi', desc: '伊勢龍蝦、鮮香菇與柴魚高湯' },
+                { restaurant: 'sulley-omakase', category: 'omakase-course', name_zh: '能量滿分！山椒起司炸雞排', name_en: 'Sansho Chicken Katsu', desc: '酥炸山椒雞排、紫薯、牽絲莫札瑞拉起司與日式咖哩' },
+                { restaurant: 'sulley-omakase', category: 'omakase-course', name_zh: '雪人首領的溫暖問候：鱈場蟹茶碗蒸', name_en: 'Taraba Kani Chawanmushi', desc: '天婦羅阿拉斯加鱈場蟹、日式蒸蛋與松茸' },
+                { restaurant: 'sulley-omakase', category: 'omakase-course', name_zh: '頂級怪獸之王：A5 薩摩和牛紐約客', name_en: 'A5 Satsuma Striploin', desc: '炙烤青花筍佐蒜味醬油濃縮醬汁' },
+                { restaurant: 'sulley-omakase', category: 'omakase-course', name_zh: '歡笑收集瓶：香甜玉米布丁', name_en: 'Tomorokoshi', desc: '濃郁玉米布丁搭配香脆焦糖爆米花' },
+                { restaurant: 'sulley-omakase', category: 'omakase-course', name_zh: '大眼仔的清涼魔法：巨峰葡萄雪酪', name_en: 'Kyoho Sorbet', desc: '巨峰葡萄冰沙佐黑芝麻帕林內' },
+
+                // 🔥 SULLEY-TEPPAN
+                { restaurant: 'sulley-teppan', category: 'teppan-zen', name_zh: '主廚精緻小缽', name_en: 'Kobachi', price: '$115.00' },
+                { restaurant: 'sulley-teppan', category: 'teppan-zen', name_zh: '怪獸海域嚴選三品刺身', name_en: 'Trio of Sashimi', price: '$115.00' },
+                { restaurant: 'sulley-teppan', category: 'teppan-zen', name_zh: '鮮甜北海道生食級干貝', name_en: 'Hokkaido Scallop', price: '$115.00' },
+                { restaurant: 'sulley-teppan', category: 'teppan-zen', name_zh: '暖心赤味噌湯', name_en: 'Aka Miso Soup', price: '$115.00' },
+                { restaurant: 'sulley-teppan', category: 'teppan-zen', name_zh: '深海秘製黑鱈魚', name_en: 'Black Cod', price: '$115.00' },
+                { restaurant: 'sulley-teppan', category: 'teppan-zen', name_zh: '櫻花牧場鮮嫩雞腿肉', name_en: 'Sakura Chicken Thigh', price: '$115.00' },
+                { restaurant: 'sulley-teppan', category: 'teppan-zen', name_zh: '澳洲全血和牛霜降紐約客 (MBS2+)', name_en: 'Australian Fullblood Wagyu Shimo Striploin', price: '$115.00' },
+                { restaurant: 'sulley-teppan', category: 'teppan-zen', name_zh: '季節鮮蔬鐵板綜合盛合', name_en: 'Yasai Moriwase', price: '$115.00' },
+                { restaurant: 'sulley-teppan', category: 'teppan-zen', name_zh: '歡笑能量黑胡椒蟹肉鐵板炒飯', name_en: 'Black Pepper Crab Fried Rice', price: '$115.00' },
+                { restaurant: 'sulley-teppan', category: 'teppan-zen', name_zh: '鐵板焦糖香蕉', name_en: 'Teppan-caramelized Bananas', price: '$115.00' },
+                { restaurant: 'sulley-teppan', category: 'teppan-premium', name_zh: '主廚精緻小缽', name_en: 'Kobachi', price: '$175.00' },
+                { restaurant: 'sulley-teppan', category: 'teppan-premium', name_zh: '黑鮪魚腹肉韃靼佐青蔥、海膽與香脆米餅', name_en: 'Toro Tartare, Negi, Uni, Rice Cake', price: '$175.00', tag: 'seafood' },
+                { restaurant: 'sulley-teppan', category: 'teppan-premium', name_zh: '日本兵庫縣特級生蠔', name_en: 'Japanese Hyogo Oysters', price: '$175.00', tag: 'seafood' },
+                { restaurant: 'sulley-teppan', category: 'teppan-premium', name_zh: '暖心赤味噌湯', name_en: 'Aka Miso Soup', price: '$175.00' },
+                { restaurant: 'sulley-teppan', category: 'teppan-premium', name_zh: '頂級錦繡龍蝦', name_en: 'Spiny Lobster', price: '$175.00', tag: 'seafood' },
+                { restaurant: 'sulley-teppan', category: 'teppan-premium', name_zh: '匈牙利綿羊豬松阪肉', name_en: 'Mangalitsa Pork Jowl', price: '$175.00', tag: 'pork' },
+                { restaurant: 'sulley-teppan', category: 'teppan-premium', name_zh: 'A5 薩摩極上和牛紐約客 (MBS 12+)', name_en: 'A5 Satsuma Striploin', price: '$175.00', tag: 'meat-beef' },
+                { restaurant: 'sulley-teppan', category: 'teppan-premium', name_zh: '季節鮮蔬鐵板綜合盛合', name_en: 'Yasai Moriwase', price: '$175.00', tag: 'vegetarian' },
+                { restaurant: 'sulley-teppan', category: 'teppan-premium', name_zh: '極致牛油蒜香鐵板炒飯', name_en: 'Tallow Garlic Fried Rice', price: '$175.00' },
+                { restaurant: 'sulley-teppan', category: 'teppan-premium', name_zh: '鐵板焦糖香蕉', name_en: 'Teppan-caramelized Bananas', price: '$175.00' },
+
+                // 🐟 SULLEY-SUSHI
+                { restaurant: 'sulley-sushi', category: 'sushi', name_zh: '怪獸特選綜合生魚片（8種·16片）', name_en: 'Sashimi Moriwase', price: '$100.00' },
+                { restaurant: 'sulley-sushi', category: 'sushi', name_zh: '毛怪的豪華綜合握壽司（8種·16貫）', name_en: 'Sushi Moriwase', price: '$85.00' },
+                { restaurant: 'sulley-sushi', category: 'sushi', name_zh: '頂級黑鮪魚大腹', name_en: 'O-Toro · Bluefin Tuna Belly', desc: '刺身5片 $45 ｜ 握壽司2貫 $24' },
+                { restaurant: 'sulley-sushi', category: 'sushi', name_zh: '黑鮪魚赤身', name_en: 'Maguro Akami · Bluefin Tuna', desc: '刺身5片 $18 ｜ 握壽司2貫 $8' },
+                { restaurant: 'sulley-sushi', category: 'sushi', name_zh: '紅魽', name_en: 'Kampachi · Amberjack', desc: '刺身5片 $16 ｜ 握壽司2貫 $9' },
+                { restaurant: 'sulley-sushi', category: 'sushi', name_zh: '青魽（鰤魚）', name_en: 'Hamachi · Yellowtail', desc: '刺身5片 $24 ｜ 握壽司2貫 $12' },
+                { restaurant: 'sulley-sushi', category: 'sushi', name_zh: '真鯛', name_en: 'Tai · Sea Bream', desc: '刺身5片 $24 ｜ 握壽司2貫 $12' },
+                { restaurant: 'sulley-sushi', category: 'sushi', name_zh: '鮭魚', name_en: 'Shake · Salmon', desc: '刺身5片 $15 ｜ 握壽司2貫 $7' },
+                { restaurant: 'sulley-sushi', category: 'sushi', name_zh: '帆立貝', name_en: 'Hototegai · Scallop', desc: '刺身5片 $18 ｜ 握壽司2貫 $8' },
+                { restaurant: 'sulley-sushi', category: 'sushi', name_zh: '章魚', name_en: 'Tako · Octopus', desc: '刺身5片 $12 ｜ 握壽司2貫 $6' },
+                { restaurant: 'sulley-sushi', category: 'sushi', name_zh: '海膽', name_en: 'Uni · Sea Urchin', desc: '刺身5片 $40 ｜ 握壽司2貫 $24' },
+                { restaurant: 'sulley-sushi', category: 'sushi', name_zh: '甜蝦', name_en: 'Amaebi · Sweet Shrimp', desc: '刺身5片 $24 ｜ 握壽司2貫 $9' },
+                { restaurant: 'sulley-sushi', category: 'sushi', name_zh: '鮭魚卵', name_en: 'Ikura · Salmon Roe', desc: '刺身5片 $25 ｜ 握壽司2貫 $12' },
+                { restaurant: 'sulley-sushi', category: 'handrolls', name_zh: '鮭魚明太子手卷', name_en: 'Salmon Mentai', desc: '佐天婦羅麵衣碎與日式香鬆', price: '$15.00', tag: 'seafood' },
+                { restaurant: 'sulley-sushi', category: 'handrolls', name_zh: '黑鮪魚大腹手卷', name_en: 'O-Toro', desc: '佐蔥花、辛香韭蔥與魚子醬', price: '$27.00', tag: 'seafood' },
+                { restaurant: 'sulley-sushi', category: 'handrolls', name_zh: '蟹肉手卷', name_en: 'Kani', desc: '佐柚子胡椒與七味粉美乃滋', price: '$10.00', tag: 'seafood' },
+                { restaurant: 'sulley-sushi', category: 'handrolls', name_zh: '干貝手卷', name_en: 'Hototegai', desc: '佐酪梨與香草松露蒜味美乃滋', price: '$15.00', tag: 'seafood' },
+                { restaurant: 'sulley-sushi', category: 'asian', name_zh: '和牛韃靼壽喜燒', name_en: 'Wagyu Tartare Sukiyaki', desc: '搭配頂級海膽與煙燻蛋黃', price: '$15.00', tag: 'meat-beef' },
+                { restaurant: 'sulley-sushi', category: 'asian', name_zh: '醬烤香菇', name_en: 'Shoyu Shiitake', desc: '佐韭蔥與酥脆蒜片', price: '$6.00', tag: 'vegetarian' },
+                { restaurant: 'sulley-sushi', category: 'asian', name_zh: '秘製蒲燒鰻魚煲仔飯', name_en: 'Unagi Claypot Rice', desc: '蒲燒鰻魚、玉子燒、青蔥與XO醬臘腸', price: '$25.00', tag: 'seafood' },
+                { restaurant: 'sulley-sushi', category: 'asian', name_zh: '南洋風情馬來椰漿飯', name_en: 'Nasi Lemak', desc: '香料炸雞腿、雞蛋、江魚仔、參巴洋蔥與椰香飯', price: '$18.00', tag: 'meat' },
+                { restaurant: 'sulley-sushi', category: 'asian', name_zh: '獅城鮮味新加坡叻沙', name_en: 'Singapore Laksa', desc: '龍蝦肉、干貝、魚板、豆芽與雞蛋', price: '$20.00', tag: 'seafood' },
+                { restaurant: 'sulley-sushi', category: 'asian', name_zh: '馬來滷麵佐沙嗲雞', name_en: 'Mee Rebus with Chicken Satay', desc: '炸豆包、青辣椒、雞蛋與炸紅蔥頭', price: '$15.00', tag: 'meat' },
+                { restaurant: 'sulley-sushi', category: 'asian', name_zh: '東方經典擔擔麵', name_en: 'Dan Dan Noodles', desc: '發酵豆醬肉燥、雞蛋、烤花生與紅油', price: '$12.00', tag: 'pork' },
+                { restaurant: 'sulley-sushi', category: 'asian', name_zh: '濃郁冬蔭功牛肉船麵', name_en: 'Creamy Tom Yum Beef Boat Noodles', desc: '牛肉片、牛肉丸、香脆雲吞、九層塔與米線', price: '$12.00', tag: 'meat-beef' },
+
+                // 🥂 PALO-BRUNCH
+                { restaurant: 'palo-brunch', category: 'set', name_zh: 'Palo Brunch 套餐', name_en: 'Palo Brunch Set', price: '$55.00' },
+                { restaurant: 'palo-brunch', category: 'seafood-cold', name_zh: '亞特蘭提斯海鮮秘寶', name_en: 'Seafood Selection', desc: '石蟹鉗、檸檬醃鮮蝦、特調醃製綠唇貽貝、香料黃鰭鮪魚、北歐蒔蘿醃鮭魚', tag: 'seafood' },
+                { restaurant: 'palo-brunch', category: 'seafood-cold', name_zh: '義大利工匠精選冷肉與起司拼盤', name_en: 'Artisan Salumi & Cheese', desc: '義式生火腿片、義式風乾豬頸肉片、風乾牛肉片、經典義大利臘腸、醃製橄欖、爐烤大蒜與各式起司', tag: 'pork' },
+                { restaurant: 'palo-brunch', category: 'pastries', name_zh: '米妮的最愛：草莓魔法鬆餅', name_en: 'Strawberry Waffles', desc: '搭配楓糖漿、鮮奶油與新鮮莓果' },
+                { restaurant: 'palo-brunch', category: 'pastries', name_zh: '白雪公主的蘋果肉桂鬆餅', name_en: 'Apple-Cinnamon Waffles', desc: '搭配楓糖漿、鮮奶油與新鮮莓果' },
+                { restaurant: 'palo-brunch', category: 'pastries', name_zh: '經典白脫牛奶煎餅', name_en: 'Buttermilk Pancakes', desc: '搭配楓糖漿、鮮奶油與新鮮莓果' },
+                { restaurant: 'palo-brunch', category: 'pastries', name_zh: '藍莓奇蹟煎餅', name_en: 'Blueberry Pancakes', desc: '搭配楓糖漿、鮮奶油與新鮮莓果' },
+                { restaurant: 'palo-brunch', category: 'eggs', name_zh: '鄉村晨光起司火腿義式烘蛋', name_en: 'Cheese and Ham Frittata', tag: 'pork' },
+                { restaurant: 'palo-brunch', category: 'eggs', name_zh: '田園綠意櫛瓜義式烘蛋', name_en: 'Zucchini Frittata', tag: 'vegetarian' },
+                { restaurant: 'palo-brunch', category: 'eggs', name_zh: '托斯卡尼番茄洋蔥歐姆蛋', name_en: 'Tomato and Onion Omelet', tag: 'vegetarian' },
+                { restaurant: 'palo-brunch', category: 'pizza', name_zh: '經典瑪格麗特', name_en: 'Margherita', tag: 'vegetarian' },
+                { restaurant: 'palo-brunch', category: 'pizza', name_zh: '義式生火腿披薩', name_en: 'Prosciutto', tag: 'pork' },
+                { restaurant: 'palo-brunch', category: 'pizza', name_zh: '魔法森林野菇披薩', name_en: 'Funghi', tag: 'vegetarian' },
+                { restaurant: 'palo-brunch', category: 'pizza', name_zh: '義式半月烤餅', name_en: 'Calzone', tag: 'pork' },
+                { restaurant: 'palo-brunch', category: 'entrees', name_zh: '托斯卡尼陽光焗烤茄子捲', name_en: 'Rollatini Melanzane', desc: '烤茄子包裹義式生火腿、陳年巴薩米克里考塔起司與莫札瑞拉起司', tag: 'pork' },
+                { restaurant: 'palo-brunch', category: 'entrees', name_zh: '羅馬假期生火腿煎小牛肉', name_en: 'Veal Saltimbocca', desc: '搭配黑蒜炒義大利野芥藍，佐巴羅洛紅酒肉汁', tag: 'meat' },
+                { restaurant: 'palo-brunch', category: 'entrees', name_zh: '帕瑪森魔法酥烤雞胸', name_en: 'Parmesan-crusted Chicken Breast', desc: '鋪滿莫札瑞拉起司，搭配番茄羅勒醬汁', tag: 'meat' },
+                { restaurant: 'palo-brunch', category: 'entrees', name_zh: '義大利媽媽的經典肉醬千層麵', name_en: 'Lasagna Bolognese', desc: '搭配濃郁羅馬番茄醬汁', tag: 'meat' },
+                { restaurant: 'palo-brunch', category: 'entrees', name_zh: '奇幻森林野菇義大利餃', name_en: 'Wild Mushroom Ravioli', desc: '佐梅爾檸檬、焦化榛果奶油與烤松子', tag: 'vegetarian' },
+                { restaurant: 'palo-brunch', category: 'entrees', name_zh: '海洋之心爐烤紅鯛魚菲力', name_en: 'Roasted Red Snapper Filet', desc: '搭配綠蘆筍、義式西西里燉菜與番紅花馬鈴薯翻糖', tag: 'seafood' },
+                { restaurant: 'palo-brunch', category: 'entrees', name_zh: '奧林帕斯爐烤厚切沙朗牛排', name_en: 'Grilled Cut Sirloin Steak', desc: '搭配百里香香草奶油、四季豆與巴羅洛紅酒馬鈴薯', tag: 'meat-beef' },
+                { restaurant: 'palo-brunch', category: 'desserts', name_zh: '溫暖杏仁酒巧克力熔岩蛋糕', name_en: 'Warm Amaretto-Chocolate Fondant', desc: '雙重巧克力醬、榛果義式冰淇淋與摩卡巧克力脆土', tag: 'dessert' },
+                { restaurant: 'palo-brunch', category: 'desserts', name_zh: '經典義式沙巴雍', name_en: 'Italian Zabaglione', desc: '新鮮莓果、瑪莎拉酒與義大利脆餅', tag: 'dessert' },
+                { restaurant: 'palo-brunch', category: 'desserts', name_zh: '南義陽光檸檬酒蛋糕', name_en: 'Limoncello Torte', desc: '柑橘蛋糕、奶油乳酪、檸檬凝乳與柑橘沙拉', tag: 'dessert' },
+                { restaurant: 'palo-brunch', category: 'desserts', name_zh: '白脫牛奶義式奶酪罐', name_en: 'Buttermilk Panna Cotta Pot', desc: '草莓爆爆珠與開心果碎餅', tag: 'dessert' },
+                { restaurant: 'palo-brunch', category: 'desserts', name_zh: '黑魔女的巧克力覆盆子塔', name_en: 'Chocolate-Raspberry Tart', desc: '苦甜巧克力慕斯、覆盆子甘納許與香草莢義式冰淇淋', tag: 'dessert' },
+                { restaurant: 'palo-brunch', category: 'desserts', name_zh: '暖心蘋果肉桂黏黏包', name_en: 'Warm Apple-Cinnamon Sticky-Cinnamon', desc: '搭配楓糖奶油霜與焦糖胡桃', tag: 'dessert' },
+                { restaurant: 'palo-brunch', category: 'drinks', name_zh: '帕洛專屬氣泡特調', name_en: 'Palo Spritz', price: '$10.00' },
+                { restaurant: 'palo-brunch', category: 'drinks', name_zh: '經典貝里尼', name_en: 'Bellini', price: '$8.75' },
+                { restaurant: 'palo-brunch', category: 'drinks', name_zh: '熱情百香果米摩薩', name_en: 'Passion Mimosa', price: '$10.00' },
+                { restaurant: 'palo-brunch', category: 'drinks', name_zh: '零酒精貝里尼', name_en: 'Bellini – Zero Proof', price: '$8.00', tag: 'non-alcoholic' },
+
+                // 🍷 PALO-DINNER
+                { restaurant: 'palo-dinner', category: 'set-appetizers', name_zh: '義式酥炸魷魚與巨無霸大蝦天婦羅', name_en: 'Fritto di Calamari', desc: '佐蒜味美乃滋與普羅旺斯沾醬' },
+                { restaurant: 'palo-dinner', category: 'set-appetizers', name_zh: '布拉塔起司卡布里沙拉', name_en: 'Burrata Mozzarella Caprese', desc: '傳家寶番茄、羅勒青醬與10年陳釀巴薩米克醋' },
+                { restaurant: 'palo-dinner', category: 'set-appetizers', name_zh: '野生芝麻葉沙拉', name_en: 'Arugula Salad', desc: '烤葵花籽、帕瑪森乾酪、爐烤藤蔓番茄' },
+                { restaurant: 'palo-dinner', category: 'set-appetizers', name_zh: '夏日茴香柑橘沙拉', name_en: 'Fennel and Citrus Salad', desc: '血橙、葡萄柚、烤松子佐檸檬酒油醋醬' },
+                { restaurant: 'palo-dinner', category: 'set-entrees', name_zh: '放山檸檬鼠尾草烤雞', name_en: 'Free-Range Lemon and Sage Chicken', desc: '搭配迷你蔬菜、義式烤馬鈴薯與奇揚地紅酒百里香肉汁' },
+                { restaurant: 'palo-dinner', category: 'set-entrees', name_zh: '嫩煎黃鰭鮪魚', name_en: 'Ahi Tuna', desc: '朝鮮薊、鵪鶉蛋、橄欖、翻糖新馬鈴薯佐檸檬馬鞭草白巴薩米克油醋醬' },
+                { restaurant: 'palo-dinner', category: 'set-entrees', name_zh: '巴羅洛紅酒綜合野菇燉飯', name_en: 'Barolo Mushroom Risotto', desc: '波特菇、羊肚菌、褐菇與牛肝菌' },
+                { restaurant: 'palo-dinner', category: 'set-entrees', name_zh: '180克黑安格斯牛菲力', name_en: '180g Black Angus Beef Tenderloin', desc: '搭配松露馬鈴薯與新鮮菠菜' },
+                { restaurant: 'palo-dinner', category: 'set-desserts', name_zh: '招牌巧克力舒芙蕾', name_en: 'Chocolate Souffle', desc: '馬達加斯加香草莢冰淇淋、濃郁巧克力醬與香草安格斯醬' },
+                { restaurant: 'palo-dinner', category: 'set-desserts', name_zh: 'Palo 經典提拉米蘇', name_en: "Palo's Tiramisu", desc: '咖啡浸潤手指餅乾、層層馬斯卡彭起司與覆盆子橄欖油脆土' },
+                { restaurant: 'palo-dinner', category: 'wine-pairings', name_zh: '義大利佳釀佐餐', name_en: 'Esperienza del Vino', price: '$90.00' },
+                { restaurant: 'palo-dinner', category: 'wine-pairings', name_zh: '無酒精特調佐餐', name_en: 'Bella Vita – Zero Proof', price: '$45.00', tag: 'non-alcoholic' },
+                { restaurant: 'palo-dinner', category: 'dinner-appetizers', name_zh: '拿坡里瑪格麗特披薩', name_en: 'Neapolitan Margherita', price: '$16.00', tag: 'vegetarian' },
+                { restaurant: 'palo-dinner', category: 'dinner-appetizers', name_zh: '綜合野菇披薩', name_en: 'Funghi Pizza', price: '$16.00', tag: 'vegetarian' },
+                { restaurant: 'palo-dinner', category: 'dinner-appetizers', name_zh: '帕瑪生火腿披薩', name_en: 'Prosciutto di Parma Pizza', price: '$17.00', tag: 'pork' },
+                { restaurant: 'palo-dinner', category: 'sharing', name_zh: '義式綜合冷肉拼盤', name_en: 'Antipasto', desc: '帕瑪生火腿、風乾牛肉、臘腸、各式起司與迷迭香脆餅', price: '$25.00', tag: 'pork' },
+                { restaurant: 'palo-dinner', category: 'sharing', name_zh: '恩杜亞辣肉醬粗管麵', name_en: "Rigatoni 'Nduja", desc: '聖馬札諾番茄與絲綢起司', price: '$25.00', tag: 'pork' },
+                { restaurant: 'palo-dinner', category: 'pasta', name_zh: '義式奶油南瓜方形餃', name_en: 'Agnolotti', desc: '搭配杏仁脆餅、鼠尾草與微型羅勒', price: '$8.00' },
+                { restaurant: 'palo-dinner', category: 'pasta', name_zh: '番紅花馬鈴薯麵疙瘩', name_en: 'Potato Gnocchi', desc: '佐經典番茄肉醬', price: '$8.00' },
+                { restaurant: 'palo-dinner', category: 'pasta', name_zh: '卡拉布里亞辣味筆管麵', name_en: 'Penne', desc: '辣椒番茄羅勒醬、帕瑪森乾酪', price: '$8.00' },
+                { restaurant: 'palo-dinner', category: 'pasta', name_zh: '羊肉肉醬粗短管麵', name_en: 'Paccheri', desc: '搭配百里香與鹽醃瑞可塔起司', price: '$8.00' },
+                { restaurant: 'palo-dinner', category: 'meats', name_zh: '帕瑪森起司脆皮羊小排', name_en: 'Rack of Rhug Estate Lamb', price: '$44.00' },
+                { restaurant: 'palo-dinner', category: 'meats', name_zh: '340克帶骨小牛排', name_en: '340g Veal Chop', price: '$42.00' },
+                { restaurant: 'palo-dinner', category: 'meats', name_zh: '黑安格斯 180克菲力 (MBS 2+)', name_en: 'Black Angus Tenderloin', price: '$25.00' },
+                { restaurant: 'palo-dinner', category: 'meats', name_zh: '黑安格斯 290克紐約客 (MBS 2+)', name_en: 'Black Angus Striploin', price: '$30.00' },
+                { restaurant: 'palo-dinner', category: 'meats', name_zh: 'F1混血和牛 180克菲力 (MBS 6+)', name_en: 'F1 Wagyu Tenderloin', price: '$45.00' },
+                { restaurant: 'palo-dinner', category: 'meats', name_zh: 'F1混血和牛 230克紐約客 (MBS 6+)', name_en: 'F1 Wagyu Striploin', price: '$55.00' },
+                { restaurant: 'palo-dinner', category: 'meats', name_zh: 'F1混血和牛 800克紅屋 (MBS 4+)', name_en: 'F1 Wagyu Porterhouse', price: '$110.00' },
+                { restaurant: 'palo-dinner', category: 'meats', name_zh: '純血和牛 180克菲力 (MBS 8+)', name_en: 'Sanchoku Wagyu Tenderloin', price: '$65.00' },
+                { restaurant: 'palo-dinner', category: 'meats', name_zh: '純血和牛 230克紐約客 (MBS 8+)', name_en: 'Sanchoku Wagyu Striploin', price: '$60.00' },
+                { restaurant: 'palo-dinner', category: 'sides', name_zh: '酥炸育空馬鈴薯', name_en: 'Fried Yukon Potato', desc: '迷迭香、帕瑪森乾酪、火山鹽', price: '$6.00' },
+                { restaurant: 'palo-dinner', category: 'sides', name_zh: '螺旋起司麵', name_en: 'Cavatappi Pasta and Cheese', desc: '', price: '$8.00' },
+                { restaurant: 'palo-dinner', category: 'sides', name_zh: '鐵鍋慢烤野菇', name_en: 'Pan-Roasted Wild Mushrooms', desc: '', price: '$8.00' },
+                { restaurant: 'palo-dinner', category: 'sides', name_zh: '碳烤蘆筍', name_en: 'Grilled Asparagus', desc: '', price: '$8.00' },
+                { restaurant: 'palo-dinner', category: 'dinner-desserts', name_zh: '義式檸檬酒舒芙蕾', name_en: 'Limoncello Souffle', desc: '香草莢冰淇淋與覆盆子果泥', price: '$15.00', tag: 'dessert' },
+                { restaurant: 'palo-dinner', category: 'dinner-desserts', name_zh: '柳橙杏仁蛋糕', name_en: 'Orange-Almond Cake', desc: '柳橙茴香沙拉、大黃果泥與檸檬奶油', price: '$10.00', tag: 'dessert' },
+                { restaurant: 'palo-dinner', category: 'dinner-desserts', name_zh: '荔枝義式奶酪', name_en: 'Lychee Panna Cotta', desc: '開心果空氣海綿蛋糕與覆盆子雪酪', price: '$10.00', tag: 'dessert' },
+                { restaurant: 'palo-dinner', category: 'dinner-desserts', name_zh: '巧克力果仁糖塔', name_en: 'Cioccolato Praline Tart', desc: '榛果巴瑞脆片、巧克力甘納許與果仁糖脆餅', price: '$10.00', tag: 'dessert' },
+                { restaurant: 'palo-dinner', category: 'dinner-desserts', name_zh: '義式冰淇淋工坊（任選三球）', name_en: 'Gelato – Choice of Three', desc: '雙重巧克力 · 開心果 · 榛果 · 綜合莓果 · 焦糖夏威夷豆 · 芒果薄荷 · 濃縮咖啡白巧克力', price: '$8.00', tag: 'dessert' },
+                { restaurant: 'palo-dinner', category: 'dinner-desserts', name_zh: '義式瑞可塔起司蛋糕', name_en: 'Italian Ricotta Cheesecake', desc: '冷製瑞可塔起司蛋糕、生薑沙布列餅乾與覆盆子果泥', price: '$10.00', tag: 'no-sugar' },
+
+                // 🍸 BEV-ALLEYCAT
+                { restaurant: 'bev-alleycat', category: 'cocktails', name_zh: '「我有個小顧慮」特調', name_en: 'I Have Some Concerns', desc: 'Bayab棕櫚鳳梨琴酒｜法勒南糖漿｜清酒｜萊姆｜鳳梨｜葡萄柚', price: '$12.00', tag: 'alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'cocktails', name_zh: '阿庫馬島冰茶', name_en: 'Akuma Island Iced Tea', desc: '絕對伏特加｜必富達琴酒｜百加得蘭姆酒｜歐巴燒酒｜柚子｜龍舌蘭糖漿｜原萃烏龍茶', price: '$14.00', tag: 'alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'non-alcoholic', name_zh: '消失的荊棘 美國無酒精紅白氣泡飲', name_en: 'Missing Thorn USA Sparkling White Red', price: '$14.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'non-alcoholic', name_zh: 'NON1 鹽味覆盆子與洋甘菊', name_en: 'NON1 Salted Raspberry & Chamomile', price: '$15.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'non-alcoholic', name_zh: 'NON2 焦糖洋梨與昆布', name_en: 'NON2 Caramelized Pear & Kombu', price: '$15.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'non-alcoholic', name_zh: '萊亞無酒精莫西多', name_en: "Lyre's Mojito", price: '$7.75', tag: 'non-alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'non-alcoholic', name_zh: '海尼根 0.0%', name_en: 'Heineken 0.0%', price: '$7.75', tag: 'non-alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'non-alcoholic', name_zh: '華士坦 0.0% 檸檬', name_en: 'Warsteiner Radler 0.0%', price: '$7.75', tag: 'non-alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'non-alcoholic', name_zh: '櫻花元氣飲', name_en: 'Sakura Refresher', desc: '櫻花｜白葡萄｜原萃綾鷹綠茶', price: '$7.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'non-alcoholic', name_zh: '吧啦吧啦吧啦奶昔', name_en: 'Ba-La-La-La-La Shake', desc: '烤棉花糖｜香草冰淇淋｜焦糖', price: '$6.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'non-alcoholic', name_zh: '霓虹海灣微風', name_en: 'Neon Bay Breeze', desc: '洋梨｜萊姆｜葡萄｜發燒樹墨西哥萊姆汽水｜蝶豆花', price: '$7.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'beer', name_zh: '虎牌冰釀啤酒', name_en: 'Tiger Lager 5%', price: '$7.75', tag: 'alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'beer', name_zh: '京A 工人淡色艾爾', name_en: "Jing-A Worker's Pale Ale 5%", price: '$7.75', tag: 'alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'beer', name_zh: '京A 柑橘小麥', name_en: 'Jing-A Mandarin Wheat 4.2%', price: '$7.75', tag: 'alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'beer', name_zh: '布魯克林捍衛者 IPA', name_en: 'Brooklyn Defender IPA 5.5%', price: '$7.75', tag: 'alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'beer', name_zh: '豪格登', name_en: 'Hoegaarden 4.9%', price: '$7.75', tag: 'alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'beer', name_zh: '時代', name_en: 'Stella Artois 5.2%', price: '$7.75', tag: 'alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'beer', name_zh: '健力士', name_en: 'Guinness 7.5%', price: '$7.75', tag: 'alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'wine', name_zh: '義大利波哥帝國普羅賽克', name_en: 'Borgo Imperiale Prosecco', price: '$10.00', tag: 'alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'wine', name_zh: '間諜谷白蘇維翁', name_en: 'Spy Valley Sauvignon Blanc', price: '$13.00', tag: 'alcoholic' },
+                { restaurant: 'bev-alleycat', category: 'wine', name_zh: '瑪萊伯爵夫人紅酒', name_en: 'Comtesse de Malet Bordeaux', price: '$13.00', tag: 'alcoholic' },
+
+                // ☕ BEV-BACHA
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '西達摩高山咖啡，衣索比亞', name_en: 'Sidamo Mountain Coffee, Ethiopia', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '肯亞山咖啡，肯亞', name_en: 'Mount Kenya Coffee, Kenya', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '馬格達萊納咖啡，哥倫比亞', name_en: 'Magdalena Coffee, Colombia', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '1910 咖啡', name_en: '1910 Coffee', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '拉戈亞咖啡，巴西', name_en: 'Lagoa Coffee, Brazil', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '馬德雷山脈咖啡，瓜地馬拉', name_en: 'Sierra Madre Coffee, Guatemala', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '納蘭霍高山咖啡，哥斯大黎加', name_en: 'Naranjo Mountain Coffee, Costa Rica', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '圖爾基諾咖啡，古巴', name_en: 'Turquino Coffee, Cuba', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '季風的秘密咖啡，印度', name_en: 'Monsoon Secret Coffee, India', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '西格里寶石咖啡，巴布亞紐幾內亞', name_en: 'Sigri Jewel Coffee, Papua New Guinea', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '耶加雪菲低咖啡因咖啡', name_en: 'Yirgacheffe Decaffeinated Coffee', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '馬格達萊納低咖啡因', name_en: 'Magdalena Decaffeinated Coffee', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '托爾特克巧克力咖啡', name_en: 'Tolteca Chocolate Coffee', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '焦糖晨光咖啡', name_en: 'Caramelo Morning Coffee', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '歡樂吉安杜佳咖啡', name_en: 'Happy Gianduja Coffee', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '塞維利亞柑橘咖啡', name_en: 'Seville Orange Coffee', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '飛毯奇遇魔幻伊斯坦堡咖啡', name_en: 'Magic Istanbul Coffee', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '甜蜜墨西哥咖啡', name_en: 'Sweet Mexico Coffee', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '幻想曲藍色多瑙河咖啡', name_en: 'Blue Danube Coffee', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '皮諾丘的米蘭之晨咖啡', name_en: 'Milano Morning Coffee', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '神仙教母的生日願望咖啡', name_en: 'Birthday Wish Coffee', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '料理鼠王我愛巴黎咖啡', name_en: 'I Love Paris Coffee', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '新加坡之晨咖啡', name_en: 'Singapore Morning Coffee', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '馬拉喀什之晨咖啡', name_en: 'Marrakech Morning Coffee', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '摩洛哥撒哈拉咖啡', name_en: 'Moroccan Sahara Coffee', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'coffee', name_zh: '非洲之王咖啡', name_en: 'King of Africa Coffee', price: '$7.00', tag: 'coffee' },
+                { restaurant: 'bev-bacha', category: 'pastries', name_zh: '經典奶油可頌', name_en: 'Butter Croissant', price: '$3.00' },
+                { restaurant: 'bev-bacha', category: 'pastries', name_zh: '奇妙開心果可頌', name_en: 'Pistachio Croissant', price: '$3.00' },
+                { restaurant: 'bev-bacha', category: 'pastries', name_zh: '1910 咖啡巧克力可頌', name_en: '1910 Coffee & Chocolate Croissant', price: '$3.00' },
+                { restaurant: 'bev-bacha', category: 'pastries', name_zh: '睡美人藍莓薰衣草可頌', name_en: 'Blueberry & Lavender Croissant', price: '$3.00' },
+                { restaurant: 'bev-bacha', category: 'pastries', name_zh: '愛麗絲覆盆子肉桂可頌', name_en: 'Raspberry & Cinnamon Croissant', price: '$3.00' },
+                { restaurant: 'bev-bacha', category: 'pastries', name_zh: '康堤乾酪可頌', name_en: 'Comte Cheese Croissant', price: '$3.50' },
+                { restaurant: 'bev-bacha', category: 'pastries', name_zh: '黑森林蘑菇松露可頌', name_en: 'Mushroom & Truffle Croissant', price: '$3.50' },
+                { restaurant: 'bev-bacha', category: 'food', name_zh: '挪威煙燻鮭魚法式吐司三明治', name_en: 'Norwegian Smoked Salmon French Toast Sandwich', price: '$23.50', tag: 'seafood' },
+                { restaurant: 'bev-bacha', category: 'food', name_zh: '慢燉鮮雞法式吐司三明治', name_en: 'Slow-Cooked Chicken French Toast Sandwich', price: '$25.00', tag: 'meat' },
+                { restaurant: 'bev-bacha', category: 'food', name_zh: '巴查皇家總匯三明治', name_en: 'Bacha Club Sandwich', price: '$25.00', tag: 'meat' },
+
+                // 🧋 BEV-BOBA
+                { restaurant: 'bev-boba', category: 'tea', name_zh: '深海秘境葡萄特調', name_en: 'Deep-Sea Grape Concoction', desc: '清香茉莉花茶', price: '$7.75' },
+                { restaurant: 'bev-boba', category: 'tea', name_zh: '小美人魚的莓果之吻', name_en: "Mermaid's Berry Kiss", desc: '草莓、藍莓、覆盆子、茉莉花茶', price: '$7.75' },
+                { restaurant: 'bev-boba', category: 'tea', name_zh: '海妖賽倫的風暴柑橘飲', name_en: 'Siren Citrus Storm', desc: '柳橙、檸檬、萊姆、茉莉花茶', price: '$7.75' },
+                { restaurant: 'bev-boba', category: 'milk-tea', name_zh: '秘境洋流抹茶特調', name_en: 'Mystic Tide Matcha', desc: '香醇鮮奶、手熬黑糖珍珠', price: '$7.75' },
+                { restaurant: 'bev-boba', category: 'milk-tea', name_zh: '仙女教母的魔法茉莉奶茶', name_en: 'Enchanted Jasmine Milk', price: '$7.75' },
+                { restaurant: 'bev-boba', category: 'add-ons', name_zh: '黑珍珠魔咒黑糖波霸', name_en: 'Black Pearl Brown Sugar Boba', price: '$1.25' },
+                { restaurant: 'bev-boba', category: 'add-ons', name_zh: '海洋咒語奇亞籽', name_en: 'Sea-Spell Chia Seeds', price: '$1.25' },
+                { restaurant: 'bev-boba', category: 'add-ons', name_zh: '驚喜燕麥爆爆珠', name_en: 'Bursting Oat Popping Boba', price: '$1.25' },
+                { restaurant: 'bev-boba', category: 'juice', name_zh: '海之巫婆的綠寶石精華', name_en: 'Sea Witch Emerald Essence', desc: '羽衣甘藍、新鮮蘋果、檸檬', price: '$7.00' },
+                { restaurant: 'bev-boba', category: 'smoothie', name_zh: '烏蘇拉的暗黑魔法冰沙', name_en: 'Ursula Magic Smoothie', desc: '藍莓、葡萄、優格', price: '$8.50' },
+                { restaurant: 'bev-boba', category: 'smoothie', name_zh: '深海八爪魔藥酪梨冰沙', name_en: 'Tentacle Avocado Potion', price: '$8.50' },
+                { restaurant: 'bev-boba', category: 'smoothie', name_zh: '沉船寶藏芒果特調', name_en: 'Sunken Treasure Mango Brew', price: '$7.75' },
+
+                // 🏴‍☠️ BEV-BUCCANEER
+                { restaurant: 'bev-buccaneer', category: 'beer', name_zh: '法國可倫堡1664拉格', name_en: 'Kronenbourg 1664 Lager', price: '$8.25', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'beer', name_zh: '日本常陸野貓頭鷹白啤酒', name_en: 'Hitachino Nest White Ale', price: '$8.25', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'beer', name_zh: '新加坡夕陽律動拉格', name_en: 'Sunset Groove Lager', price: '$8.25', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'beer', name_zh: '新加坡桂花雪梨奶油艾爾', name_en: 'Osmanthus Pear Cream Ale', price: '$10.75', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'beer', name_zh: '新加坡Owa-Owa桑葚酸艾爾', name_en: 'Owa-Owa Mulberry Sour Ale', price: '$8.75', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'beer', name_zh: '丹麥嘉士伯皮爾森', name_en: 'Carlsberg Pilsner', price: '$8.75', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'beer', name_zh: '美國布魯克林捍衛者IPA', name_en: 'Brooklyn Defender IPA', price: '$8.75', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'beer', name_zh: '美國布魯克林石牆客棧IPA', name_en: 'Brooklyn Stonewall Inn IPA', price: '$8.25', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'beer', name_zh: '新加坡銀河熱帶司陶特黑啤酒', name_en: 'Galactic Tropical Stout', price: '$10.75', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'beer', name_zh: '中國工人淡色艾爾', name_en: "Worker's Pale Ale", price: '$8.75', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'beer', name_zh: '中國京A蜜桔小麥', name_en: 'Jing-A Mandarin Wheat', price: '$8.75', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'beer', name_zh: '新加坡星空小荳蔻玫瑰賽松', name_en: 'Celestial Cardamom Rose Saison', price: '$10.75', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'sparkling', name_zh: '義大利波戈帝國甜司卡托氣泡酒', name_en: 'Borgo Imperiale Moscato', price: '$9.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'sparkling', name_zh: '義大利波戈帝國普羅塞克', name_en: 'Borgo Imperiale Prosecco', price: '$10.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'sparkling', name_zh: '法國伯瑞香檳', name_en: 'Pommery Brut', price: '$25.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'cocktails', name_zh: '魂飛魄散木桶陳釀特調', name_en: 'Shiver Me Timbers', price: '$20.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'cocktails', name_zh: '深海閻王聚寶盆【雙人】', name_en: "Dead Man's Chest", price: '$25.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'cocktails', name_zh: '深海巨妖克拉肯', name_en: 'The Kraken', price: '$14.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'cocktails', name_zh: '星國水手雪拉達', name_en: "S'pore Chelada", price: '$12.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'cocktails', name_zh: '馮船長秘製潘趣酒', name_en: 'Captain Feng Punch', price: '$14.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'cocktails', name_zh: '美人魚的祖母綠之海', name_en: 'Emerald Sea', price: '$12.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'cocktails', name_zh: '狂野巨砲蘭姆品鑑組', name_en: 'Loose Cannons', price: '$40.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'non-alcoholic', name_zh: '海盜骷髏旗', name_en: 'Skull & Crossbones', price: '$12.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'non-alcoholic', name_zh: '迷霧幽靈船', name_en: 'Ghost Ship', price: '$14.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'non-alcoholic', name_zh: '海妖礁湖特調', name_en: "Siren's Lagoon Cooler", price: '$9.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'non-alcoholic', name_zh: 'Missing Thorn無酒精', name_en: 'Missing Thorn', price: '$14.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'non-alcoholic', name_zh: 'NON1', name_en: 'NON1', price: '$15.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'non-alcoholic', name_zh: 'NON2', name_en: 'NON2', price: '$15.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'wine', name_zh: '紐西蘭間諜谷白蘇維濃', name_en: 'Spy Valley Sauvignon Blanc', price: '$13.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'wine', name_zh: '澳洲卡拉布里亞灰皮諾', name_en: 'Calabria Family Pinot Grigio', price: '$10.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'wine', name_zh: '法國月亮粉紅酒', name_en: 'Moon Rose', price: '$12.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'wine', name_zh: '美國極樂葡萄園夏多內', name_en: 'Bliss Vineyard Chardonnay', price: '$13.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'wine', name_zh: '西班牙阿爾巴拉爾阿爾巴利諾', name_en: 'Bodegas Albarar Albarino', price: '$14.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'wine', name_zh: '阿根廷小小世界馬爾貝克', name_en: 'Un Mundo Chiquitito Malbec', price: '$10.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'wine', name_zh: '紐西蘭間諜谷黑皮諾', name_en: 'Spy Valley Pinot Noir', price: '$10.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'wine', name_zh: '紐西蘭女伯爵黑皮諾', name_en: 'Comtesse Pinot Noir', price: '$12.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'wine', name_zh: '澳洲巴羅莎索恩克拉克希哈', name_en: 'Thorn-Clark Shiraz', price: '$15.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'wine', name_zh: '義大利蒙塔奇諾布魯奈羅', name_en: 'Brunello di Montalcino', price: '$25.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'rum', name_zh: '高斯林百慕達黑海豹', name_en: 'Goslings Black Seal', price: '$9.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'rum', name_zh: '克拉肯黑金香料蘭姆', name_en: 'Kraken Black Spiced', price: '$9.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'rum', name_zh: '薩卡帕23年', name_en: 'Zacapa 23', price: '$14.75', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'rum', name_zh: '百加得8年', name_en: 'Bacardi Gran Reserva Ocho', price: '$11.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'rum', name_zh: '薩卡帕XO', name_en: 'Zacapa XO', price: '$30.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'rum', name_zh: '龐巴達長管砲5年', name_en: 'Bombarda Culverin 5 Year', price: '$7.25', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'rum', name_zh: '龐巴達獵鷹砲8年', name_en: 'Bombarda Falconet 8 Year', price: '$9.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'rum', name_zh: '龐巴達君王XO22年', name_en: 'Bombarda Sovereign XO 22 Year', price: '$30.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'craft-beer', name_zh: '夕陽律動拉格', name_en: 'Sunset Groove Lager', price: '$14.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'craft-beer', name_zh: '迎光飛翔淡色艾爾', name_en: 'Fly in Light Pale Ale', price: '$14.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'craft-beer', name_zh: '銀河熱帶司陶特黑啤', name_en: 'Galactic Tropical Stout', price: '$14.75', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'beer-bucket', name_zh: '經典啤酒桶', name_en: 'Classic Beers', price: '$36.25', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'beer-bucket', name_zh: '招牌啤酒桶', name_en: 'Signature Beers', price: '$38.75', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'sake', name_zh: '菊水純米吟釀', name_en: 'Kikusui Junmai Ginjo', price: '$15.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'sake', name_zh: '月桂冠梅酒', name_en: 'Gekkeikan Plum Wine', price: '$11.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'sake', name_zh: '月桂冠完熟梅酒原酒', name_en: 'Gekkeikan Kanjuku Umeshu Genshu', price: '$12.00', tag: 'alcoholic' },
+                { restaurant: 'bev-buccaneer', category: 'sake', name_zh: '美國獺祭Blue50純米大吟釀', name_en: 'Dassai Blue 50 Junmai Daiginjo', price: '$16.00', tag: 'alcoholic' },
+
+                // 🎩 BEV-CONCIERGE
+                { restaurant: 'bev-concierge', category: 'wine', name_zh: '泰亭哲香檳', name_en: 'Taittinger Brut', tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'wine', name_zh: '法拉利氣泡酒', name_en: 'Ferrari Brut', tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'wine', name_zh: '范德龐粉紅酒', name_en: 'Vanderpump Rose', tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'wine', name_zh: 'GoGi「金髮女孩」夏多內', name_en: 'GoGi Goldie Chardonnay', tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'wine', name_zh: '雲霧之灣白蘇維濃', name_en: 'Cloudy Bay Sauvignon Blanc', tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'wine', name_zh: '巴杜雷特城堡特級園', name_en: 'Chateau Bardoulet Grand Cru', tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'wine', name_zh: '思美酒莊卡本內蘇維濃', name_en: 'Simi Landslide Cabernet Sauvignon', tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'wine', name_zh: 'GoGi「小鳥」黑皮諾', name_en: 'GoGi Birdie Pinot Noir', tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'whiskey', name_zh: '美格波本', name_en: "Maker's Mark", tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'whiskey', name_zh: '格蘭利威12年', name_en: 'Glenlivet 12 years', tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'whiskey', name_zh: '麥卡倫探索', name_en: 'Macallan Quest', tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'whiskey', name_zh: '貝里特裸麥', name_en: 'Bulleit Rye', tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'whiskey', name_zh: '普羅珀12年愛爾蘭', name_en: 'Proper 12 Irish Whiskey', tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'cocktails', name_zh: '古典雞尾酒', name_en: 'Old Fashioned', tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'cocktails', name_zh: '側車', name_en: 'Sidecar', tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'cocktails', name_zh: '香檳雞尾酒', name_en: 'Champagne Cocktail', tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'cocktails', name_zh: '內格羅尼', name_en: 'Negroni', tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'cocktails', name_zh: '柯夢波丹', name_en: 'Cosmopolitan', tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'cocktails', name_zh: '莫西多', name_en: 'Mojito', tag: 'alcoholic' },
+                { restaurant: 'bev-concierge', category: 'cocktails', name_zh: '邁泰', name_en: 'Mai Tai', tag: 'alcoholic' },
+
+                // 🎭 BEV-DLOUNGE
+                { restaurant: 'bev-dlounge', category: 'mocktails', name_zh: '唐老鴨的歡樂特調', name_en: "Donald's Delight", price: '$3.95', tag: 'non-alcoholic' },
+                { restaurant: 'bev-dlounge', category: 'mocktails', name_zh: '布雷爾熊大叔的莓果櫻桃狂歡', name_en: "Brer Bear's Berries N' Cherries", price: '$3.95', tag: 'non-alcoholic' },
+                { restaurant: 'bev-dlounge', category: 'mocktails', name_zh: '大衛瓊斯的深海特調', name_en: 'The Davy Jones', price: '$3.95', tag: 'non-alcoholic' },
+                { restaurant: 'bev-dlounge', category: 'mocktails', name_zh: '阿布的猴子把戲果汁', name_en: 'Abu Juice', price: '$3.95', tag: 'non-alcoholic' },
+                { restaurant: 'bev-dlounge', category: 'mocktails', name_zh: '焦糖海灣的秘寶', name_en: 'The Caramel Cove', price: '$3.95', tag: 'non-alcoholic' },
+                { restaurant: 'bev-dlounge', category: 'mocktails', name_zh: '米妮的熱情芒果探戈', name_en: "Minnie's Mango Pango", price: '$3.95', tag: 'non-alcoholic' },
+                { restaurant: 'bev-dlounge', category: 'mocktails', name_zh: '高飛的黏踢踢巧克力派對', name_en: "Goofy's Ooey Gooey", price: '$3.95', tag: 'non-alcoholic' },
+
+                // 🌸 BEV-GARDEN
+                { restaurant: 'bev-garden', category: 'cocktails', name_zh: '閃耀花園', name_en: 'Garden Sparkle', price: '$12.00', tag: 'alcoholic' },
+                { restaurant: 'bev-garden', category: 'cocktails', name_zh: '小仙子奶油冰棒', name_en: 'Pixie Creamsicle', price: '$14.00', tag: 'alcoholic' },
+                { restaurant: 'bev-garden', category: 'cocktails', name_zh: '瘋帽客的午茶馬丁尼', name_en: 'Teatime Tini', price: '$12.00', tag: 'alcoholic' },
+                { restaurant: 'bev-garden', category: 'cocktails', name_zh: '百果綻放', name_en: 'Fruit Blossom', price: '$10.00', tag: 'alcoholic' },
+                { restaurant: 'bev-garden', category: 'cocktails', name_zh: '迷霧花叢', name_en: 'Smoky Flowers', price: '$15.00', tag: 'alcoholic' },
+                { restaurant: 'bev-garden', category: 'cocktails', name_zh: '魔髮藤蔓', name_en: 'Tangled Vines', price: '$14.00', tag: 'alcoholic' },
+                { restaurant: 'bev-garden', category: 'cocktails', name_zh: '蒂安娜的睡蓮馬丁尼', name_en: 'Lily Pad Tini', price: '$15.00', tag: 'alcoholic' },
+                { restaurant: 'bev-garden', category: 'non-alcoholic', name_zh: '開胃酸酒', name_en: 'Aperitif Sour', price: '$14.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-garden', category: 'non-alcoholic', name_zh: '野草莓之夢', name_en: 'Wild Strawberry', price: '$12.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-garden', category: 'non-alcoholic', name_zh: '精靈接骨木氣泡', name_en: 'Elderspritz', price: '$12.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-garden', category: 'non-alcoholic', name_zh: "Lyre's Amalfi Spritz", name_en: "Lyre's Amalfi Spritz", price: '$7.75', tag: 'non-alcoholic' },
+                { restaurant: 'bev-garden', category: 'non-alcoholic', name_zh: 'Heineken 0.0%', name_en: 'Heineken 0.0%', price: '$7.75', tag: 'non-alcoholic' },
+                { restaurant: 'bev-garden', category: 'non-alcoholic', name_zh: 'Warsteiner Radler 0.0%', name_en: 'Warsteiner Radler 0.0%', price: '$7.75', tag: 'non-alcoholic' },
+                { restaurant: 'bev-garden', category: 'non-alcoholic', name_zh: '魔法樹', name_en: 'Enchanted Tree', price: '$6.00', tag: 'kids' },
+                { restaurant: 'bev-garden', category: 'non-alcoholic', name_zh: '魔法師的幻想曲', name_en: 'Fantasia', price: '$6.00', tag: 'kids' },
+                { restaurant: 'bev-garden', category: 'non-alcoholic', name_zh: '花園清新泉水', name_en: 'Garden Refresher', price: '$6.00', tag: 'kids' },
+
+                // 🪐 BEV-INFINITY
+                { restaurant: 'bev-infinity', category: 'cocktails', name_zh: '時間寶石', name_en: 'Time Stone', price: '$7.00', tag: 'alcoholic' },
+                { restaurant: 'bev-infinity', category: 'cocktails', name_zh: '空間寶石', name_en: 'Space Stone', price: '$11.00', tag: 'alcoholic' },
+                { restaurant: 'bev-infinity', category: 'cocktails', name_zh: '靈魂寶石', name_en: 'Soul Stone', price: '$9.00', tag: 'alcoholic' },
+                { restaurant: 'bev-infinity', category: 'cocktails', name_zh: '現實寶石', name_en: 'Reality Stone', price: '$11.00', tag: 'alcoholic' },
+                { restaurant: 'bev-infinity', category: 'cocktails', name_zh: '力量寶石', name_en: 'Power Stone', price: '$9.00', tag: 'alcoholic' },
+                { restaurant: 'bev-infinity', category: 'cocktails', name_zh: '心靈寶石', name_en: 'Mind Stone', price: '$12.00', tag: 'alcoholic' },
+                { restaurant: 'bev-infinity', category: 'non-alcoholic', name_zh: '緋紅扭曲', name_en: 'Scarlet Distortion', price: '$9.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-infinity', category: 'non-alcoholic', name_zh: '靈魂之火花蜜', name_en: 'Soulfire Nectar', price: '$11.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-infinity', category: 'non-alcoholic', name_zh: '心靈綻放', name_en: 'Mind Bloom', price: '$9.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-infinity', category: 'non-alcoholic', name_zh: '永恆之刻', name_en: 'Eternal Hour', price: '$9.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-infinity', category: 'beer', name_zh: '桂花洋梨奶油愛爾', name_en: 'Osmanthus Pear Cream Ale', price: '$8.25', tag: 'alcoholic' },
+                { restaurant: 'bev-infinity', category: 'beer', name_zh: '嘉士伯皮爾森 draft', name_en: 'Carlsberg Pilsner Draft', price: '$8.25', tag: 'alcoholic' },
+                { restaurant: 'bev-infinity', category: 'sake', name_zh: 'Izeko清酒果凍杯', name_en: 'Izeko Sake Jelly Cup', price: '$7.00', tag: 'alcoholic' },
+                { restaurant: 'bev-infinity', category: 'sake', name_zh: '月桂冠梅酒', name_en: 'Gekkeikan Plum Wine', price: '$11.00', tag: 'alcoholic' },
+                { restaurant: 'bev-infinity', category: 'sake', name_zh: '菊水純米吟釀', name_en: 'Kikusui Junmai Ginjo', price: '$15.00', tag: 'alcoholic' },
+
+                // 🪞 BEV-SPELLBOUND
+                { restaurant: 'bev-spellbound', category: 'cocktails', name_zh: '邪惡之咬', name_en: 'Wicked Bite', price: '$20.00', tag: 'alcoholic' },
+                { restaurant: 'bev-spellbound', category: 'cocktails', name_zh: '高傲皇后', name_en: 'The Queen', price: '$16.00', tag: 'alcoholic' },
+                { restaurant: 'bev-spellbound', category: 'cocktails', name_zh: '致命毒蘋果', name_en: 'Poison Apple', price: '$70.00', tag: 'alcoholic' },
+                { restaurant: 'bev-spellbound', category: 'cocktails', name_zh: '獵人本色', name_en: 'The Huntsman', price: '$16.00', tag: 'alcoholic' },
+                { restaurant: 'bev-spellbound', category: 'cocktails', name_zh: '魔鏡絕色', name_en: 'The Fairest of Them All', price: '$14.00', tag: 'alcoholic' },
+                { restaurant: 'bev-spellbound', category: 'cocktails', name_zh: '真愛初飲', name_en: "True Love's First Sip", price: '$16.00', tag: 'alcoholic' },
+                { restaurant: 'bev-spellbound', category: 'non-alcoholic', name_zh: '魔鏡魔鏡', name_en: 'Mirror Mirror', price: '$12.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-spellbound', category: 'non-alcoholic', name_zh: '許願池氣泡飲', name_en: 'Wishing Well Fizz', price: '$9.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-spellbound', category: 'non-alcoholic', name_zh: '皇家冰霜特調', name_en: 'Royal Frostbite Cream', price: '$10.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-spellbound', category: 'non-alcoholic', name_zh: '邪惡皇后', name_en: 'Evil Queen', price: '$6.00', tag: 'kids' },
+                { restaurant: 'bev-spellbound', category: 'non-alcoholic', name_zh: '女巫特調魔藥', name_en: "Witch's Brew", price: '$6.00', tag: 'kids' },
+                { restaurant: 'bev-spellbound', category: 'non-alcoholic', name_zh: '永保青春花果茶', name_en: 'Eternal Beauty Tea', price: '$6.00', tag: 'kids' },
+                { restaurant: 'bev-spellbound', category: 'coffee', name_zh: '禁忌森林', name_en: 'Forbidden Forest', price: '$7.50', tag: 'coffee' },
+                { restaurant: 'bev-spellbound', category: 'coffee', name_zh: '魔鏡魔法摩卡', name_en: 'Mirror Magic Mocha', price: '$7.50', tag: 'coffee' },
+                { restaurant: 'bev-spellbound', category: 'coffee', name_zh: '雲朵斑蘭葉', name_en: 'Pandan Cloud', price: '$7.50', tag: 'coffee' },
+                { restaurant: 'bev-spellbound', category: 'espresso', name_zh: '濃縮咖啡（單份）', name_en: 'Espresso (Single)', price: '$2.50', tag: 'coffee' },
+                { restaurant: 'bev-spellbound', category: 'espresso', name_zh: '濃縮咖啡（雙份）', name_en: 'Espresso (Double)', price: '$3.50', tag: 'coffee' },
+                { restaurant: 'bev-spellbound', category: 'espresso', name_zh: '抹茶拿鐵', name_en: 'Green Tea Matcha', price: '$5.50', tag: 'coffee' },
+                { restaurant: 'bev-spellbound', category: 'espresso', name_zh: '薑黃拿鐵', name_en: 'Turmeric Latte', price: '$5.50', tag: 'coffee' },
+
+                // 🇮🇹 BEV-TAVERNA
+                { restaurant: 'bev-taverna', category: 'cocktails', name_zh: '春日微風', name_en: 'Primavera', price: '$14.00', tag: 'alcoholic' },
+                { restaurant: 'bev-taverna', category: 'cocktails', name_zh: '偉士牌150夢幻特調', name_en: '150 Special', price: '$12.00', tag: 'alcoholic' },
+                { restaurant: 'bev-taverna', category: 'cocktails', name_zh: '海怪的衝刺', name_en: 'Sprint', price: '$13.00', tag: 'alcoholic' },
+                { restaurant: 'bev-taverna', category: 'cocktails', name_zh: '達利的奇想', name_en: 'Dali', price: '$14.00', tag: 'alcoholic' },
+                { restaurant: 'bev-taverna', category: 'cocktails', name_zh: '946號星空', name_en: '946', price: '$16.00', tag: 'alcoholic' },
+                { restaurant: 'bev-taverna', category: 'cocktails', name_zh: '海島邊車', name_en: 'Side-Car', price: '$12.00', tag: 'alcoholic' },
+                { restaurant: 'bev-taverna', category: 'non-alcoholic', name_zh: '波托羅索之夏', name_en: 'Portorosso Cup', price: '$9.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-taverna', category: 'non-alcoholic', name_zh: '小不點氣泡飲', name_en: 'Piccolina Spritz', price: '$10.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-taverna', category: 'non-alcoholic', name_zh: '義式甜心提拉米蘇', name_en: 'Tiramisu', price: '$10.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-taverna', category: 'non-alcoholic', name_zh: '馬西莫的摩卡奇諾', name_en: 'Mocaccino', price: '$12.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-taverna', category: 'non-alcoholic', name_zh: '深藍秘境', name_en: 'Mare Blu', price: '$6.00', tag: 'kids' },
+                { restaurant: 'bev-taverna', category: 'non-alcoholic', name_zh: '靜靜吧！布魯諾氣泡飲', name_en: "Bruno's Fizz", price: '$6.00', tag: 'kids' },
+                { restaurant: 'bev-taverna', category: 'non-alcoholic', name_zh: '最棒的夏天', name_en: 'Best Summer Ever', price: '$6.00', tag: 'kids' },
+                { restaurant: 'bev-taverna', category: 'beer', name_zh: '義大利米娜布雷亞拉格 draft', name_en: 'Menabrea Lager Draft', price: '$8.25', tag: 'alcoholic' },
+
+                // 🐸 BEV-TIANA
+                { restaurant: 'bev-tiana', category: 'food', name_zh: '單份法式甜甜圈', name_en: 'One Beignet', price: '$2.00' },
+                { restaurant: 'bev-tiana', category: 'food', name_zh: '雙份法式甜甜圈', name_en: 'Two Beignets', price: '$3.00' },
+                { restaurant: 'bev-tiana', category: 'food', name_zh: '法式歐蕾咖啡佐甜甜圈', name_en: 'Cafe au Lait with Beignet', price: '$4.75' },
+                { restaurant: 'bev-tiana', category: 'food', name_zh: '奇妙睡蓮葉陶瓷紀念套組', name_en: 'Ceramic Lily Pad Set', price: '$25.00' },
+                { restaurant: 'bev-tiana', category: 'cocktails', name_zh: '煙燻古典', name_en: 'Smoked Fashioned', price: '$25.00', tag: 'alcoholic' },
+                { restaurant: 'bev-tiana', category: 'cocktails', name_zh: '肯瓊風味米切拉達', name_en: 'Cajun Michelada', price: '$10.00', tag: 'alcoholic' },
+                { restaurant: 'bev-tiana', category: 'cocktails', name_zh: '紐奧良結霜酒', name_en: 'Orleans Crusta', price: '$13.00', tag: 'alcoholic' },
+                { restaurant: 'bev-tiana', category: 'cocktails', name_zh: '狂歡颶風', name_en: 'Hurricane', price: '$14.00', tag: 'alcoholic' },
+                { restaurant: 'bev-tiana', category: 'cocktails', name_zh: '冰鎮苦艾酒', name_en: 'Absinthe Frappe', price: '$12.00', tag: 'alcoholic' },
+                { restaurant: 'bev-tiana', category: 'cocktails', name_zh: '薩澤拉克', name_en: 'Sazerac', price: '$13.00', tag: 'alcoholic' },
+                { restaurant: 'bev-tiana', category: 'non-alcoholic', name_zh: '花園區之風', name_en: 'Garden District', price: '$9.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-tiana', category: 'non-alcoholic', name_zh: '河口微風', name_en: 'Bayou Breeze', price: '$9.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-tiana', category: 'non-alcoholic', name_zh: '波本街碎冰飲', name_en: 'Bourbon Street Smash', price: '$10.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-tiana', category: 'non-alcoholic', name_zh: '老城區沁涼特調', name_en: 'Vieux Carre Cooler', price: '$10.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-tiana', category: 'non-alcoholic', name_zh: '狂歡節蘋果賓治', name_en: 'Mardi Gras Apple Punch', price: '$6.00', tag: 'kids' },
+                { restaurant: 'bev-tiana', category: 'non-alcoholic', name_zh: '招牌甜甜圈奶昔', name_en: 'Beignet Shake', price: '$15.00', tag: 'kids' },
+                { restaurant: 'bev-tiana', category: 'non-alcoholic', name_zh: '沼澤氣泡飲', name_en: 'Swamp Soda', price: '$10.00', tag: 'kids' },
+                { restaurant: 'bev-tiana', category: 'coffee', name_zh: '單份濃縮咖啡', name_en: 'Espresso Single', price: '$2.75', tag: 'coffee' },
+                { restaurant: 'bev-tiana', category: 'coffee', name_zh: '雙份濃縮咖啡', name_en: 'Espresso Double', price: '$3.75', tag: 'coffee' },
+                { restaurant: 'bev-tiana', category: 'coffee', name_zh: '單份瑪奇朵', name_en: 'Macchiato Single', price: '$2.75', tag: 'coffee' },
+                { restaurant: 'bev-tiana', category: 'coffee', name_zh: '雙份瑪奇朵', name_en: 'Macchiato Double', price: '$3.75', tag: 'coffee' },
+                { restaurant: 'bev-tiana', category: 'coffee', name_zh: '單份拿鐵', name_en: 'Latte Single', price: '$3.75', tag: 'coffee' },
+                { restaurant: 'bev-tiana', category: 'coffee', name_zh: '雙份拿鐵', name_en: 'Latte Double', price: '$4.75', tag: 'coffee' },
+                { restaurant: 'bev-tiana', category: 'coffee', name_zh: '單份摩卡', name_en: 'Mocha Single', price: '$3.50', tag: 'coffee' },
+                { restaurant: 'bev-tiana', category: 'coffee', name_zh: '雙份摩卡', name_en: 'Mocha Double', price: '$4.75', tag: 'coffee' },
+                { restaurant: 'bev-tiana', category: 'coffee', name_zh: '單份卡布奇諾', name_en: 'Cappuccino Single', price: '$3.50', tag: 'coffee' },
+                { restaurant: 'bev-tiana', category: 'coffee', name_zh: '雙份卡布奇諾', name_en: 'Cappuccino Double', price: '$4.75', tag: 'coffee' },
+                { restaurant: 'bev-tiana', category: 'coffee', name_zh: '添加風味糖漿', name_en: 'Flavor Syrup Add-on', price: '$1.00', tag: 'coffee' },
+                { restaurant: 'bev-tiana', category: 'coffee', name_zh: '綠茶抹茶拿鐵', name_en: 'Green Tea Matcha Latte', price: '$5.75', tag: 'coffee' },
+                { restaurant: 'bev-tiana', category: 'coffee', name_zh: '薑黃拿鐵', name_en: 'Turmeric Latte', price: '$5.75', tag: 'coffee' },
+                { restaurant: 'bev-tiana', category: 'coffee-cocktails', name_zh: '法式歐蕾馬丁尼', name_en: 'Cafe Au Lait Martini', price: '$11.00', tag: 'alcoholic' },
+                { restaurant: 'bev-tiana', category: 'coffee-cocktails', name_zh: '河口賓治', name_en: 'Bayou Punch', price: '$9.50', tag: 'alcoholic' },
+                { restaurant: 'bev-tiana', category: 'cold-brew', name_zh: '冷萃可樂達', name_en: 'Brew Colada', price: '$13.50', tag: 'alcoholic' },
+                { restaurant: 'bev-tiana', category: 'cold-brew', name_zh: '冷萃古典', name_en: 'Brew Fashion', price: '$13.50', tag: 'alcoholic' },
+                { restaurant: 'bev-tiana', category: 'cold-brew', name_zh: '冷萃通寧', name_en: 'Brew Tonic', price: '$13.50', tag: 'alcoholic' },
+                { restaurant: 'bev-tiana', category: 'cold-brew', name_zh: '冷萃與沙', name_en: 'Brew & Sand', price: '$13.50', tag: 'alcoholic' },
+
+                // 🧭 BEV-WAYFINDER
+                { restaurant: 'bev-wayfinder', category: 'cocktails', name_zh: '航海家果汁酒', name_en: 'Voyagers Punch', price: '$12.00', tag: 'alcoholic' },
+                { restaurant: 'bev-wayfinder', category: 'cocktails', name_zh: '莫圖努伊青檸水', name_en: 'Motonui Limeade', price: '$9.00', tag: 'alcoholic' },
+                { restaurant: 'bev-wayfinder', category: 'cocktails', name_zh: '尋路者的熱情', name_en: 'Wayfinders Passion', price: '$10.00', tag: 'alcoholic' },
+                { restaurant: 'bev-wayfinder', category: 'cocktails', name_zh: '跨越礁岩桑格利亞果酒', name_en: 'Beyond The Reef Sangria', price: '$12.00', tag: 'alcoholic' },
+                { restaurant: 'bev-wayfinder', category: 'cocktails', name_zh: '莫圖島邁泰', name_en: 'Motu Mai Tai', price: '$12.00', tag: 'alcoholic' },
+                { restaurant: 'bev-wayfinder', category: 'non-alcoholic', name_zh: '島嶼氣泡飲', name_en: 'Islander Fizz', price: '$9.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-wayfinder', category: 'non-alcoholic', name_zh: '莫亞娜之海', name_en: 'Mojana', price: '$10.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-wayfinder', category: 'non-alcoholic', name_zh: '塔卡熔岩可樂達', name_en: 'Te Ka Colada', price: '$12.00', tag: 'non-alcoholic' },
+                { restaurant: 'bev-wayfinder', category: 'non-alcoholic', name_zh: '可可怪椰子爆擊', name_en: 'Kakamora Smash', price: '$6.00', tag: 'kids' },
+                { restaurant: 'bev-wayfinder', category: 'non-alcoholic', name_zh: '塔菲緹之茶', name_en: 'Tea Fiti', price: '$6.00', tag: 'kids' },
+                { restaurant: 'bev-wayfinder', category: 'non-alcoholic', name_zh: '毛伊解渴特調', name_en: 'Maui Quencher', price: '$6.00', tag: 'kids' },
+
+                // 🧊 BEV-WHEEZY
+                { restaurant: 'bev-wheezy', category: 'freezies', name_zh: '造型紀念吸管', name_en: 'Souvenir Sippers', price: '$0.25' },
+                { restaurant: 'bev-wheezy', category: 'freezies', name_zh: '吱吱發聲器', name_en: 'Squeaker', desc: '芒果、藍莓、杏仁糖漿、香草冰淇淋', price: '$8.25' },
+                { restaurant: 'bev-wheezy', category: 'freezies', name_zh: '胡迪警長的牛仔奶昔', name_en: 'Cowboy Shake', desc: '香草冰淇淋、新鮮香蕉、海鹽焦糖、白巧克力', price: '$8.25' },
+                { restaurant: 'bev-wheezy', category: 'freezies', name_zh: '飛向宇宙浩瀚無垠！', name_en: 'To Infinity', desc: '新鮮芒果、新鮮胡蘿蔔、純淨檸檬水、椰子水', price: '$8.75' },
+                { restaurant: 'bev-wheezy', category: 'freezies', name_zh: '抱抱龍的小咆哮', name_en: 'Small Roar', desc: '青蘋果、生薑、雪碧', price: '$8.25' },
+                { restaurant: 'bev-wheezy', category: 'freezies', name_zh: '熊抱哥的甜美莓果香', name_en: 'Smell Like Berries', desc: '椰子、鳳梨、草莓、覆盆子', price: '$8.25' },
+                { restaurant: 'bev-wheezy', category: 'freezies', name_zh: '探險世界經典鳳梨都樂冰', name_en: 'Pineapple Dole Whip', price: '$6.50' },
+                ];
+
+                // 索引查詢函數
+                function findMenuItemsByRestaurant(restaurantId) {
+                return menuData.filter(item => item.restaurant === restaurantId);
+                }
+
+                function findMenuItemsByCategory(restaurantId, category) {
+                return menuData.filter(item => item.restaurant === restaurantId && item.category === category);
+                }
+
+                function findMenuItemsByTag(tag) {
+                return menuData.filter(item => item.tag && item.tag.includes(tag));
+                }
+
+                function searchMenuItems(query) {
+                const q = query.toLowerCase();
+                return menuData.filter(item => 
+                    item.name_zh.toLowerCase().includes(q) || 
+                    item.name_en.toLowerCase().includes(q) ||
+                    (item.desc || '').toLowerCase().includes(q)
+                );
+                }
+
+                // 統計資訊
+                const menuStats = {
+                totalItems: menuData.length,
+                restaurants: [...new Set(menuData.map(item => item.restaurant))],
+                categories: [...new Set(menuData.map(item => item.category))],
+                tags: [...new Set(menuData.flatMap(item => item.tag ? item.tag.split('-') : []))],
+                };
+
+                function runMenuCoverageCheck() {
+                const expectedRestaurants = [
+                    'nav', 'pixar', 'night4', 'animator',
+                    'sulley-steak', 'sulley-omakase', 'sulley-teppan', 'sulley-sushi',
+                    'palo-brunch', 'palo-dinner',
+                    'bev-alleycat', 'bev-bacha', 'bev-boba', 'bev-buccaneer', 'bev-concierge',
+                    'bev-dlounge', 'bev-garden', 'bev-infinity', 'bev-spellbound', 'bev-taverna',
+                    'bev-tiana', 'bev-wayfinder', 'bev-wheezy'
+                ];
+
+                const expectedCoreCategories = {
+                    nav: ['bread', 'appetizers', 'entrees', 'desserts', 'kids'],
+                    pixar: ['bread', 'appetizers', 'entrees', 'desserts', 'kids'],
+                    night4: ['bread', 'appetizers', 'entrees', 'desserts'],
+                    animator: ['bread', 'appetizers', 'entrees', 'desserts', 'kids'],
+                    'sulley-steak': ['appetizers', 'entrees', 'desserts'],
+                    'sulley-omakase': ['omakase', 'omakase-course'],
+                    'sulley-teppan': ['teppan-zen', 'teppan-premium'],
+                    'sulley-sushi': ['sushi', 'handrolls', 'asian'],
+                    'palo-brunch': ['set', 'entrees', 'desserts'],
+                    'palo-dinner': ['set-appetizers', 'set-entrees', 'set-desserts', 'dinner-desserts'],
+                    'bev-alleycat': ['cocktails', 'non-alcoholic', 'beer'],
+                    'bev-bacha': ['coffee', 'pastries'],
+                    'bev-boba': ['tea', 'milk-tea'],
+                    'bev-buccaneer': ['beer', 'cocktails', 'non-alcoholic'],
+                    'bev-concierge': ['wine', 'whiskey', 'cocktails'],
+                    'bev-dlounge': ['mocktails'],
+                    'bev-garden': ['cocktails', 'non-alcoholic'],
+                    'bev-infinity': ['cocktails', 'non-alcoholic'],
+                    'bev-spellbound': ['cocktails', 'non-alcoholic'],
+                    'bev-taverna': ['cocktails', 'non-alcoholic'],
+                    'bev-tiana': ['food', 'cocktails', 'non-alcoholic'],
+                    'bev-wayfinder': ['cocktails', 'non-alcoholic'],
+                    'bev-wheezy': ['freezies']
+                };
+
+                const restaurantsInData = [...new Set(menuData.map(item => item.restaurant))];
+                const missingRestaurants = expectedRestaurants.filter(id => !restaurantsInData.includes(id));
+
+                const missingCategories = [];
+                Object.entries(expectedCoreCategories).forEach(([restaurantId, categories]) => {
+                    const foundCategories = new Set(
+                    menuData.filter(item => item.restaurant === restaurantId).map(item => item.category)
+                    );
+                    categories.forEach(category => {
+                    if (!foundCategories.has(category)) {
+                        missingCategories.push({ restaurant: restaurantId, category });
+                    }
+                    });
+                });
+
+                return {
+                    totalItems: menuData.length,
+                    restaurantsCount: restaurantsInData.length,
+                    missingRestaurants,
+                    missingCategories,
+                    ok: missingRestaurants.length === 0 && missingCategories.length === 0,
+                };
+                }
+
+                window.menuData = menuData;
+                window.menuStats = menuStats;
+                window.menuCoverageReport = runMenuCoverageCheck();
+
+                console.log('Menu data loaded:', menuStats);
+                console.log('Menu coverage:', window.menuCoverageReport);
+
+                const categoryOrder = [
+                'bread', 'appetizers', 'set-appetizers', 'entrees', 'set-entrees',
+                'sharing', 'meats', 'sushi', 'handrolls', 'asian', 'pasta', 'pizza',
+                'sides', 'eggs', 'pastries', 'desserts', 'set-desserts', 'kids',
+                'drinks', 'cocktails', 'non-alcoholic', 'coffee', 'tea', 'milk-tea'
+                ];
+
+                const tagLabel = {
+                seafood: '海鮮',
+                meat: '肉類',
+                beef: '牛肉',
+                pork: '含豬肉',
+                vegetarian: '蛋奶素',
+                vegan: '全素',
+                dessert: '甜點',
+                'no-sugar': '無加糖',
+                kids: '兒童',
+                'kids-disney': '迪士尼兒童',
+                'non-alcoholic': '無酒精',
+                coffee: '咖啡',
+                alcoholic: '酒精',
+                tea: '茶飲',
+                milk: '奶類',
+                pastry: '烘焙',
+                mocktail: '無酒精特調',
+                };
+
+                const getFriendlyTagLabel = (token) => {
+                if (tagLabel[token]) return tagLabel[token];
+                if (token.endsWith('s') && tagLabel[token.slice(0, -1)]) return tagLabel[token.slice(0, -1)];
+                if (/^[a-z-]+$/i.test(token)) {
+                    return token
+                    .split('-')
+                    .map(part => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
+                    .join(' ');
+                }
+                return token || '標籤';
+                };
+
+                const parseTagTokens = (tag) => {
+                if (!tag) return [];
+                if (['kids-disney', 'no-sugar', 'non-alcoholic'].includes(tag)) return [tag];
+                return tag.split('-').filter(Boolean);
+                };
+
+                const tagClass = (token) => {
+                if (token === 'pork') return 'bg-red-100 text-red-700 border border-red-200';
+                if (token === 'vegetarian' || token === 'vegan') return 'bg-green-100 text-green-700 border border-green-200';
+                if (token === 'no-sugar') return 'bg-teal-100 text-teal-700 border border-teal-200';
+                if (token === 'kids' || token === 'kids-disney') return 'bg-orange-100 text-orange-700 border border-orange-200';
+                if (token === 'alcoholic') return 'bg-purple-100 text-purple-700 border border-purple-200';
+                if (token === 'non-alcoholic') return 'bg-cyan-100 text-cyan-700 border border-cyan-200';
+                return 'bg-blue-100 text-blue-700 border border-blue-200';
+                };
+
+                const getRestaurantIds = () => {
+                if (menuRootTab === 'sulley') return [menuSubTab];
+                if (menuRootTab === 'palo') return [menuSubTab];
+                if (menuRootTab === 'bev') {
+                    return menuData
+                    .map(i => i.restaurant)
+                    .filter((v, i, arr) => v && v.startsWith('bev-') && arr.indexOf(v) === i);
+                }
+                return [menuRootTab];
+                };
+
+                const query = menuQuery.trim().toLowerCase();
+                const selectedRestaurantIds = getRestaurantIds();
+                const menuItems = menuData.filter(item => selectedRestaurantIds.includes(item.restaurant));
+                const visibleMenuItems = query
+                ? menuItems.filter(item => (
+                    (item.name_zh || '').toLowerCase().includes(query) ||
+                    (item.name_en || '').toLowerCase().includes(query) ||
+                    (item.desc || '').toLowerCase().includes(query)
+                ))
+                : menuItems;
+
+                const groupedItems = visibleMenuItems.reduce((acc, item) => {
+                const category = item.category || 'others';
+                if (!acc[category]) acc[category] = [];
+                acc[category].push(item);
+                return acc;
+                }, {});
+
+                const sortedCategories = Object.keys(groupedItems).sort((a, b) => {
+                const ai = categoryOrder.indexOf(a);
+                const bi = categoryOrder.indexOf(b);
+                if (ai === -1 && bi === -1) return a.localeCompare(b, 'zh-Hant');
+                if (ai === -1) return 1;
+                if (bi === -1) return -1;
+                return ai - bi;
+                });
+
+                const coverageReport = window.menuCoverageReport || {
+                totalItems: menuData.length,
+                restaurantsCount: [...new Set(menuData.map(i => i.restaurant))].length,
+                missingRestaurants: [],
+                missingCategories: [],
+                ok: true,
+                };
+
+
+            return (
+                <div className="max-w-md mx-auto min-h-screen bg-slate-50 pb-32 relative shadow-2xl font-black">
+                    <div className="relative h-48 w-full overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1548574505-5e239809ee19?auto=format&fit=crop&q=80&w=800" className="absolute w-full h-full object-cover" />
+                        <div className="absolute inset-0 hero-gradient flex flex-col justify-end p-6 pb-6 text-white text-center font-black">
+                            <h1 className="text-2xl italic">Singapore Disney Adventure</h1>
+                            <p className="text-white/90 font-small tracking-widest uppercase underline">Tactical Guide V96</p>
+                        </div>
+                    </div>
+
+                    <div className="px-2 -mt-6 relative z-10 space-y-6">
+                        <div className="flex bg-white shadow-xl p-1 rounded-2xl border border-slate-200 sticky top-4 z-50">
+                            {['itinerary', 'photo', 'dining', 'tips', 'menu'].map(tab => (
+                                <button key={tab} onClick={() => setActiveTab(tab)} className={`flex-1 py-3 text-[10px] font-black rounded-xl transition-all ${activeTab === tab ? 'tab-active' : 'text-slate-400'}`}>
+                                    {tab === 'itinerary' ? '行程' : tab === 'photo' ? '拍照' : tab === 'dining' ? '設施' : tab === 'tips' ? '攻略' : '翻譯'}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* --- 🚢 設施與【美食推薦】強制歸位 --- */}
+                        {activeTab === 'dining' && (
+                            <div className="space-y-6 animate-in fade-in pb-10">
+                                {/* 🔴 推薦必吃 (紅榜) */}
+                                <section className="bg-slate-900 text-white rounded-[2rem] p-7 shadow-xl font-black border-2 border-yellow-500/50">
+                                    <h4 className="text-yellow-400 font-title mb-6 flex items-center gap-2"><i data-lucide="utensils" /> 下船群友激推必吃</h4>
+                                    <div className="space-y-6">
+                                        <div>
+                                            <p className="food-header">主餐廳與精緻餐飲</p>
+                                            <div className="flex flex-wrap gap-2">
+                                                <span className="rec-tag">牛排/魚排/干貝</span>
+                                                <span className="rec-tag">Navigator 鮭魚/蝦子</span>
+                                                <span className="rec-tag">脆皮叉燒</span>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p className="food-header">快餐、甲板與甜點</p>
+                                            <div className="flex flex-wrap gap-2">
+                                                <span className="rec-tag">漢堡/熱狗 (必加泡菜)</span>
+                                                <span className="rec-tag">18F 雞肉熱狗</span>
+                                                <span className="rec-tag">史迪奇牛肉熱狗</span>
+                                                <span className="rec-tag">炸薯條</span>
+                                                <span className="rec-tag">17F 霜淇淋/Pizza</span>
+                                            </div>
+                                        </div>
+                                        <div className="bg-white/10 p-4 rounded-xl">
+                                            <p className="text-yellow-400 font-small underline mb-2">蔬菜與自助餐推薦：</p>
+                                            <p className="text-white font-main">節瓜、炒芥藍、炒蘑菇、優格</p>
+                                        </div>
+                                    </div>
+                                </section>
+
+                                {/* 禮賓供餐時段 */}
+                                <section className="bg-slate-900 text-white rounded-[2rem] p-7 shadow-xl font-black">
+                                    <h4 className="text-indigo-300 font-title mb-6 flex items-center gap-2 font-black font-black font-black"><i data-lucide="clock" /> 禮賓專屬供餐 (17F 酒廊)</h4>
+                                    <div className="space-y-5 font-main">
+                                        <div className="flex justify-between border-b border-white/10 pb-2"><span>活力早餐 (含點餐)</span><span className="text-indigo-300">07:00 – 10:30</span></div>
+                                        <div className="flex justify-between border-b border-white/10 pb-2"><span>精緻午餐 (含點餐)</span><span className="text-blue-300">11:00 – 14:30</span></div>
+                                        <div className="flex justify-between border-b border-white/10 pb-2"><span>悠閒下午茶</span><span className="text-blue-300">15:00 – 16:30</span></div>
+                                        <div className="flex justify-between border-b border-white/10 pb-2 text-yellow-400 font-black font-black font-black"><span>酒水暢飲時段</span><span>17:00 – 22:00</span></div>
+                                        <div className="flex justify-between"><span>宵夜甜點時光</span><span className="text-yellow-400">20:30 – 22:00</span></div>
+                                    </div>
+                                </section>
+
+                                {/* 設施指南 */}
+                                <section className="bg-white rounded-3xl p-6 shadow-md border font-black">
+                                    <h4 className="font-title text-slate-900 mb-5 border-b-2 border-blue-500 pb-2">19F-5F 樓層設施指南</h4>
+                                    {floorData.map((f, idx) => (
+                                        <div key={idx} className="mb-4 last:mb-0 border-b border-slate-100 pb-4">
+                                            <span className="bg-blue-600 text-white font-small px-3 py-1 rounded-lg inline-block mb-3">{f.deck}</span>
+                                            {f.items.map((item, i) => (<p key={i} className="text-slate-900 font-main pl-2">• {item.n} ({item.p})</p>))}
+                                        </div>
+                                    ))}
+                                </section>
+                            </div>
+                        )}
+
+                        {/* --- 📸 拍照內容 (抓回) --- */}
+                        {activeTab === 'photo' && (
+                            <div className="space-y-6 animate-in fade-in pb-10">
+                                {photoSpots.map((p, idx) => (
+                                    <div key={idx} className="bg-white rounded-3xl p-6 shadow-md border border-purple-100">
+                                        <span className="bg-purple-600 text-white font-small px-3 py-1 rounded-lg inline-block mb-4 font-black">{p.deck}</span>
+                                        <div className="space-y-4 font-black">
+                                            {p.items.map((item, i) => (<div key={i} className="photo-card font-black"><p className="font-main font-black font-black">{item.n}</p><p className="font-small text-blue-600 font-black font-black font-black font-black">📍 {item.l}</p></div>))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+
+                        {/* --- 🏆 攻略與教戰 (抓回) --- */}
+                        {activeTab === 'tips' && (
+                            <div className="space-y-6 animate-in fade-in pb-10">
+                                <div className="bg-[#1e293b] text-white rounded-[2rem] p-7 shadow-xl border-2 border-slate-700">
+                                    <h4 className="text-yellow-400 font-title mb-4 flex items-center gap-2"><i data-lucide="popcorn" /> 🍿 禮賓爆米花領取</h4>
+                                    <p className="font-main font-black font-black font-black font-black font-black">演出前 40 分鐘前往 5F 船頭 (Walt Disney Theatre) 找禮賓人員領取。</p>
+                                </div>
+                                <section className="bg-slate-900 text-white rounded-[2rem] p-7 shadow-xl font-black font-black font-black">
+                                    <h4 className="text-blue-400 font-title mb-4 font-black font-black font-black font-black font-black">🏆 航行教戰守則</h4>
+                                    <div className="space-y-4 font-main font-black">
+                                        <p>• Day 1-3 16:00 準時搶預約！</p>
+                                        <p>• 給服務員 $10 小費可換熱情積極服務。</p>
+                                        <p>• 點餐建議「一次點齊」，避免久候。</p>
+                                        <p className="text-red-300 underline decoration-red-500 font-black">• 務必餐前洗手！醫務室費用一次 $300 起。</p>
+                                    </div>
+                                </section>
+                            </div>
+                        )}
+
+                        {activeTab === 'itinerary' && (
+                            <div className="space-y-4 animate-in fade-in pb-10 font-black font-black">
+                                {itinerary.map((day, i) => (
+                                    <div key={i} className="bg-white rounded-3xl p-5 shadow-sm border border-slate-100 font-black font-black font-black font-black">
+                                        <div className="flex items-center gap-2 mb-3 border-b pb-2"><span className="text-blue-600 font-title">{day.d}</span><span className="text-slate-800 font-title font-black">{day.t}</span></div>
+                                        <div className="space-y-4 ml-1 border-l-2 border-blue-100 pl-4">
+                                            {day.items.map((ev, j) => (<div key={j} className="font-black font-black"><p className="font-small text-slate-400">{ev.time}</p><p className={`font-main ${ev.color || 'text-slate-800'}`}>{ev.act}</p>{ev.loc && <p className="font-small text-blue-600 font-black">📍 {ev.loc}</p>}</div>))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                        {activeTab === 'menu' && (
+                            <div className="space-y-4 animate-in fade-in pb-10">
+                                <section className="bg-white rounded-3xl p-4 shadow-md border border-slate-200">
+                                    <div className="grid grid-cols-2 gap-2 mb-3">
+                                        {menuRootTabs.map(tab => (
+                                            <button
+                                                key={tab.id}
+                                                onClick={() => {
+                                                    setMenuRootTab(tab.id);
+                                                    setMenuQuery('');
+                                                    if (tab.id === 'sulley') setMenuSubTab('sulley-steak');
+                                                    if (tab.id === 'palo') setMenuSubTab('palo-brunch');
+                                                }}
+                                                className={`px-3 py-2 rounded-xl text-xs border font-black ${menuRootTab === tab.id ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-600 border-slate-200'}`}
+                                            >
+                                                {tab.label}
+                                            </button>
+                                        ))}
+                                    </div>
+
+                                    {(menuRootTab === 'sulley' || menuRootTab === 'palo') && (
+                                        <div className="flex gap-2 overflow-x-auto pb-1 mb-3">
+                                            {menuSubTabs[menuRootTab].map(tab => (
+                                                <button
+                                                    key={tab.id}
+                                                    onClick={() => setMenuSubTab(tab.id)}
+                                                    className={`shrink-0 px-3 py-2 rounded-xl text-xs border font-black ${menuSubTab === tab.id ? 'bg-blue-600 text-white border-blue-600' : 'bg-white text-slate-600 border-slate-200'}`}
+                                                >
+                                                    {tab.label}
+                                                </button>
+                                            ))}
+                                        </div>
+                                    )}
+
+                                    <input
+                                        value={menuQuery}
+                                        onChange={(e) => setMenuQuery(e.target.value)}
+                                        placeholder="搜尋中文、英文或描述"
+                                        className="w-full px-4 py-3 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 font-black text-sm"
+                                    />
+                                </section>
+
+                                <section className="bg-white rounded-3xl p-4 shadow-md border border-slate-200">
+                                    <div className="flex items-center justify-between mb-2">
+                                        <h3 className="text-slate-900 text-sm">資料檢查器</h3>
+                                        <span className={`text-[10px] px-2 py-1 rounded-lg ${coverageReport.ok ? 'bg-green-100 text-green-700' : 'bg-amber-100 text-amber-700'}`}>
+                                            {coverageReport.ok ? '完整' : '待補'}
+                                        </span>
+                                    </div>
+                                    <p className="text-xs text-slate-500">項目 {coverageReport.totalItems} 筆 / 餐廳 {coverageReport.restaurantsCount} 個</p>
+                                    {coverageReport.missingRestaurants.length > 0 && (
+                                        <p className="text-xs text-red-600 mt-2">缺餐廳：{coverageReport.missingRestaurants.join(', ')}</p>
+                                    )}
+                                    {coverageReport.missingCategories.length > 0 && (
+                                        <p className="text-xs text-amber-700 mt-1">
+                                            缺類別：{coverageReport.missingCategories.slice(0, 6).map(x => `${x.restaurant}/${x.category}`).join(', ')}
+                                            {coverageReport.missingCategories.length > 6 ? ` ...共 ${coverageReport.missingCategories.length} 項` : ''}
+                                        </p>
+                                    )}
+                                </section>
+
+                                {visibleMenuItems.length === 0 && (
+                                    <section className="bg-white rounded-3xl p-6 shadow-md border border-slate-200 text-center text-slate-500">
+                                        目前此區還沒有資料，下一步會分批補上。
+                                    </section>
+                                )}
+
+                                {sortedCategories.map(category => (
+                                    <section key={category} className="bg-white rounded-3xl p-4 shadow-md border border-slate-200">
+                                        <h3 className="text-slate-900 text-base border-l-4 border-blue-600 pl-3 mb-3">
+                                            {categoryLabels[category] || category}
+                                        </h3>
+                                        <div className="space-y-3">
+                                            {groupedItems[category].map((item, idx) => (
+                                                <article key={`${item.restaurant}-${item.name_en}-${idx}`} className="bg-white rounded-xl p-4 border border-slate-200">
+                                                    <div className="flex items-start justify-between gap-2">
+                                                        <div>
+                                                            <p className="text-slate-900 text-sm">{item.name_zh}</p>
+                                                            <p className="text-slate-500 text-xs italic">{item.name_en}</p>
+                                                        </div>
+                                                        {item.price && (
+                                                            <span className="text-blue-600 text-xs whitespace-nowrap">{item.price}</span>
+                                                        )}
+                                                    </div>
+                                                    {item.desc && (
+                                                        <p className="text-slate-500 text-xs mt-2 leading-relaxed">{item.desc}</p>
+                                                    )}
+                                                    {item.tag && (
+                                                        <div className="mt-2 flex flex-wrap gap-1.5">
+                                                            {parseTagTokens(item.tag).map((token) => (
+                                                                <span
+                                                                    key={`${item.name_en}-${token}`}
+                                                                    className={`inline-flex px-2 py-1 rounded-lg text-[10px] font-black ${tagClass(token)}`}
+                                                                >
+                                                                    {getFriendlyTagLabel(token)}
+                                                                </span>
+                                                            ))}
+                                                        </div>
+                                                    )}
+                                                </article>
+                                            ))}
+                                        </div>
+                                    </section>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    <nav className="fixed bottom-0 inset-x-0 h-20 bg-white/95 backdrop-blur-md flex items-center justify-around z-50 shadow-2xl border-t pb-2 font-black font-black font-black font-black">
+                        {['itinerary', 'photo', 'dining', 'tips', 'menu'].map(tab => (
+                            <button key={tab} onClick={() => setActiveTab(tab)} className={`flex flex-col items-center gap-1 ${activeTab === tab ? 'text-blue-600 scale-110' : 'text-slate-400'} font-black font-black font-black`}>
+                                <i data-lucide={tab === 'itinerary' ? 'calendar' : tab === 'photo' ? 'camera' : tab === 'dining' ? 'utensils' : tab === 'tips' ? 'zap' : 'languages'} size={24}/>
+                                <span className="text-[10px] font-black">{tab === 'itinerary' ? '行程' : tab === 'photo' ? '拍照' : tab === 'dining' ? '設施' : tab === 'tips' ? '攻略' : '翻譯'}</span>
+                            </button>
+                        ))}
+                    </nav>
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
